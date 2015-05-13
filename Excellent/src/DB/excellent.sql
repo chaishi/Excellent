@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50173
 File Encoding         : 65001
 
-Date: 2015-05-13 19:47:12
+Date: 2015-05-13 22:49:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,6 +22,7 @@ DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `id` int(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(12) NOT NULL,
+  `pswd` varchar(15) NOT NULL,
   `phone` char(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_name` (`name`)
@@ -97,6 +98,27 @@ CREATE TABLE `comment` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `group`
+-- ----------------------------
+DROP TABLE IF EXISTS `group`;
+CREATE TABLE `group` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `leader` int(8) DEFAULT NULL COMMENT '组长',
+  `group_name` varchar(10) DEFAULT NULL COMMENT '祖名',
+  `slogan` varchar(30) DEFAULT NULL COMMENT '口号',
+  `achieve` text COMMENT '成就',
+  `flags` varchar(50) DEFAULT NULL COMMENT '标签',
+  `tips` varchar(50) DEFAULT NULL COMMENT '寄语',
+  PRIMARY KEY (`id`),
+  KEY `FK_GROUP_STU` (`leader`),
+  CONSTRAINT `FK_GROUP_STU` FOREIGN KEY (`leader`) REFERENCES `student` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of group
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `news`
 -- ----------------------------
 DROP TABLE IF EXISTS `news`;
@@ -145,12 +167,13 @@ CREATE TABLE `notes` (
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
-  `schoolId` char(14) DEFAULT NULL,
+  `school_id` char(14) DEFAULT NULL,
   `name` varchar(10) DEFAULT NULL,
   `sex` int(2) DEFAULT NULL,
   `people` varchar(10) DEFAULT NULL,
   `idCard` varchar(18) DEFAULT NULL,
   `photo` varchar(20) DEFAULT NULL,
+  `group_id` int(6) DEFAULT NULL,
   `height` int(7) DEFAULT NULL,
   `selfSign` varchar(30) DEFAULT NULL,
   `isPoor` bit(1) DEFAULT NULL,
@@ -162,10 +185,12 @@ CREATE TABLE `student` (
   `love_enjoy_Type` varchar(225) DEFAULT NULL,
   `other` varchar(225) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `index_scoolId` (`schoolId`),
+  KEY `index_scoolId` (`school_id`),
   KEY `index_sex` (`sex`),
   KEY `index_isSingle` (`isSingle`),
-  KEY `index_height` (`height`)
+  KEY `index_height` (`height`),
+  KEY `FK_STU_GROUP` (`group_id`),
+  CONSTRAINT `FK_STU_GROUP` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='singtable\r\nsex 0-2(0 保密,1 男,2 女） \r\nisPoor 0-1 (0 否';
 
 -- ----------------------------
@@ -179,6 +204,7 @@ DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `school_id` char(18) DEFAULT NULL,
+  `name` varchar(15) NOT NULL,
   `study_area` varchar(100) DEFAULT NULL,
   `lib` varchar(50) DEFAULT NULL,
   `title` enum('助教','讲师','副教授','教授') DEFAULT NULL,

@@ -77,6 +77,15 @@ public class Response {
 		   resData.put("success", false);
 		   return resData;
 	   }	   
+	   
+	   /**
+	    * 
+	    * @return 返回成功的map
+	    */
+	   public Map<String,Object> renderSuccess(){
+		   resData.put("success", true);
+		   return resData;
+	   }
 	   /**
 	    * 清理resData和response
 	    */

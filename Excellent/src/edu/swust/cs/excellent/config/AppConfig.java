@@ -66,6 +66,7 @@ public class AppConfig extends JFinalConfig{
         arp.addMapping("notes", Note.class);
         arp.addMapping("student", Student.class);
         arp.addMapping("teacher", Teacher.class);
+        arp.addMapping("group", Group.class);
     }
 
     /**

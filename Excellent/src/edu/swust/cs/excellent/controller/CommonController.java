@@ -53,6 +53,21 @@ public class CommonController extends Controller{
 		add(key, obj);
 		renderJ();
 	}
+	/**
+	 * 操作成功
+	 */
+	public void renderSuccess(){
+		getRes().renderSuccess();
+	}
+	/**
+	 * 返回boolean值
+	 */
+	public void renderJ(boolean b){
+		if (b)
+			renderSuccess();
+		else
+			renderError("");
+	}
 	
 	/**
 	 * 

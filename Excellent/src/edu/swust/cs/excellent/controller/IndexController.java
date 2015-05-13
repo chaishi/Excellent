@@ -17,4 +17,9 @@ public class IndexController extends CommonController{
 	   System.out.println("ok");
    }
 	
+	public void login(){
+		String uid  = getPara("userName");
+		String pswd = getPara("pswd");
+		renderJ(loginImpl.login(uid, pswd,getSession()));
+	}
 }
