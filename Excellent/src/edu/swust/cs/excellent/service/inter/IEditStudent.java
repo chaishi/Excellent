@@ -1,5 +1,7 @@
 package edu.swust.cs.excellent.service.inter;
 
+import java.util.List;
+
 import com.jfinal.plugin.activerecord.Page;
 
 import edu.swust.cs.excellent.model.Student;
@@ -14,4 +16,9 @@ public interface IEditStudent extends IBase<Student> {
 	 */
 	public Page<Student> getStudentList(String classNum);
 
+	
+	/**
+	 * 获取学生简略信息列表
+	 */
+	public List<Student> getStuList();
 }

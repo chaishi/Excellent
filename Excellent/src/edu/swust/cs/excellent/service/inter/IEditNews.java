@@ -1,5 +1,7 @@
 package edu.swust.cs.excellent.service.inter;
 
+import com.jfinal.plugin.activerecord.Page;
+
 import edu.swust.cs.excellent.model.News;
 
 /**
@@ -32,5 +34,13 @@ public interface IEditNews extends IBase<News> {
 	 *          false 学生
 	 */
 	public boolean deleteComment(int commentId,boolean p);
+	/**
+	 * 
+	 * @param numPage
+	 * @param numPerPage
+	 * @param classNum
+	 * @return  某班新闻的信息
+	 */
+	public Page<News> getList(int numPage, int numPerPage,String classNum);
 	
 }

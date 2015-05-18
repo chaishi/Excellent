@@ -27,4 +27,27 @@ public interface IEditClass extends IBase<Class> {
 	 */
 	public Page<Group> getGroupList(String classNum);
 	
+	/**
+	 * 
+	 * @param cls
+	 * @param b true 卓越软件
+	 *          false 卓越计科
+	 * @return
+	 */
+    public boolean merge(Class cls,boolean b);
+    
+   /**
+    * awful function,not my idea
+    * @param groupName 祖名
+    * @param classId 班级Id
+    * @return
+    */
+    public boolean addGroup(Group group);
+    
+    /**
+     * 
+     * @param id 
+     * @return
+     */
+    public boolean deleteGroup(int id);
 }

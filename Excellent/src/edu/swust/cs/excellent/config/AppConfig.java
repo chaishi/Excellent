@@ -14,7 +14,11 @@ import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.plugin.spring.SpringPlugin;
 import com.jfinal.render.ViewType;
 
+import edu.swust.cs.excellent.controller.ClassController;
 import edu.swust.cs.excellent.controller.IndexController;
+import edu.swust.cs.excellent.controller.NewsController;
+import edu.swust.cs.excellent.controller.NoteController;
+import edu.swust.cs.excellent.controller.StudentController;
 import edu.swust.cs.excellent.model.*;
 import edu.swust.cs.excellent.model.Class;
 
@@ -42,6 +46,11 @@ public class AppConfig extends JFinalConfig{
     public void configRoute(Routes me) {
         // TODO Auto-generated method stub
         me.add("/",IndexController.class);
+        me.add("/stu",StudentController.class);
+        me.add("/news",NewsController.class);
+        me.add("/class",ClassController.class);
+        me.add("/note",NoteController.class);
+        
     }
 
     /**
@@ -67,6 +76,7 @@ public class AppConfig extends JFinalConfig{
         arp.addMapping("student", Student.class);
         arp.addMapping("teacher", Teacher.class);
         arp.addMapping("group", Group.class);
+        arp.addMapping("news_extend", News_extend.class);
     }
 
     /**

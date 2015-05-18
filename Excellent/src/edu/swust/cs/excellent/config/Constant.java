@@ -61,6 +61,13 @@ public class Constant {
     /**返回值起始路径**/
     public static String BASE_PATH = "/excellent";
     
+  
+    public static final String TEACHER = "教师";
+    
+    public static final String STUDENT = "学生";
+    
+    public static final String ADMIN = "管理员";
+    
     
     /**
 	 * 权限登记
@@ -68,6 +75,7 @@ public class Constant {
 	 */
     private final static String[] AUTHORITY = {"教师","班长","团支书","学习委员","文体委员","生活委员","普通同学","游客"};
     
+    public final static String AUTHORITY_ADMIN = "管理员";
     
     public final static String AUTHORITY_TEACHER = "教师";
 
@@ -81,9 +89,13 @@ public class Constant {
 
     public final static String AUTHORITY_LIFE_REP  = "生活委员";
     
-    public final static String AUTHORITY_STUDENT  = "普通学生";
+    public final static String AUTHORITY_NORMAL_STUDENT  = "普通同学";
+    
+    public final static String AUTHORITY_STUDENT  = "所有学生";
     
     public final static String AUTHORITY_TOURIST  = "游客";
+    
+  
     
     private Constant(){
     	

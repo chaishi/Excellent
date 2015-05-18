@@ -1,16 +1,50 @@
 package edu.swust.cs.excellent.controller;
 
 import java.util.Map;
-
-
-
+import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.spring.IocInterceptor;
 
+import edu.swust.cs.excellent.config.Constant;
+
+@Before(IocInterceptor.class)
 public class CommonController extends Controller{
 
 	private Response response = Response.getInstance();
 
+	/**
+	 * 
+	 * @return 身份标签
+	 *         0 学生
+	 *         1教师
+	 *         -1 其他
+	 */
+	int getFlag(){
+		if (getSession().getAttribute("userType").equals(Constant.TEACHER)){
+			return 1;
+		}else if (getSession().getAttribute("userType").equals(Constant.STUDENT)){
+			return 0;
+		}
+		return -1;
+	}
+	
+	/**
+	 * 
+	 * @return 登录用户Id
+	 */
+	String getUserId(){
+		return (String)  getSession().getAttribute("id");
+	}
+
+	/**
+	 * 
+	 * @return 用户名
+	 */
+	String getName(){
+		return (String) getSession().getAttribute("name");
+	}
+	
 	/**
 	 * 
 	 * @return 封装了getJson返回结构的Response
@@ -57,7 +91,7 @@ public class CommonController extends Controller{
 	 * 操作成功
 	 */
 	public void renderSuccess(){
-		getRes().renderSuccess();
+		renderJson(getRes().renderSuccess());
 	}
 	/**
 	 * 返回boolean值
@@ -68,6 +102,7 @@ public class CommonController extends Controller{
 		else
 			renderError("");
 	}
+	
 	
 	/**
 	 * 

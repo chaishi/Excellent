@@ -7,5 +7,6 @@ public interface IBase<T> {
    public boolean delete(int id);
    public T merge(T t);
    public Page<T> getList();
+   public Page<T> getList(int numPage,int numPerPage);
    public T getDetail(int id);
 }

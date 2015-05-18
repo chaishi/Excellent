@@ -5,7 +5,12 @@ import com.jfinal.plugin.activerecord.Page;
 import edu.swust.cs.excellent.model.Award;
 
 public interface IEditAward extends IBase<Award>{
-   /**
+   
+	public static enum AWARD_LEVEL{
+		一等奖,二等奖,三等奖,优秀奖,国家级,省级,校级,院级,专业级
+	}
+	
+	/**
     * 获得班级获奖情况列表
     */
 	public Page<Award> getClassAward(String classNum);

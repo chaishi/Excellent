@@ -8,6 +8,8 @@ import java.util.Map;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.core.ActionInvocation;
 
+import edu.swust.cs.excellent.config.Constant;
+
 
 
 /**
@@ -25,11 +27,24 @@ public class AuthorityInterceptor implements Interceptor{
 		}
 		String s =  (String) ai.getController().getSession().getAttribute("userType");
 		
+		
 		boolean flag = false;
 		String[] v = auth.value();
 		for (String p:v){
+			if (p.equals(Constant.STUDENT)){
+				if (s.equals(Constant.AUTHORITY_ACADEMIC_REP)
+						||s.equals(Constant.AUTHORITY_LIFE_REP)
+						||s.equals(Constant.AUTHORITY_MONITOR)
+	                    ||s.equals(Constant.AUTHORITY_SECRETARY)	
+	                    ||s.equals(Constant.AUTHORITY_SPORTS_REP)
+	                    ||s.equals(Constant.AUTHORITY_NORMAL_STUDENT)){
+					flag = true;
+					break;
+				}
+			}
 			if (p.equals(s)){
 				flag  = true;
+				break;
 			}
 		}
 		

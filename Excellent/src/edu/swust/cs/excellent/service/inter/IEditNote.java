@@ -1,5 +1,7 @@
 package edu.swust.cs.excellent.service.inter;
 
+import com.jfinal.plugin.activerecord.Page;
+
 import edu.swust.cs.excellent.model.Note;
 
 public interface IEditNote extends IBase<Note>{
@@ -13,4 +15,8 @@ public interface IEditNote extends IBase<Note>{
 	 */
 	public boolean end_up_Note();
 
+	/**
+	 * 获取所有留言
+	 */
+	public Page<Note> getAllNoteList(int numPage, int numPerPage); 
 }

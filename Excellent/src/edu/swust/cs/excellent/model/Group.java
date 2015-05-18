@@ -7,7 +7,9 @@ import com.jfinal.plugin.activerecord.Model;
 
 
 public class Group extends Model<Group>{
-   /**
+   public static Group dao = new Group();
+	
+	/**
     * 小组成员
     */
    List<SimpleStudent> members;

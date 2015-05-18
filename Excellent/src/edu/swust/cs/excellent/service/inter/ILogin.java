@@ -16,4 +16,11 @@ public interface ILogin {
 	 * @return 登录是否成功
 	 */
    boolean login(String uid,String pswd,HttpSession session);
+   
+  /**
+   * 
+   * @param session
+   * @return
+   */
+   boolean logout(HttpSession session);
 }
