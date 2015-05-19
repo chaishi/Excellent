@@ -21,16 +21,28 @@ import com.jfinal.kit.PropKit;
  */
 public class Constant {
 
+	
+	public static int PUPPET_CLASS_ID = 1;
+	
 	/**
-	 * 上传文件路径
+	 * 上传Excel路径
 	 */
-	public static  String UPLOADFILE_PATH = "excel";
-
+	public static  String UPLOAD_EXCEL_PATH = "excel";
 
 	/**
-	 * 文件的后缀名
+	 * 上传Image路径
 	 */
-	public  static String[] UPLOADFILE_FILE_EXTENSION = {".xml",".xls",".xmls",".h"};
+	public static  String UPLOAD_IMGAGE_PATH = "img";
+	
+	/**
+	 * Image文件的后缀名
+	 */
+	public  static String[] UPLOAD_IMGAE_EXTENSION = {".jpg",".jepg",".bmp",".gif",".jpeg2000",".tiff",".psd",".png",".svg"};
+	
+	/**
+	 * Excel文件的后缀名
+	 */
+	public  static String[] UPLOAD_EXCEL_EXTENSION = {".xml",".xls",".xmls",".h"};
 	
     /**
      * 文件的暂存路径
@@ -40,7 +52,7 @@ public class Constant {
     /**
      * 从excel导入数据时的数据有效列数
      */
-    public static int EXCEL_USER_VALID_COLUMNS = 9;
+    public static int EXCEL_GROUP_VALID_COLUMNS = 5;
     
     /**
      * 数据库url
@@ -114,12 +126,14 @@ public class Constant {
 			String r = properties.getProperty(p.getName());
 			if (r!=null){
 				try {
-					if (p.getName()=="UPLOADFILE_FILE_EXTENSION"){
+					if (p.getName()=="UPLOAD_EXCEL_EXTENSION" || p.getName()=="UPLOAD_IMGAE_EXTENSION"){
 						p.set(p.getName(), r.split(","));
-					}else if (p.getName()=="EXCEL_USER_VALID_COLUMNS"){
+					}else if (p.getName()=="EXCEL_GROUP_VALID_COLUMNS"){
 						p.set(p.getName(),Integer.parseInt(r));
 					}else  if (p.getName()=="DEVMODE"){
 						p.set(p.getName(), Boolean.getBoolean(r));
+					}else if (p.getName()=="PUPPET_CLASS_ID"){
+						p.set(p.getName(), Integer.parseInt(r));
 					}else{
 					   p.set(p.getName(),r);
 					}
