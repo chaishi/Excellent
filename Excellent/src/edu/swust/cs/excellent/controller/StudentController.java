@@ -20,7 +20,7 @@ public class StudentController extends CommonController {
   IEditAward editAwardImpl;
   
   public void getStuList(){
-	  renderJ("stu_list",editStudentImpl.getStuList());
+	  renderJ("stu_list",editStudentImpl.getStuList(getParaToInt("class_id")));
   }
   
   public void getStuInfo(){
@@ -46,6 +46,34 @@ public class StudentController extends CommonController {
 			                      .set("flag", getFlag())));
   }
 
+   @Authority({
+	   Constant.AUTHORITY_STUDENT
+   })
+   @Before({LoginInterceptor.class,AuthorityInterceptor.class})
+  public void mergeStuPrize(){
+	  String id = getPara("id");
+	  if (!(getUserId().equals(id))){
+		  renderError("只能修改自己的获奖情况");
+		  return ;
+	  }
+	 
+	 renderJ(null==editAwardImpl.merge(getModel(Award.class,"award")));
+  }
+
+   
+   @Authority({
+	   Constant.AUTHORITY_STUDENT
+   })
+   @Before({LoginInterceptor.class,AuthorityInterceptor.class})
+  public void deleteStuPrize(){
+	  String id = getPara("id");
+	  if (!(getUserId().equals(id))){
+		  renderError("只能删除自己的获奖情况");
+		  return ;
+	  }
+	 renderJ(editAwardImpl.delete(Integer.parseInt(id)));
+  }
+   
    @Authority({
  		Constant.AUTHORITY_ADMIN
  	})

@@ -4,6 +4,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
+import com.jfinal.log.Logger;
+
 import edu.swust.cs.excellent.config.Constant;
 import edu.swust.cs.excellent.model.Admin;
 import edu.swust.cs.excellent.model.Student;
@@ -12,6 +14,9 @@ import edu.swust.cs.excellent.service.inter.ILogin;
 
 @Service("loginImpl")
 public class LoginImpl implements ILogin {
+
+	Logger logger_disk = Logger.getLogger("Disk"); 
+	Logger logger_mail = Logger.getLogger("MAIL");
 
 	@Override
 	public boolean login(String uid, String pswd,HttpSession session) {
@@ -23,6 +28,7 @@ public class LoginImpl implements ILogin {
 			session.setAttribute("userType", Constant.ADMIN);
 			session.setAttribute("name", admin.get("name"));
 			session.setAttribute("trueName", admin.get("true_name"));
+			logger_disk.info("管理员:"+admin.get("name")+"登录");
 			return true;
 		}else if (uid.startsWith("te")){
 			Teacher te = Teacher.dao.findFirst("select name,true_name from teacher where school_id=? and pswd=?",uid,pswd);
@@ -32,6 +38,8 @@ public class LoginImpl implements ILogin {
 			session.setAttribute("userType", Constant.TEACHER);
 			session.setAttribute("name", te.get("name"));
 			session.setAttribute("trueName", te.get("true_name"));
+			logger_disk.info("教师:"+te.get("name")+"登录");
+			return true;
 		}else{
 			Student stu = Student.dao.findFirst("select name,true_name from student where school_id=? and pswd=?",uid,pswd);
 			if (stu == null){
@@ -40,9 +48,9 @@ public class LoginImpl implements ILogin {
 			session.setAttribute("userType", stu.getStr("classJob"));
 			session.setAttribute("name", stu.get("name"));
 			session.setAttribute("trueName", stu.get("true_name"));
+			logger_disk.info("学生:"+stu.get("name")+"登录");
 			return true;
 		}
-		return false;
 	}
 
 	@Override

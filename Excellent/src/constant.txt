@@ -1,14 +1,17 @@
-#文件的存储路径
-UPLOADFILE_PATH = excel
+#傀儡class表Id
+PUPPET_CLASS_ID = 1
+
+#excel的存储路径
+UPLOAD_EXCEL_PATH = excel
+
+#图片的存储路径
+UPLOAD_IMGAGE_PATH = img
 
 #文件的暂存路径
 FILE_TEMPORARY_SVAE_DIR = webRoot\\upload\\
 
 #从excel导入数据时的数据有效列数
-EXCEL_USER_VALID_COLUMNS = 9
-
-#上传文件类型
-UPLOADFILE_FILE_EXTENSION = .xml,.xls,.xmls,.h
+EXCEL_GROUP_VALID_COLUMNS = 5
 
 #数据库连接
 DB_URL = jdbc:mysql://127.0.0.1:3306/excellent?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
@@ -24,3 +27,13 @@ DEVMODE = true
 
 #返回值起始路径
 BASE_PATH = /excellent
+
+#上传Excel路径
+UPLOAD_EXCEL_PATH = excel
+
+UPLOAD_IMGAGE_PATH = img
+#Image文件的允许后缀名
+UPLOAD_IMGAE_EXTENSION = .jpg,.jepg,.bmp,.gif,.jpeg2000,.tiff,.psd,.png,.svg
+
+#上传excel类型
+UPLOAD_EXCEL_EXTENSION = .xml,.xls,.xmls,.h

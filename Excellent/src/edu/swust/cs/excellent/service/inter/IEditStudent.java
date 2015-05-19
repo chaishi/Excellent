@@ -20,5 +20,5 @@ public interface IEditStudent extends IBase<Student> {
 	/**
 	 * 获取学生简略信息列表
 	 */
-	public List<Student> getStuList();
+	public List<Student> getStuList(int class_id);
 }

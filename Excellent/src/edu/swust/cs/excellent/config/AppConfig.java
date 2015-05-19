@@ -15,6 +15,7 @@ import com.jfinal.plugin.spring.SpringPlugin;
 import com.jfinal.render.ViewType;
 
 import edu.swust.cs.excellent.controller.ClassController;
+import edu.swust.cs.excellent.controller.FileController;
 import edu.swust.cs.excellent.controller.IndexController;
 import edu.swust.cs.excellent.controller.NewsController;
 import edu.swust.cs.excellent.controller.NoteController;
@@ -50,7 +51,7 @@ public class AppConfig extends JFinalConfig{
         me.add("/news",NewsController.class);
         me.add("/class",ClassController.class);
         me.add("/note",NoteController.class);
-        
+        me.add("/file",FileController.class);
     }
 
     /**

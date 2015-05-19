@@ -2,6 +2,7 @@ package edu.swust.cs.excellent.service.impl;
 
 import org.springframework.stereotype.Service;
 
+import com.jfinal.log.Logger;
 import com.jfinal.plugin.activerecord.Page;
 
 import edu.swust.cs.excellent.model.Note;
@@ -10,12 +11,17 @@ import edu.swust.cs.excellent.service.inter.IEditNote;
 @Service("editNoteImpl")
 public class EditNoteImpl implements IEditNote {
 
+	Logger logger_disk = Logger.getLogger("Disk"); 
+	Logger logger_mail = Logger.getLogger("MAIL");
+	
 	@Override
 	public boolean add(Note t) {
 		try {
 			t.save();
+			logger_disk.info("新增留言:id"+t.getInt("id"));
 			return true;
 		} catch (Exception e) {
+			logger_disk.info("新增留言:id"+t.getInt("id")+"失败");
 		}
 		return false;
 	}
@@ -24,8 +30,10 @@ public class EditNoteImpl implements IEditNote {
 	public boolean delete(int id) {
 		try {
 			Note.dao.deleteById(id);
+			logger_disk.info("删除留言:id"+id);
 			return true;
 		} catch (Exception e) {
+			logger_disk.info("删除留言:id"+id+"失败");
 		}
 		return false;
 	}
@@ -34,9 +42,10 @@ public class EditNoteImpl implements IEditNote {
 	public Note merge(Note t) {
 		try {
 			t.set("is_passed", 1).update();
+			logger_disk.info("通过留言:id"+t.getInt("id"));
 			return t;
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger_disk.info("通过留言:id"+t.getInt("id")+"失败");
 		}
 		return null;
 	}

@@ -17,7 +17,7 @@ public class EditStudentImpl implements IEditStudent {
                 + "where a.id=? and a.group_id=b.id and b.class_id=c.id";
 	 
 	 public static final String SELECT_STUDENT_LIST="select id,name,true_name "
-	 		                                       + "from student order by school_id";
+	 		                                       + "from student  where class_id=? order by school_id";
 	 
 	@Override
 	public boolean add(Student t) {
@@ -75,8 +75,8 @@ public class EditStudentImpl implements IEditStudent {
 	}
 
 	@Override
-	public List<Student> getStuList() {
-	   return Student.dao.find(SELECT_STUDENT_LIST);
+	public List<Student> getStuList(int class_id) {
+	   return Student.dao.find(SELECT_STUDENT_LIST,class_id);
 	}
 
 }

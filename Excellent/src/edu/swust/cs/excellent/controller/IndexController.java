@@ -17,8 +17,17 @@ public class IndexController extends CommonController{
 	   System.out.println("ok");
    }
 	
+	public void captcha()
+    {
+        render(new MyCaptchaRender(60,22,4,true));
+    }
 	
 	public void login(){
+		String captcha = getPara("captcha");
+		if (!MyCaptchaRender.validate(this, captcha)){
+			renderError("验证码错误");
+			return;
+		}
 		String uid  = getPara("userName");
 		String pswd = getPara("pswd");
 		renderJ(loginImpl.login(uid, pswd,getSession()));

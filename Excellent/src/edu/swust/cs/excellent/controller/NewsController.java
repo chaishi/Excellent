@@ -46,6 +46,16 @@ public class NewsController extends CommonController {
 				.set("class_id", getPara("class_id",""))));
 	}
 	
+	
+	@Authority({
+		Constant.AUTHORITY_ADMIN,Constant.AUTHORITY_MONITOR,Constant.AUTHORITY_SECRETARY,
+		Constant.AUTHORITY_LIFE_REP,Constant.AUTHORITY_ACADEMIC_REP,Constant.AUTHORITY_SPORTS_REP
+	})
+	@Before({LoginInterceptor.class,AuthorityInterceptor.class})
+	public void mergeNews(){
+		renderJ(null==editNewsImpl.merge(getModel(News.class,"news")));
+	}
+	
 	@Authority({
 		Constant.AUTHORITY_ADMIN,Constant.AUTHORITY_MONITOR,Constant.AUTHORITY_SECRETARY,
 		Constant.AUTHORITY_LIFE_REP,Constant.AUTHORITY_ACADEMIC_REP,Constant.AUTHORITY_SPORTS_REP
