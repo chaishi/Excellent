@@ -24,7 +24,7 @@ public class MyCaptchaRender extends Render
      
     private static final String[] strArr = {"3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "M", "N", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y"};
      
-    private static String randomCodeKey = "JFINAL_JLHHWH_Key";
+    private static String randomCodeKey = "JFINAL_JLHHWH_KEY";
     private static boolean caseInsensitive = true;
      
     private int img_width = 85;

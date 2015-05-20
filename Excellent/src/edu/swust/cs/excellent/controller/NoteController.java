@@ -1,12 +1,19 @@
 package edu.swust.cs.excellent.controller;
 
 import com.jfinal.aop.Before;
+import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.ehcache.CacheKit;
+import com.jfinal.plugin.ehcache.CacheName;
+import com.jfinal.plugin.ehcache.EvictInterceptor;
+import com.jfinal.plugin.ehcache.IDataLoader;
 import com.jfinal.plugin.spring.IocInterceptor;
 import com.jfinal.plugin.spring.Inject;
 
 import edu.swust.cs.excellent.authorized.Authority;
 import edu.swust.cs.excellent.authorized.AuthorityInterceptor;
 import edu.swust.cs.excellent.authorized.LoginInterceptor;
+import edu.swust.cs.excellent.cache.MyCacheName;
+import edu.swust.cs.excellent.cache.MyEvictInterceptor;
 import edu.swust.cs.excellent.config.Constant;
 import edu.swust.cs.excellent.model.Note;
 import edu.swust.cs.excellent.service.inter.IEditNote;
@@ -28,18 +35,30 @@ public class NoteController extends CommonController {
 	})
 	public void saySomething(){
 		renderJ(editNoteImpl.add(new Note().set("content", getPara("msgContent"))
-				            .set("noter_id", getUserId())));
+				.set("noter_id", getUserId())));
 	}
 
 
 	public void getNotesList(){
+		int pageNum = getParaToInt("nowPage",1);
+		int numPerPage = getParaToInt("rowNum",10);
 		if (getSessionAttr("userType").equals(Constant.ADMIN)){
-			renderP(editNoteImpl.getAllNoteList(getParaToInt("nowPage",1), getParaToInt("rowNum",10)), "result");
+			Page<Note> notePages = CacheKit.get("note_cache", "admin"+pageNum+"-"+numPerPage,
+					                       new IDataLoader(){
+				                                public Object load() {    
+					                                return editNoteImpl.getAllNoteList(pageNum,numPerPage);  
+				                           }});
+			renderP(notePages, "result");
 			return ;
 		}
-         renderP(editNoteImpl.getList(getParaToInt("nowPage",1), getParaToInt("rowNum",10)), "result");
+		Page<Note> notePages = CacheKit.get("note_cache", pageNum+"-"+numPerPage,
+                new IDataLoader(){
+                     public Object load() {    
+                         return editNoteImpl.getList(pageNum, numPerPage);  
+                }});
+		renderP(notePages, "result");
 	}
-	
+
 
 	/**
 	 * 留言
@@ -50,18 +69,20 @@ public class NoteController extends CommonController {
 		Constant.AUTHORITY_ADMIN
 	})
 	@Before({
-		LoginInterceptor.class,AuthorityInterceptor.class
+		LoginInterceptor.class,AuthorityInterceptor.class,MyEvictInterceptor.class
 	})
+	@MyCacheName("note_cache")
 	public void deleteNote(){
 		renderJ(editNoteImpl.delete(getParaToInt("note_id")));
 	}
-	
+
 	@Authority({
 		Constant.AUTHORITY_ADMIN
 	})
 	@Before({
-		LoginInterceptor.class,AuthorityInterceptor.class
+		LoginInterceptor.class,AuthorityInterceptor.class,MyEvictInterceptor.class
 	})
+	@MyCacheName("note_cache")
 	public void pass(){
 		if (null==editNoteImpl.merge(Note.dao.findById(getParaToInt("note_id")))){
 			renderJ(false);

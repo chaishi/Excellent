@@ -11,6 +11,7 @@ import com.jfinal.config.Routes;
 import com.jfinal.kit.PathKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
+import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.plugin.spring.SpringPlugin;
 import com.jfinal.render.ViewType;
 
@@ -62,7 +63,7 @@ public class AppConfig extends JFinalConfig{
     public void configPlugin(Plugins me) {
 
     	me.add(new QuartzPlugin());
-    	
+    	me.add(new EhCachePlugin());
         C3p0Plugin c3p0Plugin = new C3p0Plugin(Constant.DB_URL,
         		                               Constant.DB_USER,
                                                Constant.DB_PSWD);
