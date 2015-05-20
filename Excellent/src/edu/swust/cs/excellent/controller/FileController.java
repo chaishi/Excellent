@@ -65,15 +65,15 @@ public class FileController extends CommonController{
 	}
 
 
-	public  void  uploadExcel() {
+	public  void  uploadfile() {
 		UploadFile file = null;
-		file = getFile("excel",Constant.FILE_TEMPORARY_SVAE_DIR);
+		file = getFile("file",Constant.FILE_TEMPORARY_SVAE_DIR);
 		File source = file.getFile();
 		String fileName = file.getFileName();
 		String extension = fileName.substring(fileName.lastIndexOf("."));
 
 		boolean flag = false;
-		for (String  p:Constant.UPLOAD_EXCEL_EXTENSION){
+		for (String  p:Constant.UPLOAD_FILE_EXTENSION){
 			if (p.equalsIgnoreCase(extension)){
 				flag = true;
 			}
@@ -86,7 +86,7 @@ public class FileController extends CommonController{
 		try {
 			FileInputStream fis = new FileInputStream(source);
 			fileName =  generateTimeString() + extension;
-			File targetDir = new File(PathKit.getWebRootPath()  + Constant.UPLOAD_EXCEL_PATH );
+			File targetDir = new File(PathKit.getWebRootPath()  + Constant.UPLOAD_FILE_PATH );
 			if (!targetDir.exists()) {
 				targetDir.mkdirs();
 			}
@@ -102,7 +102,7 @@ public class FileController extends CommonController{
 			fos.close();
 			fis.close();
 			source.delete();
-			setAttr("url", Constant.BASE_PATH  + Constant.UPLOAD_EXCEL_PATH +"/"+ fileName);
+			setAttr("url", Constant.BASE_PATH  + Constant.UPLOAD_FILE_EXTENSION +"/"+ fileName);
 			setAttr("error", 0);
 		} catch (FileNotFoundException e) {
 			setAttr("error", 1);

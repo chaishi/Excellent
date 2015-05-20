@@ -25,9 +25,9 @@ public class Constant {
 	public static int PUPPET_CLASS_ID = 1;
 	
 	/**
-	 * 上传Excel路径
+	 * 上传File路径
 	 */
-	public static  String UPLOAD_EXCEL_PATH = "excel";
+	public static  String UPLOAD_FILE_PATH = "file";
 
 	/**
 	 * 上传Image路径
@@ -42,7 +42,7 @@ public class Constant {
 	/**
 	 * Excel文件的后缀名
 	 */
-	public  static String[] UPLOAD_EXCEL_EXTENSION = {".xml",".xls",".xmls",".h"};
+	public  static String[] UPLOAD_FILE_EXTENSION = {".xml",".xls",".xmls",".h"};
 	
     /**
      * 文件的暂存路径
@@ -126,7 +126,7 @@ public class Constant {
 			String r = properties.getProperty(p.getName());
 			if (r!=null){
 				try {
-					if (p.getName()=="UPLOAD_EXCEL_EXTENSION" || p.getName()=="UPLOAD_IMGAE_EXTENSION"){
+					if (p.getName()=="UPLOAD_FILE_EXTENSION" || p.getName()=="UPLOAD_IMGAE_EXTENSION"){
 						p.set(p.getName(), r.split(","));
 					}else if (p.getName()=="EXCEL_GROUP_VALID_COLUMNS"){
 						p.set(p.getName(),Integer.parseInt(r));
