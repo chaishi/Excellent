@@ -22,6 +22,7 @@ import edu.swust.cs.excellent.controller.NoteController;
 import edu.swust.cs.excellent.controller.StudentController;
 import edu.swust.cs.excellent.model.*;
 import edu.swust.cs.excellent.model.Class;
+import edu.swust.cs.excellent.util.QuartzPlugin;
 
 
 public class AppConfig extends JFinalConfig{
@@ -60,6 +61,8 @@ public class AppConfig extends JFinalConfig{
     @Override
     public void configPlugin(Plugins me) {
 
+    	me.add(new QuartzPlugin());
+    	
         C3p0Plugin c3p0Plugin = new C3p0Plugin(Constant.DB_URL,
         		                               Constant.DB_USER,
                                                Constant.DB_PSWD);
