@@ -37,3 +37,6 @@ UPLOAD_IMGAE_EXTENSION = .jpg,.jepg,.bmp,.gif,.jpeg2000,.tiff,.psd,.png,.svg
 
 #上传excel类型
 UPLOAD_FILE_EXTENSION = .xml,.xls,.xmls,.h
+
+#定时器配置
+JOB_PROPERTY = job.properties

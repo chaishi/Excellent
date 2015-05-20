@@ -72,6 +72,9 @@ public class Constant {
     
     /**返回值起始路径**/
     public static String BASE_PATH = "/excellent";
+
+    /** 定时器配置    */
+	public static String JOB_PROPERTY="job.properties";
     
   
     public static final String TEACHER = "教师";
