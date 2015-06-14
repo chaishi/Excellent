@@ -1,7 +1,6 @@
 $(function(){
 	common.getBanner(1);
 	classMngr.getEditor();
-	classMngr.setActiveNav(0);
 	classMngr.addCickToNav();
 });
 
@@ -19,20 +18,45 @@ var classMngr = {};
 	
 	//为侧边栏添加点击事件
 	page.addCickToNav = function(){
-		$("#navLeft").delegate('div','click',function(){
-			page.setActiveNav($(this).index());
+		$("#navLeft").delegate('li','click',function(){
+			var index = $(this).index();
+			page.setActiveNav(index);
+			page.showContent(index);
 		});
 	}
 	
 	//为侧边栏设置active
 	page.setActiveNav = function(index){
-		$("#navLeft div").each(function(i){
+		$("#navLeft li").each(function(i){
 			if(i == index){
-				$(this).addClass('activeNav');
+				$(this).addClass('active');
 			}else{
-				$(this).removeClass('activeNav');
+				$(this).removeClass('active');
 			}
 		});
+	}
+	
+	page.showContent = function(i){
+		var classIntro = $("#classIntro");
+		var classAddDel = $("#classAddDel");
+		var classGroup = $("#classGroup");
+		switch(i){
+		case 0:{
+			classIntro.show();
+			classAddDel.hide();
+			classGroup.hide();
+		}break;
+		case 1:{
+			classIntro.hide();
+			classAddDel.show();
+			classGroup.hide();
+		}break;
+		case 2:{
+			classIntro.hide();
+			classAddDel.hide();
+			classGroup.show();
+		}break;
+		}
 	}
 	
 })(classMngr);

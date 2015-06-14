@@ -6,13 +6,10 @@
 
 #left{
 	width:170px;
+	margin-right:10px;
 }
 
-#left div{
-	margin-bottom:10px;
-}
-
-#left div:hover{
+#left li:hover{
 	cursor: hand;
 	cursor:pointer;
 }
@@ -40,3 +37,31 @@
 	-webkit-radius:3px;
 	-moz-radius:3px;
 }
+
+#classGroup,#classAddDel{
+	display:none;
+}
+
+#classAddDel table,#groupList,#studentList{
+	width:900px;
+	margin-left:100px;
+}
+
+table th,table td{
+	text-align: center;
+	line-height: 30px;
+}
+
+.indent{
+	margin-left:50px;
+}
+
+.indent1{
+	margin-left:100px;
+}
+
+.name2{
+	font-size: 15px;
+	color:#0055aa;
+}
+

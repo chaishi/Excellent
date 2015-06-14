@@ -17,18 +17,20 @@
 	<body>
 		<div id = "banner"></div>
 		<div id = "classMngr">
+		
 			<div id = "left">
-				<nav id = "navLeft">
-					<div>编辑班级简介</div>
-					<div>增删班级管理</div>
-					<div>班级分组管理</div>
-				</nav>
+				<ul class="list-group" id = "navLeft">
+				  <li class="list-group-item active"> 编辑班级简介</li>
+				  <li class="list-group-item">增删班级管理</li>
+				  <li class="list-group-item">班级分组管理</li>
+				</ul>
 			</div>
+			
 			<div id = "right">
 				<!-- 编辑班级简介 -->
-				<div>
+				<div id = "classIntro">
 					<form>
-						<textarea name="content" style="width:1100px;height:500px;visibility:hidden;resize: none">KindEditor</textarea>
+						<textarea name="content" style="width:1100px;height:420px;visibility:hidden;resize: none">KindEditor</textarea>
 						<br>
 						<div>
 							<span class="name1">班级类别： &nbsp;&nbsp;</span>
@@ -45,14 +47,149 @@
 					</form>
 				</div>
 				
-				<!-- 增删班级 -->
-				<div>
+				<!-- 增删班级管理 -->
+				<div id = "classAddDel">
+					<div class = "indent">
+						<span class = "name2">添加班级</span>
+					</div>
+					<br><br>
+					
+					<div class = "indent1">
+						<form class="form-inline">
+						  <div class="form-group">
+						    <label for="className">班级名称：</label>
+						    <input type="text" class="form-control input-sm" id="className" >
+						  </div>
+						  &nbsp;&nbsp;&nbsp;&nbsp;
+						  <button type="button" class="btn btn-primary btn-sm">添加</button>
+						</form>
+					</div>
+					<br><br>
+					
+					<div class = "indent">
+						<span class = "name2">当前班级</span>
+					</div>
+					<br>
+					<table id = "classList" class="table table-condensed">
+						<tr><th>序号</th><th>班级</th><th>删除</th></tr>
+					  	<tr><td>1</td><td>软件卓越1201</td><td><button type="button" class="btn">删除</button></td></tr>
+					  	<tr><td>2</td><td>软件卓越1201</td><td><button type="button" class="btn">删除</button></td></tr>
+					  	<tr><td>3</td><td>软件卓越1201</td><td><button type="button" class="btn">删除</button></td></tr>
+					</table>
 					
 				</div>
-				
-				<!-- 班级分组 -->
-				<div>
+			
+				<!-- 班级分组管理 -->
+				<div id = "classGroup">
+					<div class = "indent">
+						<span class = "name2">添加分组</span>
+					</div>
+					<br>
+					<div class = "indent1">
+						<form class="form-inline">
+							<div class="form-group">
+							    <label for="classId">选择班级：</label>
+							    <select class="form-control input-sm" id = "classId">
+							    	<option value = "1101">软件卓越1101</option>
+							    	<option value = "1101">软件卓越1101</option>
+							    	<option value = "1101">软件卓越1101</option>
+							    </select>
+							</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+						    <div class="form-group">
+							    <label for="groupName">分组名称：</label>
+							    <input type="text" class="form-control input-sm" id="groupName" >
+						    </div>
+						    &nbsp;&nbsp;&nbsp;&nbsp;
+						    <button type="button" class="btn btn-primary  btn-sm">添加</button>
+						</form>
+					</div>
+					<br>
 					
+					<div class = "indent">
+						<span class = "name2">删除分组</span>
+					</div>
+					<br>
+					<div class = "indent1">
+						<form class="form-inline">
+							<div class="form-group">
+							    <label for="classId">选择班级：</label>
+							    <select class="form-control input-sm" id = "classId">
+							    	<option value = "1101">软件卓越1101</option>
+							    	<option value = "1101">软件卓越1101</option>
+							    	<option value = "1101">软件卓越1101</option>
+							    </select>
+							</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+						    <button type="button" class="btn btn-primary  btn-sm">查询</button>
+						</form>
+					</div>
+					<br>
+					
+					<table id = "groupList" class="table table-condensed">
+						<tr><th>序号</th><th>分组</th><th>删除</th></tr>
+					  	<tr><td>1</td><td>软件卓越1201</td><td><button type="button" class="btn">删除</button></td></tr>
+					  	<tr><td>2</td><td>软件卓越1201</td><td><button type="button" class="btn">删除</button></td></tr>
+					  	<tr><td>3</td><td>软件卓越1201</td><td><button type="button" class="btn">删除</button></td></tr>
+					</table>
+					
+					
+					<div class = "indent">
+						<span class = "name2">添加学生</span>
+					</div><br>
+					<div class = "indent1">
+						<form class="form-inline">
+							<div class="form-group">
+							    <label for="classId">选择班级：</label>
+							    <select class="form-control input-sm" id = "classId">
+							    	<option value = "1101">软件卓越1101</option>
+							    	<option value = "1101">软件卓越1101</option>
+							    	<option value = "1101">软件卓越1101</option>
+							    </select>
+							</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<div class="form-group">
+							    <label for="classId">选择分组：</label>
+							    <select class="form-control input-sm" id = "classId">
+							    	<option value = "1101">第一组</option>
+							    	<option value = "1101">第二组</option>
+							    	<option value = "1101">第三组</option>
+							    </select>
+							</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+						    <div class="form-group">
+							    <label for="groupName">学生姓名：</label>
+							    <input type="text" class="form-control input-sm" id="groupName" >
+						    </div>
+						    &nbsp;&nbsp;&nbsp;&nbsp;
+						    <button type="button" class="btn btn-primary  btn-sm">添加</button>
+						</form>
+					</div><br>
+					
+					
+					<div class = "indent">
+						<span class = "name2">删除学生</span>
+					</div><br>
+					<div class = "indent1">
+						<form class="form-inline">
+							<div class="form-group">
+							    <label for="classId">选择班级：</label>
+							    <select class="form-control input-sm" id = "classId">
+							    	<option value = "1101">软件卓越1101</option>
+							    	<option value = "1101">软件卓越1101</option>
+							    	<option value = "1101">软件卓越1101</option>
+							    </select>
+							</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+						    <button type="button" class="btn btn-primary  btn-sm">查询</button>
+						</form><br>
+					</div>
+					<table id = "studentList" class="table table-condensed">
+						<tr><th>序号</th><th>姓名</th><th>删除</th></tr>
+					  	<tr><td>1</td><td>罗雪</td><td><button type="button" class="btn">删除</button></td></tr>
+					  	<tr><td>2</td><td>某泽波</td><td><button type="button" class="btn">删除</button></td></tr>
+					  	<tr><td>3</td><td>杨建南</td><td><button type="button" class="btn">删除</button></td></tr>
+					</table>
 				</div>
 			</div>
 			<br style="clear:both;">
