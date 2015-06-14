@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>班级管理</title>
+		<style>
+			form {
+				margin: 0;
+			}
+			textarea {
+				display: block;
+			}
+		</style>
+		<link rel="stylesheet" href="/Excellent/pages/kindeditor-4.1.10/themes/default/default.css" />
+		<link rel="stylesheet" href="/Excellent/pages/css/classMngr.css" />
+	</head>
+	<body>
+		<div id = "banner"></div>
+		<div id = "classMngr">
+			<div id = "left">
+				<nav id = "navLeft">
+					<div>编辑班级简介</div>
+					<div>增删班级管理</div>
+					<div>班级分组管理</div>
+				</nav>
+			</div>
+			<div id = "right">
+				<!-- 编辑班级简介 -->
+				<div>
+					<form>
+						<textarea name="content" style="width:1100px;height:500px;visibility:hidden;resize: none">KindEditor</textarea>
+						<br>
+						<div>
+							<span class="name1">班级类别： &nbsp;&nbsp;</span>
+							<select id = "classTypeSelect">
+								<option value = "0901">卓越软件工程师</option>
+								<option value = "1001">卓越计科工程师</option>
+							</select>
+						</div>
+						<br>
+						<div>
+							<input type = button value = "保存编辑" id = "saveEdit"/>
+						</div>
+						<br><br>
+					</form>
+				</div>
+				
+				<!-- 增删班级 -->
+				<div>
+					
+				</div>
+				
+				<!-- 班级分组 -->
+				<div>
+					
+				</div>
+			</div>
+			<br style="clear:both;">
+		</div>
+		<script type="text/javascript" src="/Excellent/pages/common/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/kindeditor-4.1.10/kindeditor-min.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/kindeditor-4.1.10/lang/zh_CN.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/common/common.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/js/classMngr.js"></script>
+	</body>
+</html>

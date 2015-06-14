@@ -1,0 +1,42 @@
+#classMngr{
+	width:1280px;
+	margin:0 auto;
+	margin-top:20px;
+}
+
+#left{
+	width:170px;
+}
+
+#left div{
+	margin-bottom:10px;
+}
+
+#left div:hover{
+	cursor: hand;
+	cursor:pointer;
+}
+
+#left,#right{
+	float:left;
+}
+
+.name1{
+	font-size: 15px;
+}
+
+.activeNav{
+	color:#0055aa;
+}
+
+#saveEdit{
+	width:100px;
+	height:35px;
+	background-color:#0055aa;
+	color:#ccc;
+	border:0;
+	font-weight: bold;
+	border-radius:3px;
+	-webkit-radius:3px;
+	-moz-radius:3px;
+}
