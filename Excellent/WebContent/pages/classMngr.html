@@ -51,8 +51,7 @@
 				<div id = "classAddDel">
 					<div class = "indent">
 						<span class = "name2">添加班级</span>
-					</div>
-					<br>
+					</div><br>
 					
 					<div class = "indent1">
 						<form class="form-inline">
@@ -61,10 +60,9 @@
 						    <input type="text" class="form-control input-sm" id="className" >
 						  </div>
 						  &nbsp;&nbsp;&nbsp;&nbsp;
-						  <button type="button" class="btn btn-primary btn-sm">添加</button>
+						  <button id = "addClassBtn" type="button" class="btn btn-primary btn-sm">添加</button>
 						</form>
-					</div>
-					<br>
+					</div><br>
 					
 					<div class = "indent">
 						<span class = "name2">当前班级</span>
@@ -72,9 +70,9 @@
 					<br>
 					<table id = "classList" class="table table-condensed">
 						<tr><th>序号</th><th>班级</th><th>删除</th></tr>
-					  	<tr><td>1</td><td>软件卓越1201</td><td><button type="button" class="btn">删除</button></td></tr>
-					  	<tr><td>2</td><td>软件卓越1201</td><td><button type="button" class="btn">删除</button></td></tr>
-					  	<tr><td>3</td><td>软件卓越1201</td><td><button type="button" class="btn">删除</button></td></tr>
+					  	<tr><td>1</td><td>软件卓越1201</td><td><button type="button" class="btn btn-sm">删除</button></td></tr>
+					  	<tr><td>2</td><td>软件卓越1201</td><td><button type="button" class="btn btn-sm">删除</button></td></tr>
+					  	<tr><td>3</td><td>软件卓越1201</td><td><button type="button" class="btn btn-sm">删除</button></td></tr>
 					</table>
 					
 				</div>
@@ -89,7 +87,7 @@
 						<form class="form-inline">
 							<div class="form-group">
 							    <label for="classId">选择班级：</label>
-							    <select class="form-control input-sm" id = "classId">
+							    <select class="form-control input-sm" id = "classSelect1">
 							    	<option value = "1101">软件卓越1101</option>
 							    	<option value = "1101">软件卓越1101</option>
 							    	<option value = "1101">软件卓越1101</option>
@@ -101,7 +99,7 @@
 							    <input type="text" class="form-control input-sm" id="groupName" >
 						    </div>
 						    &nbsp;&nbsp;&nbsp;&nbsp;
-						    <button type="button" class="btn btn-primary  btn-sm">添加</button>
+						    <button id = "addGroupBtn" type="button" class="btn btn-primary  btn-sm">添加</button>
 						</form>
 					</div>
 					<br>
@@ -114,14 +112,14 @@
 						<form class="form-inline">
 							<div class="form-group">
 							    <label for="classId">选择班级：</label>
-							    <select class="form-control input-sm" id = "classId">
+							    <select class="form-control input-sm" id = "classSelect2">
 							    	<option value = "1101">软件卓越1101</option>
 							    	<option value = "1101">软件卓越1101</option>
 							    	<option value = "1101">软件卓越1101</option>
 							    </select>
 							</div>
 							&nbsp;&nbsp;&nbsp;&nbsp;
-						    <button type="button" class="btn btn-primary  btn-sm">查询</button>
+						    <button id = "searchGroup" type="button" class="btn btn-primary  btn-sm">查询</button>
 						</form>
 					</div>
 					<br>

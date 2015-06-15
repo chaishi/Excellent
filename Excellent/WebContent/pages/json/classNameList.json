@@ -1,0 +1,33 @@
+{
+	"success":true,
+	"result":[
+		{
+			"className":"软件卓越1201",
+			"classId":"1201"
+		},
+		{
+			"className":"软件卓越1101",
+			"classId":"1101"
+		},
+		{
+			"className":"软件卓越1001",
+			"classId":"1001"
+		},
+		{
+			"className":"软件卓越0901",
+			"classId":"0901"
+		},
+		{
+			"className":"计科卓越1101",
+			"classId":"1101"
+		},
+		{
+			"className":"软件卓越1001",
+			"classId":"1001"
+		},
+		{
+			"className":"计科卓越1301",
+			"classId":"1201"
+		}
+	]
+}

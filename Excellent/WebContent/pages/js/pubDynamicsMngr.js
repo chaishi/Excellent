@@ -1,17 +1,35 @@
 $(function(){
 	common.getBanner(0);
+	common.getClasses("#classSelect");
+	classIntroMngr.getEditor();
 	classIntroMngr.pubNews();
+	
+	$(".form_datetime").datetimepicker({
+        format: "yyyy-mm-dd",
+        weekStart:1,
+        autoclose:true,
+        minView:"month",
+        todayBtn:true,
+        todayHighlight:true
+    });
 });
 
 var classIntroMngr = {};
 
 (function(page){
 	var editor;
-	KindEditor.ready(function(K) {
+	page.getEditor = function(){
+		KindEditor.ready(function(K) {
+			editor = K.create('textarea[name="content"]', {
+				allowFileManager : true
+			});
+		});
+	};
+	/*KindEditor.ready(function(K) {
 		editor = K.create('textarea[name="content"]', {
 			allowFileManager : true
 		});
-		/*K('input[name=getHtml]').click(function(e) {
+		K('input[name=getHtml]').click(function(e) {
 			alert(editor.html());
 		});
 		K('input[name=isEmpty]').click(function(e) {
@@ -37,26 +55,44 @@ var classIntroMngr = {};
 		});
 		K('input[name=clear]').click(function(e) {
 			editor.html('');
-		});*/
-	});
+		});
+	});*/
 	
-	//获取班级列表
-	page.getClasses = function(){
-		var html = "";
-		//$("#classSelect").html(html);
-	}
 	
 	//发布动态
 	page.pubNews = function(){
 		$("#pubNews").click(function(){
-			var title = $("#title").val();
-			var content = editor.html();
-			var clas = $("#classSelect").val();
-			if(title == "" || content == "" || clas == ""){
+			var title = $("#title").val(); //动态标题
+			var content = editor.html(); //动态内容
+			var classId = $("#classSelect").val(); //班级
+			var dynamicDate = $("#dynamicDate").val(); //动态时间
+			console.log(title,content,classId,dynamicDate);
+			if(title == "" || content == "" || classId == "" || dynamicDate == ""){
 				alert("请完善信息！");
 				return;
 			}
-			console.log(title,content,clas);
+			$.ajax({
+				url:"",
+				type:"post",
+				dataType:"json",
+				data:{
+					title:title,
+					content:content,
+					classId:classId,
+					dynamicDate:dynamicDate
+				},
+				success:function(data){
+					if(data.success === true){
+						alert("发布成功！");
+						window.open("/Excellent/pages/DynamicsInfo.html");
+					}else{
+						alert("发布失败，请重新尝试！");
+					}
+				},
+				error:function(){
+					alert("发布请求失败！");
+				}
+			});
 		});
 	};
 	

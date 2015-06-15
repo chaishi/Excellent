@@ -1,0 +1,17 @@
+{
+	"success":true,
+	"result":[
+		{
+			"groupName":"未分组",
+			"groupId":"0"
+		},
+		{
+			"groupName":"第一组",
+			"groupId":"1"
+		},
+		{
+			"groupName":"第二组",
+			"groupId":"2"
+		}
+	]
+}
