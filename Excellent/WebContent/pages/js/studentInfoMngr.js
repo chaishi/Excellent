@@ -1,18 +1,24 @@
 $(function(){
-	common.getBanner(1);
-	classMngr.getEditor();
-	classMngr.addCickToNav();
+	common.getBanner(2);
+	studentInfoMngr.delegateEdit();
+	studentInfoMngr.addCickToNav();
 });
 
-var classMngr = {};
+var studentInfoMngr = {};
 
 (function(page){
-	var editor;
-	page.getEditor = function(){
-		KindEditor.ready(function(K) {
-			editor = K.create('textarea[name="content"]', {
-				allowFileManager : true
-			});
+	
+	//事件代理：表格，当点击编辑按钮时
+	page.delegateEdit = function(){
+		$("#studentList").delegate('td','click',function(){
+			var obj = $($(this).find('button'));
+			var name= obj.html();
+			var val = obj.val();
+			if(name === "编辑"){
+				//alert(val);
+			}else if(name === "删除"){
+				alert(val);
+			}
 		});
 	};
 	
@@ -38,26 +44,21 @@ var classMngr = {};
 	
 	//选择左边哪一项，右边对应显示哪一项
 	page.showContent = function(i){
-		var classIntro = $("#classIntro");
-		var classAddDel = $("#classAddDel");
-		var classGroup = $("#classGroup");
+		var addStudent = $("#addStudent");
+		var delStudent = $("#delStudent");
 		switch(i){
 		case 0:{
-			classIntro.show();
-			classAddDel.hide();
-			classGroup.hide();
+			addStudent.show();
+			delStudent.hide();
 		}break;
 		case 1:{
-			classIntro.hide();
-			classAddDel.show();
-			classGroup.hide();
+			addStudent.hide();
+			delStudent.show();
 		}break;
 		case 2:{
-			classIntro.hide();
-			classAddDel.hide();
-			classGroup.show();
+			addStudent.hide();
+			delStudent.hide();
 		}break;
 		}
 	}
-	
-})(classMngr);
+})(studentInfoMngr);

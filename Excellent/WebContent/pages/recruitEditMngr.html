@@ -1,8 +1,8 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 	<head>
-		<title>发布班级动态</title>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="UTF-8">
+		<title>招新信息管理</title>
 		<style>
 			form {
 				margin: 0;
@@ -12,37 +12,26 @@
 			}
 		</style>
 		<link rel="stylesheet" href="/Excellent/pages/kindeditor-4.1.10/themes/default/default.css" />
-		<link rel="stylesheet" href="/Excellent/pages/css/pubDynamicsMngr.css" />
-		
-	 </head>
+		<link rel="stylesheet" href="/Excellent/pages/css/recruitEditMngr.css" />
+	</head>
 	<body>
 		<div id = "banner"></div>
-		<div id = "home_classIntroMngr">
+		<div id = "recruitEdit">
 			<form>
-				<input type = text id = "title" placeholder=" 在此输入班级动态标题"/>
+				<input type = text id = "title" placeholder=" 在此输入招新信息标题"/>
 				<br><br>
 				<textarea name="content" style="width:1200px;height:500px;visibility:hidden;resize: none"></textarea>
 				<br>
 				<div>
-					<span class="name1">班级： &nbsp;&nbsp;</span>
-					<select id = "classSelect">
-						<option value = "0901">软件卓越0901</option>
-						<option value = "1001">软件卓越1001</option>
-						<option value = "1101">软件卓越1101</option>
-					</select>
-				</div>
-				<br>
-				<div>
-					<input type = button value = "发布动态" id = "pubNews"/>
+					<input type = button value = "发布招新信息" id = "pubRecuit"/>
 				</div>
 				<br><br>
 			</form>
-		</div>	
-		
+		</div>
 		<script type="text/javascript" src="/Excellent/pages/common/jquery-1.8.1.min.js"></script>
 		<script type="text/javascript" src="/Excellent/pages/kindeditor-4.1.10/kindeditor-min.js"></script>
 		<script type="text/javascript" src="/Excellent/pages/kindeditor-4.1.10/lang/zh_CN.js"></script>
 		<script type="text/javascript" src="/Excellent/pages/common/common.js"></script>
-		<script type="text/javascript" src="/Excellent/pages/js/pubDynamicsMngr.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/js/recruitEditMngr.js"></script>
 	</body>
 </html>

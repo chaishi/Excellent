@@ -1,0 +1,30 @@
+#recruitEdit{
+	width:1280px;
+	margin:0 auto;
+	margin-top:20px;
+}
+
+#title{
+	width:1200px;
+	height:50px;
+	color:#333;
+	font-weight:bold;
+	border:1px solid #ccc;
+	text-indent:1em;
+	border-radius:3px;
+	-webkit-radius:3px;
+	-moz-radius:3px;
+}
+
+#pubRecuit{
+	width:100px;
+	height:35px;
+	background-color:#0055aa;
+	color:#eee;
+	border:0;
+	font-weight: bold;
+	border-radius:3px;
+	-webkit-radius:3px;
+	-moz-radius:3px;
+}
+

@@ -3,8 +3,170 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>学生信息管理</title>
+		<link rel="stylesheet" href="/Excellent/pages/css/studentInfoMngr.css" />
 	</head>
 	<body>
 		
+		<div id = "banner"></div>
+		
+		<div id = "studentInfoMngr">
+			<div id = "left">
+				<ul class="list-group" id = "navLeft">
+				  <li class="list-group-item active">添加学生资料</li>
+				  <li class="list-group-item">删除学生资料</li>
+				</ul>
+			</div>
+			
+			<div id = "right">
+				
+				<!-- 添加学生资料 -->
+				
+				<div id = "addStudent">
+					<div class = "indent">
+						<span class = "name2">添加学生资料</span>
+					</div><br>
+					<div class = "indent">
+						<form class="form-inline">
+							<div class="form-group">
+							    <label for="classId">选择班级：</label>
+							    <select class="form-control input-sm" id = "classId">
+							    	<option value = "1101">软件卓越1101</option>
+							    	<option value = "1101">软件卓越1101</option>
+							    	<option value = "1101">软件卓越1101</option>
+							    </select>
+							</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<div class="form-group">
+							    <label for="classId">选择分组：</label>
+							    <select class="form-control input-sm" id = "classId">
+							    	<option value = "1101">未分组</option>
+							    	<option value = "1101">第二组</option>
+							    	<option value = "1101">第三组</option>
+							    </select>
+							</div><br><br>
+							
+						    <div class="form-group">
+							    <label for="groupName">学生姓名：</label>
+							    <input type="text" class="form-control input-sm" id="groupName" >
+						    </div><br><br>
+						    
+						    <div class="form-group">
+							    <label for="groupName">毕业去向：</label>
+							    <input type="text" class="form-control input-sm" id="groupName" >
+						    </div><br><br>
+						    
+						    <div class="form-group">
+							    <label for="groupName">获奖情况：</label>
+							    <textarea class="form-control"  cols = "100" rows = "5"></textarea>
+						    </div><br><br>
+						    
+						    <div class="form-group">
+							    <label for="groupName">其它描述：</label>
+							    <textarea class="form-control" cols = "100" rows = "5"></textarea>
+						    </div><br><br>
+						    
+						    <button id = "addStudentBtn" type="button" class="btn btn-primary">添加学生</button>
+						</form>
+					</div><br>
+				</div>
+				
+				
+				<!-- 删除学生资料 -->
+				
+				<div id = "delStudent">
+					<div class = "indent">
+						<span class = "name2">删除学生资料</span>
+					</div><br>
+					<div class = "indent">
+						<form class="form-inline">
+							<div class="form-group">
+							    <label for="classId">选择班级：</label>
+							    <select class="form-control input-sm" id = "classId">
+							    	<option value = "1101">软件卓越1101</option>
+							    	<option value = "1101">软件卓越1101</option>
+							    	<option value = "1101">软件卓越1101</option>
+							    </select>
+							</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+						    <button type="button" class="btn btn-primary  btn-sm">查询</button>
+						</form><br>
+					</div>
+					<table id = "studentList" class="table table-condensed">
+						<tr><th>序号</th><th>姓名</th><th>删除</th><th>编辑</th></tr>
+					  	<tr><td>1</td><td>罗雪</td><td><button type="button" class="btn btn-sm" value = "001">删除</button></td><td><button type="button" class="btn btn-sm" value = "001"  data-toggle="modal" data-target="#editStudent">编辑</button></td></tr>
+					  	<tr><td>2</td><td>某泽波</td><td><button type="button" class="btn btn-sm">删除</button></td><td><button type="button" class="btn btn-sm" value = "002">编辑</button></td></tr>
+					  	<tr><td>3</td><td>杨建南</td><td><button type="button" class="btn btn-sm">删除</button></td><td><button type="button" class="btn btn-sm" value = "003">编辑</button></td></tr>
+					</table>
+				</div>
+				
+				
+				<!-- 编辑学生资料 -->
+				
+				<div class="modal fade bs-example-modal-lg" id = "editStudent">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title">编辑学生资料</h4>
+				      </div>
+				      <div class="modal-body">
+				        
+						<div class = "indent">
+							<form class="form-inline">
+								<div class="form-group">
+								    <label for="classId">选择班级：</label>
+								    <select class="form-control input-sm" id = "classId">
+								    	<option value = "1101">软件卓越1101</option>
+								    	<option value = "1101">软件卓越1101</option>
+								    	<option value = "1101">软件卓越1101</option>
+								    </select>
+								</div>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<div class="form-group">
+								    <label for="classId">选择分组：</label>
+								    <select class="form-control input-sm" id = "classId">
+								    	<option value = "1101">未分组</option>
+								    	<option value = "1101">第二组</option>
+								    	<option value = "1101">第三组</option>
+								    </select>
+								</div><br><br>
+								
+							    <div class="form-group">
+								    <label for="groupName">学生姓名：</label>
+								    <input type="text" class="form-control input-sm" id="groupName" >
+							    </div><br><br>
+							    
+							    <div class="form-group">
+								    <label for="groupName">毕业去向：</label>
+								    <input type="text" class="form-control input-sm" id="groupName" >
+							    </div><br><br>
+							    
+							    <div class="form-group">
+								    <label for="groupName">获奖情况：</label>
+								    <textarea class="form-control"  cols = "70" rows = "5"></textarea>
+							    </div><br><br>
+							    
+							    <div class="form-group">
+								    <label for="groupName">其它描述：</label>
+								    <textarea class="form-control" cols = "70" rows = "5"></textarea>
+							    </div><br><br>
+							</form>
+						</div>
+
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				        <button id = "saveEditStudent" type="button" class="btn btn-primary">保存编辑</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="/Excellent/pages/common/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/common/common.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/js/studentInfoMngr.js"></script>
 	</body>
 </html>

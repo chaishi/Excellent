@@ -30,7 +30,7 @@
 	width:100px;
 	height:35px;
 	background-color:#0055aa;
-	color:#ccc;
+	color:#eee;
 	border:0;
 	font-weight: bold;
 	border-radius:3px;
@@ -42,7 +42,7 @@
 	display:none;
 }
 
-#classAddDel table,#groupList,#studentList{
+#classAddDel table,#groupList{
 	width:900px;
 	margin-left:100px;
 }

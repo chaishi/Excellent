@@ -1,6 +1,3 @@
-$(function(){
-	//common.getBanner();
-});
 
 var common = {};
 

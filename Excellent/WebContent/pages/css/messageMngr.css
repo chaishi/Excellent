@@ -1,0 +1,18 @@
+#messageMngr{
+	width:1280px;
+	margin:0 auto;
+	margin-top:20px;
+}
+
+table{
+	width:100%;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
+	border:0 !important;
+}
+
+table .time{
+	width:200px;
+}
+
