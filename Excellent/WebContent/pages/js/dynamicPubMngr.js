@@ -93,7 +93,7 @@ var classIntroMngr = {};
 				if(data.success === true){
 					var dymList = data.result;
 					var html = "";
-					var url = "/Excellent/pages/DynamicsInfo.html";
+					var url = "/Excellent/pages/dynamicInfo.html";
 					for(var i = 0,len = dymList.length; i < len; i++){
 						html += '<tr>'
 							 +  '<td class = "titleWidth" onclick = "pageToNew(\''+url+'\','+dymList[i].atyId+')">'+dymList[i].atyTitle+'</td>'
@@ -121,7 +121,7 @@ var classIntroMngr = {};
 			var name= obj.html();
 			var val = obj.val();
 			if(name === "编辑"){
-				pageToNew("/Excellent/pages/editDynamics.html",val);
+				pageToNew("/Excellent/pages/dynamicEditMngr.html",val);
 			}else if(name === "删除"){
 				alert(val);
 			}
