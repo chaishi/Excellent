@@ -77,3 +77,13 @@
 textarea{
 	resize:none;
 }
+
+.titleWidth{
+	width:800px;
+}
+
+.titleWidth:hover{
+	cursor:hand;
+	cursor:pointer;
+	text-decoration: underline;
+}

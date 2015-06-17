@@ -86,7 +86,7 @@ var recruitEdit = {};
 			var name= obj.html();
 			var val = obj.val();
 			if(name === "编辑"){
-				pageToNew("/Excellent/pages/recuitEdit.html",val);
+				pageToNew("/Excellent/pages/recuitEditMngr.html",val);
 			}else if(name === "删除"){
 				alert(val);
 			}

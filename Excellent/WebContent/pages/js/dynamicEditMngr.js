@@ -1,6 +1,6 @@
 $(function(){
 	common.serActive(0);
-	common.getClasses("#classSelect");
+	common.getClasses(["#classSelect"]);
 	editDynamic.getEditor();
 	editDynamic.saveDynamic();
 	
@@ -32,11 +32,15 @@ var editDynamic = {};
 		$.getJSON(
 			"/Excellent/pages/json/dynamicInfo.json",
 			function(data){
-				var dym = data.result;
-				$("#title").val(dym.atyTitle); //动态标题
-				$("#classSelect").val(dym.className); //班级
-				$("#dynamicDate").val(dym.atyDate); //动态时间
-				editor.html(dym.atyContent); //动态内容
+				if(data.success){
+					var dym = data.result;
+					$("#title").val(dym.atyTitle); //动态标题
+					$("#classSelect").val(dym.className); //班级
+					$("#dynamicDate").val(dym.atyDate); //动态时间
+					editor.html(dym.atyContent); //动态内容
+				}else{
+					alert("获取班级动态详情失败！");
+				}
 			}
 		);
 	};
