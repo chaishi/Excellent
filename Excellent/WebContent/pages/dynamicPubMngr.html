@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>发布班级动态</title>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<style>
+			form {
+				margin: 0;
+			}
+			textarea {
+				display: block;
+			}
+		</style>
+		<link rel="stylesheet" href="/Excellent/pages/bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/Excellent/pages/kindeditor-4.1.10/themes/default/default.css" />
+		<link rel="stylesheet" href="/Excellent/pages/bootstrap-3.2.0-dist/css/bootstrap-datetimepicker.min.css" />
+		<link rel="stylesheet" href="/Excellent/pages/common/common.css" />
+		<link rel="stylesheet" href="/Excellent/pages/css/dynamicPubMngr.css" />
+		
+	 </head>
+	<body>
+		<div id = "bannerNav">
+			 <nav class="navbar-inverse">
+			  	<div class="container-fluid">
+				    <div class="navbar-header">
+				    	  <span class="navbar-brand">
+					        <img id="logo" src="images/logo.png">
+					        	卓越工程师班级网站管理系统
+					      </span>
+				    </div>
+				    <ul id="barLink" class="nav navbar-nav">
+				    	<li><a href="dynamicPubMngr.html">班级动态管理</a></li>
+				    	<li><a href="classMngr.html">班级信息管理</a></li>
+				    	<li><a href="studentInfoMngr.html">学生信息管理</a></li>
+				    	<li><a href="recruitPubMngr.html">招新信息管理</a></li>
+				    	<li><a href="teacherMngr.html">教师信息管理</a></li>
+				    	<li><a href="messageMngr.html">审核留言</a></li>
+				    </ul>
+			      	<ul class="nav navbar-nav navbar-right">
+			        	<li class="dropdown">
+				          	<a href="login.jsp" class="dropdown-toggle" data-toggle="dropdown"><span id="userNAME">登 录</span> <span class="caret"></span></a>
+				          	<ul class="dropdown-menu">
+					            <li id="EXIT"><a href="login.jsp">退 出</a></li>
+				         	</ul>
+			        	</li>
+			       </ul>
+			  </div>
+			</nav>
+		</div>
+
+		<div id = "home_classIntroMngr" class = "pageContent">
+			<div class = "left">
+				<ul class="list-group" id = "navLeft">
+				  <li class="list-group-item active">发布班级动态</li>
+				  <li class="list-group-item">删改班级动态</li>
+				</ul>
+			</div>
+			
+			<div class = "right">
+				
+				<!-- 发布班级动态 -->			
+				<div id = "pubDynamicCon">
+					<form>
+						<input type = text id = "title" placeholder=" 在此输入班级动态标题" class = "inputTitle"/>
+						<br><br>
+						<textarea name="content" style="width:1000px;height:400px;visibility:hidden;resize: none"></textarea>
+						<br>
+						<div>
+							<span class="name1">班级： &nbsp;&nbsp;</span>
+							<select id = "classSelect">
+								<option value = "0901">软件卓越0901</option>
+								<option value = "1001">软件卓越1001</option>
+								<option value = "1101">软件卓越1101</option>
+							</select>
+						</div><br>
+						
+						<div class="input-append date form_datetime">
+							<span class="name1">日期： &nbsp;&nbsp;</span>
+						    <input id = "dynamicDate" size="16" type="text" value="" readonly>
+						    <span class="add-on"><i class="icon-th"></i></span>
+						</div><br>
+						
+						<div>
+							<input type = button value = "发布动态" id = "pubNews" class = "bigButton"/>
+						</div>
+						<br><br><br><br><br><br><br><br><br><br><br><br>
+					</form>
+				</div>
+				
+				<!-- 删改班级动态 -->
+				<div id = "delEditDinamics" class = "displayNone">
+					<table id = "dynamicList" class="table table-condensed">
+		  				<tr>
+		  					<td>计算机学院卓越计科1301举行课程学习交流会</td>
+		  					<td>2015-06-14</td>
+		  					<td><button type="button" class="btn btn-info btn-xs">编辑</button></td>
+		  					<td><button type="button" class="btn btn-danger btn-xs">删除</button></td>
+		  				</tr>
+					</table>
+				</div>
+				
+			</div>		
+			
+		</div>	
+		<script type="text/javascript" src="/Excellent/pages/common/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/kindeditor-4.1.10/kindeditor-min.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/kindeditor-4.1.10/lang/zh_CN.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/bootstrap-3.2.0-dist/js/bootstrap-datetimepicker.min.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/common/common.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/js/dynamicPubMngr.js"></script>
+	</body>
+</html>

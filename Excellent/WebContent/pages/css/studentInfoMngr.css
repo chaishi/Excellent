@@ -1,30 +1,6 @@
-#studentInfoMngr{
-	width:1280px;
-	margin:0 auto;
-	margin-top:20px;
-}
-
 .name2{
 	font-size: 15px;
 	color:#0055aa;
-}
-
-#left{
-	width:170px;
-	margin-right:10px;
-}
-
-#left li:hover{
-	cursor: hand;
-	cursor:pointer;
-}
-
-#left,#right{
-	float:left;
-}
-
-#delStudent{
-	display:none;
 }
 
 #studentList{
@@ -37,10 +13,6 @@ table th,table td{
 	line-height: 30px;
 }
 
-.indent{
-	margin-left:50px;
-}
-
-textarea{
-	resize:none;
+#groupSelect{
+	width:100px;
 }

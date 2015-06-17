@@ -1,0 +1,23 @@
+{
+	"success":true,
+	"result":[
+		{
+			"teacherId":"001",
+			"teacherName": "潘娅",
+			"teacherHeadPath": "images/logo.png",
+			"teacherDescrible": "老师描述"
+		},
+		{
+			"teacherId":"002",
+			"teacherName": "范勇",
+			"teacherHeadPath": "images/logo.png",
+			"teacherDescrible": "老师描述"
+		},
+		{
+			"teacherId":"003",
+			"teacherName": "杨春明",
+			"teacherHeadPath": "images/logo.png",
+			"teacherDescrible": "老师描述"
+		}
+	]
+}

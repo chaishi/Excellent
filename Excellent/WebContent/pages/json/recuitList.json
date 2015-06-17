@@ -1,0 +1,20 @@
+{
+	"success":true,
+	"result":[
+		{
+			"pubTime" : "2015-06-15",
+			"recuritId" : "291",
+			"recuritTitle" : "第五届卓越工程师班招新"
+		},
+		{
+			"pubTime" : "2015-06-15",
+			"recuritId" : "290",
+			"recuritTitle" : "第四届卓越工程师班招新"
+		},
+		{
+			"pubTime" : "2015-06-15",
+			"recuritId" : "292",
+			"recuritTitle" : "第三届卓越工程师班招新"
+		}
+	]
+}

@@ -1,0 +1,23 @@
+
+.name1{
+	font-size: 15px;
+}
+
+#dynamicList{
+	width:1000px;
+	margin-left:20px;
+}
+
+#dynamicList td{
+	border:0;
+}
+
+.titleWidth{
+	width:800px;
+}
+
+.titleWidth:hover{
+	cursor:hand;
+	cursor:pointer;
+	text-decoration: underline;
+}

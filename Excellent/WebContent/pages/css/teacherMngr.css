@@ -1,0 +1,17 @@
+#prelook,#headImg{
+	margin-left: 1em;
+}
+
+#teacherList img{
+	width:20px;
+	height:20px;
+}
+
+#teacherList{
+	width:800px;
+}
+
+#teacherList td,#teacherList th{
+	border:0;
+	text-align: center;
+}

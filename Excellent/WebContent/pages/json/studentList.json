@@ -1,0 +1,19 @@
+{
+	"success":true,
+	"result":[
+		{
+			"stdName" : "杨万里",
+			"stdId" : "20121179",
+			"group名称" : "第一组",
+			"className" : "软件卓越1201",
+			"graduate" : "毕业去向1"
+		},
+		{
+			"stdName" : "郭云峰",
+			"stdId" : "20121234",
+			"group名称" : "第二组",
+			"className" : "计科卓越1301",
+			"graduate" : "毕业去向3"
+		}
+	]
+}

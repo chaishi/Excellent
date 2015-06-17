@@ -1,22 +1,3 @@
-#classMngr{
-	width:1280px;
-	margin:0 auto;
-	margin-top:20px;
-}
-
-#left{
-	width:170px;
-	margin-right:10px;
-}
-
-#left li:hover{
-	cursor: hand;
-	cursor:pointer;
-}
-
-#left,#right{
-	float:left;
-}
 
 .name1{
 	font-size: 15px;
@@ -24,22 +5,6 @@
 
 .activeNav{
 	color:#0055aa;
-}
-
-#saveEdit{
-	width:100px;
-	height:35px;
-	background-color:#0055aa;
-	color:#eee;
-	border:0;
-	font-weight: bold;
-	border-radius:3px;
-	-webkit-radius:3px;
-	-moz-radius:3px;
-}
-
-#classGroup,#classAddDel{
-	display:none;
 }
 
 #classAddDel table,#groupList{
@@ -50,10 +15,6 @@
 table th,table td{
 	text-align: center;
 	line-height: 30px;
-}
-
-.indent{
-	margin-left:50px;
 }
 
 .indent1{

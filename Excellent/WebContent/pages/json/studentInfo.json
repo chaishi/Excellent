@@ -1,0 +1,12 @@
+{
+	"success":true,
+	"result":{
+		"classId" : "班级ID",
+		"groupId" : "分组ID",
+		"stdName" : "学生姓名",
+		"stdId" : "学生学号",
+		"graduate" : "毕业去向",
+		"prizes" : "获奖情况",
+		"stdInfo" : "学生介绍"
+	}
+}

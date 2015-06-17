@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>教师信息管理</title>
+		<link rel="stylesheet" href="/Excellent/pages/bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/Excellent/pages/common/common.css" />
+		<link rel="stylesheet" href="/Excellent/pages/css/teacherMngr.css" />
+	</head>
+	<body>
+		<div id = "bannerNav">
+			 <nav class="navbar-inverse">
+			  	<div class="container-fluid">
+				    <div class="navbar-header">
+				    	  <span class="navbar-brand">
+					        <img id="logo" src="images/logo.png">
+					        	卓越工程师班级网站管理系统
+					      </span>
+				    </div>
+				    <ul id="barLink" class="nav navbar-nav">
+				    	<li><a href="dynamicPubMngr.html">班级动态管理</a></li>
+				    	<li><a href="classMngr.html">班级信息管理</a></li>
+				    	<li><a href="studentInfoMngr.html">学生信息管理</a></li>
+				    	<li><a href="recruitPubMngr.html">招新信息管理</a></li>
+				    	<li><a href="teacherMngr.html">教师信息管理</a></li>
+				    	<li><a href="messageMngr.html">审核留言</a></li>
+				    </ul>
+			      	<ul class="nav navbar-nav navbar-right">
+			        	<li class="dropdown">
+				          	<a href="login.jsp" class="dropdown-toggle" data-toggle="dropdown"><span id="userNAME">登 录</span> <span class="caret"></span></a>
+				          	<ul class="dropdown-menu">
+					            <li id="EXIT"><a href="login.jsp">退 出</a></li>
+				         	</ul>
+			        	</li>
+			       </ul>
+			  </div>
+			</nav>
+		</div>
+		
+		<div id = "teacherMngr" class = "pageContent">
+			<div class = "left">
+				<ul class="list-group" id = "navLeft">
+				  <li class="list-group-item active">添加老师资料</li>
+				  <li class="list-group-item">删除老师资料</li>
+				</ul>
+			</div>
+			<div class = "right indent">
+				<div id = "addTeacherInfo">
+					<form class="form-inline">
+					    <div class="form-group">
+						    <label for="teacherName">老师姓名：</label>
+						    <input type="text" class="form-control input-sm" id="teacherName" >
+					    </div><br><br>
+					    
+					    <div class="form-group">
+						    <label for="teacherDsb">老师简介：</label>
+						    <textarea class="form-control" cols = "100" rows = "5" id = "teacherDsb"></textarea>
+					    </div><br><br>
+					    
+					     <div class="form-group">
+						    <label for="exampleInputFile">老师头像:</label>
+						    <input type="file" id="teacherHeaderFile" class="btn">
+						    <button id = "prelook" type="button" class="btn">预览</button><br><br>
+						    <img id = "headImg" src = "images/logo.png"/>
+						</div><br><br>
+					    
+					    <button id = "addTeacherBtn" type="button" class="btn btn-primary">添加老师</button>
+					</form>
+				</div>
+				
+				<div id = "delTeacherInfo" class= "displayNone">
+					<table id = "teacherList" class="table table-condensed">
+						<tr><th>序号</th><th>姓名</th><th>头像</th><th>删除</th></tr>
+					  	<tr>
+					  		<td>1</td><td>范勇</td>
+					  		<td><img src = ""/></td>
+					  		<td><button type="button" class="btn btn-sm" value = "001">删除</button></td>
+					  	</tr> 
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="/Excellent/pages/common/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/common/common.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/js/teacherMngr.js"></script>
+	</body>
+</html>

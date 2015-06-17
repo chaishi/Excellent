@@ -5,11 +5,10 @@
  */
 
 $(function(){
-	common.getBanner(1);
-	common.getClasses("#classSelect1");
-	common.getClasses("#classSelect2");
+	common.serActive(1);
+	common.getClasses(["#classSelect1","#classSelect2"]);
+	common.addCickToNav(classMngr.showContent);
 	classMngr.getEditor();
-	classMngr.addCickToNav();
 	classMngr.saveClassIntro();
 	classMngr.addClass();
 	classMngr.addGroup();
@@ -28,26 +27,6 @@ var classMngr = {};
 			});
 		});
 	};
-	
-	//为侧边栏添加点击事件
-	page.addCickToNav = function(){
-		$("#navLeft").delegate('li','click',function(){
-			var index = $(this).index();
-			page.setActiveNav(index);
-			page.showContent(index);
-		});
-	}
-	
-	//为侧边栏设置active
-	page.setActiveNav = function(index){
-		$("#navLeft li").each(function(i){
-			if(i == index){
-				$(this).addClass('active');
-			}else{
-				$(this).removeClass('active');
-			}
-		});
-	}
 	
 	//选择左边哪一项，右边对应显示哪一项
 	page.showContent = function(i){

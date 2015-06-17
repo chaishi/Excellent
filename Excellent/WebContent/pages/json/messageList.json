@@ -1,0 +1,35 @@
+{
+	"success":true,
+	"result":[
+		{
+			"msgPubTime" : "2015-06-17 10:40:00",
+			"msgContent" : "留言内容",
+			"msgId": "001"
+		},
+		{
+			"msgPubTime" : "2015-06-17 10:40:00",
+			"msgContent" : "留言内容",
+			"msgId": "001"
+		},
+		{
+			"msgPubTime" : "2015-06-17 10:40:00",
+			"msgContent" : "留言内容",
+			"msgId": "001"
+		},
+		{
+			"msgPubTime" : "2015-06-17 10:40:00",
+			"msgContent" : "留言内容",
+			"msgId": "001"
+		},
+		{
+			"msgPubTime" : "2015-06-17 10:40:00",
+			"msgContent" : "留言内容",
+			"msgId": "001"
+		},
+		{
+			"msgPubTime" : "2015-06-17 10:40:00",
+			"msgContent" : "留言内容",
+			"msgId": "001"
+		}
+	]
+}

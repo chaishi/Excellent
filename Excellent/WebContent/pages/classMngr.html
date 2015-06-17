@@ -12,13 +12,42 @@
 			}
 		</style>
 		<link rel="stylesheet" href="/Excellent/pages/kindeditor-4.1.10/themes/default/default.css" />
+		<link rel="stylesheet" href="/Excellent/pages/bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/Excellent/pages/common/common.css" />
 		<link rel="stylesheet" href="/Excellent/pages/css/classMngr.css" />
 	</head>
 	<body>
-		<div id = "banner"></div>
-		<div id = "classMngr">
+		<div id = "bannerNav">
+			 <nav class="navbar-inverse">
+			  	<div class="container-fluid">
+				    <div class="navbar-header">
+				    	  <span class="navbar-brand">
+					        <img id="logo" src="images/logo.png">
+					        	卓越工程师班级网站管理系统
+					      </span>
+				    </div>
+				    <ul id="barLink" class="nav navbar-nav">
+				    	<li><a href="dynamicPubMngr.html">班级动态管理</a></li>
+				    	<li><a href="classMngr.html">班级信息管理</a></li>
+				    	<li><a href="studentInfoMngr.html">学生信息管理</a></li>
+				    	<li><a href="recruitPubMngr.html">招新信息管理</a></li>
+				    	<li><a href="teacherMngr.html">教师信息管理</a></li>
+				    	<li><a href="messageMngr.html">审核留言</a></li>
+				    </ul>
+			      	<ul class="nav navbar-nav navbar-right">
+			        	<li class="dropdown">
+				          	<a href="login.jsp" class="dropdown-toggle" data-toggle="dropdown"><span id="userNAME">登 录</span> <span class="caret"></span></a>
+				          	<ul class="dropdown-menu">
+					            <li id="EXIT"><a href="login.jsp">退 出</a></li>
+				         	</ul>
+			        	</li>
+			       </ul>
+			  </div>
+			</nav>
+		</div>
+		<div id = "classMngr" class = "pageContent">
 		
-			<div id = "left">
+			<div class = "left">
 				<ul class="list-group" id = "navLeft">
 				  <li class="list-group-item active"> 编辑班级简介</li>
 				  <li class="list-group-item">增删班级管理</li>
@@ -26,7 +55,7 @@
 				</ul>
 			</div>
 			
-			<div id = "right">
+			<div class = "right">
 				<!-- 编辑班级简介 -->
 				<div id = "classIntro">
 					<form>
@@ -41,14 +70,14 @@
 						</div>
 						<br>
 						<div>
-							<input type = button value = "保存编辑" id = "saveEdit"/>
+							<input type = button value = "保存编辑" id = "saveEdit" class = "bigButton"/>
 						</div>
 						<br><br>
 					</form>
 				</div>
 				
 				<!-- 增删班级管理 -->
-				<div id = "classAddDel">
+				<div id = "classAddDel" class = "displayNone">
 					<div class = "indent">
 						<span class = "name2">添加班级</span>
 					</div><br>
@@ -78,7 +107,7 @@
 				</div>
 			
 				<!-- 班级分组管理 -->
-				<div id = "classGroup">
+				<div id = "classGroup" class = "displayNone">
 					<div class = "indent">
 						<span class = "name2">添加分组</span>
 					</div>
@@ -136,6 +165,7 @@
 			<br style="clear:both;">
 		</div>
 		<script type="text/javascript" src="/Excellent/pages/common/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/Excellent/pages/kindeditor-4.1.10/kindeditor-min.js"></script>
 		<script type="text/javascript" src="/Excellent/pages/kindeditor-4.1.10/lang/zh_CN.js"></script>
 		<script type="text/javascript" src="/Excellent/pages/common/common.js"></script>
