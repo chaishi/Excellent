@@ -14,14 +14,16 @@ public class EditNewsImpl implements IEditNews {
 
 	Logger logger_disk = Logger.getLogger("Disk"); 
 	Logger logger_mail = Logger.getLogger("MAIL");
-	
-	private static final String SELECT_NEWS_DETAIL = "select title,content,author,importance,up_news,browses "
-			                                          + " from news a,news_extend b"
-			                                          + " where a.id=b.id and a.id=?";
+
+	private static final String SELECT_NEWS_DETAIL = "select title,classNum,content,happen_time,pub_time,author,importance,up_news,browses "
+			+ " from news a,news_extend b,class c"
+			+ " where a.id=b.id  and a.class_id=c.id and a.id=?";
 	@Override
 	public boolean add(News t) {
 		try {
 			t.save();
+			News_extend ne=new News_extend();
+			ne.set("id", t.getInt("id")).save();
 			logger_disk.info("新增新闻:id="+t.getInt("id"));
 			return true;
 		} catch (Exception e) {
@@ -94,13 +96,34 @@ public class EditNewsImpl implements IEditNews {
 	}
 	@Override
 	public Page<News> getList(int numPage, int numPerPage,String classNum) {
-		return News.dao.paginate(numPage, numPerPage, "select id,title,pub_time", " from news where classNum=? order by importance ",classNum);
+		String cls="";
+		String sql="";
+		if (classNum.trim().startsWith("1")){
+			cls=classNum.substring(1,classNum.length()-1);
+			if (cls.trim().equals(""))
+				return getList(numPage, numPerPage);
+			sql=" from news where type=2 and classNum like '%"+cls
+					+ "%' order by importance,happen_time ";
+			return News.dao.paginate(numPage, numPerPage, "select id,title,pub_time,happen_time", sql);
+		}
+		//else
+		if (classNum.trim().startsWith("2")){
+			if (classNum.trim().length()!=1)
+			   cls=classNum.substring(1,classNum.length()-1);
+			if (cls.trim().equals("")){
+				return  News.dao.paginate(numPage, numPerPage, "select id,title,pub_time", " from news where type=2 order by importance,happen_time ");
+			}
+			sql=" from news where type=1 and classNum like '%"+cls
+					+ "%' order by importance,happen_time ";
+			return News.dao.paginate(numPage, numPerPage,"select id,title,pub_time,happen_time",sql);
+		}
+		return null;
 	}
-	
-	
+
+
 	@Override
 	public Page<News> getList(int numPage, int numPerPage) {
-		return News.dao.paginate(numPage, numPerPage, "select id,title,pub_time", " from news order by importance ");
+		return News.dao.paginate(numPage, numPerPage, "select id,title,pub_time", " from news order by importance,happen_time ");
 	}
 
 }

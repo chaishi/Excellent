@@ -1,6 +1,9 @@
 package edu.swust.cs.excellent.controller;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Page;
 
@@ -34,14 +37,28 @@ public class NewsController extends CommonController {
 	public void showClassNewsList(){
 		int pageNum = getParaToInt("nowPage",1);
 		int numPerPage = getParaToInt("rowNum",10);
-		Page<News> page = CacheKit.get("news_cache",pageNum+"-"+numPerPage ,
-				           new IDataLoader(){
-			                             public Object load() {    
-			                            	 return editNewsImpl.getList(pageNum,numPerPage);  
-			                            	 }}); 
+		String classNum=getPara("calssNum","");
+		int type = getParaToInt("type",1);
+		String para=type+classNum;
+		if (type==1){
+			Page<News> page = CacheKit.get("news_cache",type+"-"+pageNum+"-"+numPerPage ,
+					new IDataLoader(){
+				public Object load() {    
+					return editNewsImpl.getList(pageNum,numPerPage);  
+				}}); 
 
-		//Page<News> page=editNewsImpl.getList(pageNum,numPerPage);
-		renderP(page,"result");
+			//Page<News> page=editNewsImpl.getList(pageNum,numPerPage);
+			renderP(page,"details");
+		}else {
+			Page<News> page = CacheKit.get("news_cache",type+"-"+pageNum+"-"+numPerPage ,
+					new IDataLoader(){
+				public Object load() {    
+					return editNewsImpl.getList(pageNum,numPerPage,para);  
+				}}); 
+
+			//Page<News> page=editNewsImpl.getList(pageNum,numPerPage);
+			renderP(page,"details");
+		}
 	}
 
 	public void showNewsDetail(){
@@ -51,7 +68,7 @@ public class NewsController extends CommonController {
 			news = editNewsImpl.getDetail(id);
 			CacheKit.put("news_cache", id, news);
 		}
-		renderJ("news_detail", news);
+		renderJ("details", news);
 	}
 
 	@Authority({
@@ -61,10 +78,22 @@ public class NewsController extends CommonController {
 	@Before({LoginInterceptor.class,AuthorityInterceptor.class,MyEvictInterceptor.class})
 	@MyCacheName({"index_cache","news_cache"})
 	public void writeNews(){
-		renderJ(editNewsImpl.add(new News().set("title", getPara("atyTitle",""))
-				.set("content", getPara("atyContent",""))
+		Calendar calendar = Calendar.getInstance();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		String time = format.format(calendar.getTime());
+		News  news = new News().set("title", getPara("title ",""))
+				.set("type", getParaToInt("type",1))
+				.set("content", getPara("content ",""))
 				.set("author", getName())
-				.set("class_id", getPara("class_id",""))));
+				.set("happen_time", getPara("happen_time",time))
+				.set("class_id", getPara("class_id",""));
+		boolean r=editNewsImpl.add(news);
+		if  (r){
+			add("id",news.getInt("id"));
+			renderJ();
+		}else{
+			renderError("添加失败");
+		}
 	}
 
 

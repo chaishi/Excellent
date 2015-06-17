@@ -2,6 +2,7 @@ package edu.swust.cs.excellent.service.inter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 import com.jfinal.plugin.activerecord.Page;
 
@@ -63,4 +64,11 @@ public interface IEditClass extends IBase<Class> {
      * @param class_id  
      */
     public boolean exportGroupToExcel(int class_id,File file);
+    
+    /**
+     * 
+     * @param class_id
+     * @return
+     */
+    public List<Group> getGroupList(int class_id);
 }

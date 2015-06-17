@@ -63,6 +63,10 @@ public class CommonController extends Controller{
 	}
 
 	
+	public void renderError(){
+		renderError("操作出现了异常,请耐心等候,系统已将错误信息发送到开发人员处");
+	}
+	
 	/**
 	 * 错误返回
 	 * @param error  错误信息
@@ -74,7 +78,7 @@ public class CommonController extends Controller{
 	 * 正确返回
 	 */
 	public void renderJ(){		
-		add("userType",getSession().getAttribute("userType"));
+	//	add("userType",getSession().getAttribute("userType"));
 		renderJson(getRes().render());
 	}
 	
@@ -118,11 +122,11 @@ public class CommonController extends Controller{
 	 * @param p 分页数据
 	 */
 	public void renderP(Page p,String key){
+		 add(key, p.getList());
          add("pageSize",p.getPageSize());
          add("pageNumber", p.getPageNumber());
          add("totalRow", p.getTotalRow());
          add("totalPage", p.getTotalPage());
-         add(key, p.getList());
          renderJ();
 	}
 }

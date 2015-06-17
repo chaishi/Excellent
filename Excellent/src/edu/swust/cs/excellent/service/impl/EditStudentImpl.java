@@ -6,19 +6,21 @@ import org.springframework.stereotype.Service;
 
 import com.jfinal.plugin.activerecord.Page;
 
+import edu.swust.cs.excellent.model.Award;
 import edu.swust.cs.excellent.model.Student;
 import edu.swust.cs.excellent.service.inter.IEditStudent;
 
 @Service("editStudentImpl")
 public class EditStudentImpl implements IEditStudent {
 
-	 public static final String SELECT_STUDENT_DETAIL = "select a.*,b.group_name,c.id,c.class_num "
-              	+ "from student a,group b,class c "
-                + "where a.id=? and a.group_id=b.id and b.class_id=c.id";
-	 
-	 public static final String SELECT_STUDENT_LIST="select id,name,true_name "
-	 		                                       + "from student  where class_id=? order by school_id";
-	 
+	public static final String SELECT_STUDENT_DETAIL = "select a.*,b.group_name,c.id,c.classNum "
+			+ "from student a,`group` b,class c "
+			+ "where a.id=? and a.group_id=b.id and b.class_id=c.id";
+
+	public static final String SELECT_STUDENT_LIST="select id,name,true_name "
+			+ "from student  where class_id=? order by school_id";
+
+	public static final String SELECT_STUDENT_QUERY=" from student a,class b,`group` c where a.group_id=c.id and  a.class_id=b.id ";
 	@Override
 	public boolean add(Student t) {
 		try {
@@ -53,7 +55,11 @@ public class EditStudentImpl implements IEditStudent {
 
 	@Override
 	public Student getDetail(int id) {	
-		return Student.dao.findFirst(SELECT_STUDENT_DETAIL, id);
+		Student stu = Student.dao.findFirst(SELECT_STUDENT_DETAIL, id);
+		
+		List<Award> awards = Award.dao.find("select * from award where refrence_id=? and flag=1",id);
+		stu.put("prizes", awards);
+		return stu;
 	}
 
 	@Override
@@ -76,7 +82,28 @@ public class EditStudentImpl implements IEditStudent {
 
 	@Override
 	public List<Student> getStuList(int class_id) {
-	   return Student.dao.find(SELECT_STUDENT_LIST,class_id);
+		return Student.dao.find(SELECT_STUDENT_LIST,class_id);
+	}
+
+	@Override
+	public Page<Student> queryStudent(Student stu,int classType, int nowPage, int pageSize) {
+
+		String clsType="";
+		if (classType==1){
+			clsType="计";
+		}else if (classType==0){
+			clsType="软";
+		}
+		String sql=SELECT_STUDENT_QUERY;
+		if  (stu.getStr("school_id")!=null && !stu.getStr("school_id").trim().equals("")){
+			sql=sql+" and school_id like '%"+stu.getStr("school_id")+"%'";
+		}
+		if (stu.getStr("true_name")!=null && !stu.getStr("true_name").trim().equals("")){
+			sql+=" and true_name like '%"+stu.getStr("true_name")+stu.getStr("true_name")+"%'";
+		}
+		if (!clsType.equals(""))
+		sql+=" and classNum like '%"+clsType+"%'";
+		return Student.dao.paginate(nowPage, pageSize,"select a.*,b.classNum,c.group_name " , sql);
 	}
 
 }

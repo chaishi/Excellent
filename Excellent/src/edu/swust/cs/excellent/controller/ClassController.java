@@ -71,7 +71,7 @@ public class ClassController extends CommonController{
 		LoginInterceptor.class,AuthorityInterceptor.class
 	})
 	public void deleteClass(){
-		renderJ(editClassImpl.delete(getParaToInt()));
+		renderJ(editClassImpl.delete(getParaToInt("atyId")));
 	}
 
 	@Authority({
@@ -118,7 +118,7 @@ public class ClassController extends CommonController{
 			return;
 		}
 		try {
-			renderJ("result",editClassImpl.recordFromExcel(new File(getPara("filePath")),classNum));
+			renderJ("details",editClassImpl.recordFromExcel(new File(getPara("filePath")),classNum));
 		}  catch (IOException e) {
 			renderError("文件不存在或者已经过期,请重新上传再试\n请下载使用标准格式:)");
 		}
@@ -137,5 +137,10 @@ public class ClassController extends CommonController{
 		}
 		renderError("该班级未分组");
 	}
+	
+	public void getGroupList(){
+		renderJ("details", editClassImpl.getGroupList(getParaToInt("class_id")));
+	}
+	
 
 }

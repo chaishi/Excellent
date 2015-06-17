@@ -48,7 +48,7 @@ public class NoteController extends CommonController {
 				                                public Object load() {    
 					                                return editNoteImpl.getAllNoteList(pageNum,numPerPage);  
 				                           }});
-			renderP(notePages, "result");
+			renderP(notePages, "details");
 			return ;
 		}
 		Page<Note> notePages = CacheKit.get("note_cache", pageNum+"-"+numPerPage,
@@ -56,7 +56,7 @@ public class NoteController extends CommonController {
                      public Object load() {    
                          return editNoteImpl.getList(pageNum, numPerPage);  
                 }});
-		renderP(notePages, "result");
+		renderP(notePages, "details");
 	}
 
 

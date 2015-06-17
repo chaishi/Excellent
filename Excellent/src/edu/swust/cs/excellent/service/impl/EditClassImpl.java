@@ -30,10 +30,10 @@ public class EditClassImpl implements IEditClass {
 	
 	private static final String SELECT_SOFT_CLASS_INFO = "select study_model "
 			+  "from class "
-			+ "where classNum like \"%软%\"";
+			+ "where classNum like '\"%软%'\"";
 	private static final String SELECT_DISK_CLASS_INFO = "select study_model "
 			+  "from class "
-			+ "where classNum like \"%计%\"";
+			+ "where classNum like '\"%计%'\"";
 
 	private static final String UPDATE_SOFT_CLASS_INFO = "update class set study_model=? "
 			+ "where classNum like \"%软%\"";
@@ -48,8 +48,8 @@ public class EditClassImpl implements IEditClass {
 	private static final String UPDATE_GROUP_FROM_EXCEL = "update `group`"
 			+ " set class_id=? where class_id="+Constant.PUPPET_CLASS_ID;
 
-	private static final String EXPORT_GROUP_TO_EXCEL = "select id,leader,group_name,slogan,chieve,flags,tips "
-			                                           +  "from group  where class_id=?";
+	private static final String EXPORT_GROUP_TO_EXCEL = "select id,leader,group_name,slogan,achieve,flags,tips "
+			                                           +  "from `group`  where class_id=?";
 	
 	private static final String SELECT_LEADER_IN_GROUP =  "select school_id,true_name "
             + "from student where a.id=";
@@ -118,14 +118,12 @@ public class EditClassImpl implements IEditClass {
 
 	@Override
 	public Page<Group> getGroupList() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Page<Group> getGroupList(String classNum) {
-		// TODO Auto-generated method stub
-		return null;
+		return Group.dao.paginate(1, 100, "select *", " from group where class_id=?",classNum);
 	}
 
 	@Override
@@ -197,6 +195,12 @@ public class EditClassImpl implements IEditClass {
 		String[] s = {"group_name","slogan","achieve","flags","tips"};
 		ExcelTool.writeCombineExcel(ss,s, group, stus,max, file);
 		return true;
+	}
+
+	@Override
+	public List<Group> getGroupList(int class_id) {
+		List<Group> group = Group.dao.find(EXPORT_GROUP_TO_EXCEL,class_id);
+		return group;
 	}
 
 

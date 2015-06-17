@@ -26,7 +26,7 @@ public interface IEditNews extends IBase<News> {
 	 *        comment 评论
 	 */
 	public boolean commentNews(int newId,String comment);
-	
+		
 	/**
 	 * 删除新闻评论
 	 * @param commentId 评论Id

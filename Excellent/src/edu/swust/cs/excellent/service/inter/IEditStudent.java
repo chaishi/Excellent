@@ -21,4 +21,9 @@ public interface IEditStudent extends IBase<Student> {
 	 * 获取学生简略信息列表
 	 */
 	public List<Student> getStuList(int class_id);
+	
+	/**
+	 * 获取查询结果 
+	 */
+	public  Page<Student> queryStudent(Student stu,int classType,int nowPage,int pageSize);
 }

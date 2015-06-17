@@ -21,6 +21,7 @@ import edu.swust.cs.excellent.controller.IndexController;
 import edu.swust.cs.excellent.controller.NewsController;
 import edu.swust.cs.excellent.controller.NoteController;
 import edu.swust.cs.excellent.controller.StudentController;
+import edu.swust.cs.excellent.controller.TeacherController;
 import edu.swust.cs.excellent.model.*;
 import edu.swust.cs.excellent.model.Class;
 import edu.swust.cs.excellent.util.QuartzPlugin;
@@ -54,6 +55,7 @@ public class AppConfig extends JFinalConfig{
         me.add("/class",ClassController.class);
         me.add("/note",NoteController.class);
         me.add("/file",FileController.class);
+        me.add("/teacher",TeacherController.class);
     }
 
     /**
