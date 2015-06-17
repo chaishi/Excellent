@@ -58,7 +58,7 @@ var recruitEdit = {};
 				if(data.success === true){
 					var recuits = data.result;
 					var html = "";
-					var url = "/Excellent/pages/recuritInfo.html";
+					var url = "/Excellent/pages/recruitInfo.html";
 					for(var i = 0,len = recuits.length; i < len; i++){
 						html += '<tr>'
 							 +  '<td class = "titleWidth" onclick = "pageToNew(\''+url+'\','+recuits[i].recuritId+')">'+recuits[i].recuritTitle+'</td>'
@@ -86,7 +86,7 @@ var recruitEdit = {};
 			var name= obj.html();
 			var val = obj.val();
 			if(name === "编辑"){
-				pageToNew("/Excellent/pages/recuitEditMngr.html",val);
+				pageToNew("/Excellent/pages/recruitEditMngr.html",val);
 			}else if(name === "删除"){
 				alert(val);
 			}
