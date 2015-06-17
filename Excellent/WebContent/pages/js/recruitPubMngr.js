@@ -46,10 +46,10 @@ var recruitEdit = {};
 		});
 	};
 	
-	//获取班级动态列表
+	//获取招新信息列表
 	page.getDynamicList = function(){
 		$.getJSON(
-			"/Excellent/pages/json/dynamicList.json",
+			"/Excellent/pages/json/recuitList.json",
 			/*{
 				rowNum:15,
 				nowPage:1
@@ -58,7 +58,7 @@ var recruitEdit = {};
 				if(data.success === true){
 					var recuits = data.result;
 					var html = "";
-					var url = "/Excellent/pages/DynamicsInfo.html";
+					var url = "/Excellent/pages/recuritInfo.html";
 					for(var i = 0,len = recuits.length; i < len; i++){
 						html += '<tr>'
 							 +  '<td class = "titleWidth" onclick = "pageToNew(\''+url+'\','+recuits[i].recuritId+')">'+recuits[i].recuritTitle+'</td>'
@@ -86,7 +86,7 @@ var recruitEdit = {};
 			var name= obj.html();
 			var val = obj.val();
 			if(name === "编辑"){
-				pageToNew("/Excellent/pages/editDynamics.html",val);
+				pageToNew("/Excellent/pages/recuitEdit.html",val);
 			}else if(name === "删除"){
 				alert(val);
 			}
