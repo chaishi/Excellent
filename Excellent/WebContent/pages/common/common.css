@@ -1,5 +1,6 @@
+/* 管理平台 */
 #bannerNav{
-	min-width:1200px;
+	min-width:1280px;
 }
 .navbar-inverse .navbar-header>span{
 	color:#ccc;
@@ -86,4 +87,25 @@ textarea{
 	cursor:hand;
 	cursor:pointer;
 	text-decoration: underline;
+}
+
+/* 展示页面 */
+.navbar .navbar-header>span{
+	color:#eee;
+	font-size: 18px;
+}
+.navbar .navbar-header>span:hover{
+	color:#eee;
+}
+.navbar-brand{
+   	padding-top:10px;
+ }
+.navbar .navbar-nav>li>a{
+  	color:#eee;
+  	font-size:15px;
+}
+.navbar .navbar-nav>li>a:hover{
+	color:white;
+	font-size:16px;
+	background-color: transparent;
 }
