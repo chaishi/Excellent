@@ -3,10 +3,14 @@ var common = {};
 
 (function(page){
 	
-	page.serActive = function(index){
+	//flag = 0,表示为管理系统导航条添加class；flag = 1，表示为展示界面添加class。 
+	page.serActive = function(index,flag){
 		$("#barLink li").each(function(i){
 			if(i == index){
-				$(this).addClass('active');
+				if(flag === 0)
+					$(this).addClass('active');
+				else if(flag === 1)
+					$(this).addClass('active1');
 			}
 		});
 	};

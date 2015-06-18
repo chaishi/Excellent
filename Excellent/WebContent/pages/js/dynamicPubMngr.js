@@ -1,5 +1,5 @@
 $(function(){
-	common.serActive(0);
+	common.serActive(0,0);
 	common.getClasses(["#classSelect"]);
 	common.addCickToNav(classIntroMngr.showContent);
 	classIntroMngr.getEditor();
@@ -56,19 +56,20 @@ var classIntroMngr = {};
 				return;
 			}
 			$.ajax({
-				url:"",
+				url:"/Excellent/news/writeNews",
 				type:"post",
 				dataType:"json",
 				data:{
+					type:1,
 					title:title,
 					content:content,
-					classId:classId,
-					dynamicDate:dynamicDate
+					class_id:classId,
+					happen_time:dynamicDate
 				},
 				success:function(data){
 					if(data.success === true){
 						alert("发布成功！");
-						window.open("/Excellent/pages/DynamicsInfo.html");
+						window.open("/Excellent/pages/dynamicInfo.html#" + data.result.id);
 					}else{
 						alert("发布失败，请重新尝试！");
 					}

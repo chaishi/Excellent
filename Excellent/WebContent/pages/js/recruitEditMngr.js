@@ -1,5 +1,5 @@
 $(function(){
-	common.serActive(3);
+	common.serActive(3,0);
 	recuitEdit.getEditor();
 	recuitEdit.saveRecuit();
 });

@@ -5,7 +5,7 @@
  */
 
 $(function(){
-	common.serActive(1);
+	common.serActive(1,0);
 	common.getClasses(["#classSelect1","#classSelect2"]);
 	common.addCickToNav(classMngr.showContent);
 	classMngr.getEditor();

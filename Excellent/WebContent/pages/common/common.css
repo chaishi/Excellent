@@ -89,7 +89,23 @@ textarea{
 	text-decoration: underline;
 }
 
+.active1{
+	text-decoration: underline;
+}
+
 /* 展示页面 */
+#top{
+	width:100%;
+	background-image: url("../images/background.jpg");
+}
+
+.indentCenter1{
+	width:1150px;
+	height:90px;
+	margin:0 auto;
+	padding-top:20px;
+}
+
 .navbar .navbar-header>span{
 	color:#eee;
 	font-size: 18px;
@@ -101,11 +117,18 @@ textarea{
    	padding-top:10px;
  }
 .navbar .navbar-nav>li>a{
-  	color:#eee;
+  	color:white;
   	font-size:15px;
 }
 .navbar .navbar-nav>li>a:hover{
-	color:white;
-	font-size:16px;
+	text-decoration:underline;
 	background-color: transparent;
+}
+
+.center{
+	text-align: center;
+}
+
+.bold{
+	font-weight: bold;
 }

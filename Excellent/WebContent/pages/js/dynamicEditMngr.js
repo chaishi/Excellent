@@ -1,5 +1,5 @@
 $(function(){
-	common.serActive(0);
+	common.serActive(0,0);
 	common.getClasses(["#classSelect"]);
 	editDynamic.getEditor();
 	editDynamic.saveDynamic();

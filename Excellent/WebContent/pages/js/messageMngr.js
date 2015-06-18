@@ -4,7 +4,7 @@
  * @time 20150614
  */
 $(function(){
-	common.serActive(5);
+	common.serActive(5,0);
 	messageMngr.loadMessages();
 });
 
