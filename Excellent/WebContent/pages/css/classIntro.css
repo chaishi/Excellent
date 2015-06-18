@@ -1,0 +1,25 @@
+.navContent{
+	margin-top:50px;
+	line-height: 30px;
+}
+
+.navContent p{
+	text-indent: 2em;
+}
+
+.logo,.logoDes{
+	float:left;
+}
+
+.logo img{
+	width:200px;
+	height:200px;
+}
+
+.logo{
+	width:25%;
+}
+
+.logoDes{
+	width:60%;
+}
