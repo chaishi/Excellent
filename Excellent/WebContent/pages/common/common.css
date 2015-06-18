@@ -84,8 +84,8 @@ textarea{
 }
 
 .titleWidth:hover{
-	cursor:hand;
 	cursor:pointer;
+	cursor:hand;
 	text-decoration: underline;
 }
 
@@ -103,6 +103,14 @@ textarea{
 .indentCenter1{
 	width:1150px;
 	height:90px;
+	margin:0 auto;
+	padding-top:20px;
+}
+
+.indentCenter2{
+	width:1150px;
+	height:auto;
+	min-height:670px;
 	margin:0 auto;
 	padding-top:20px;
 }

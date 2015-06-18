@@ -1,0 +1,76 @@
+.oneTeacher{
+	margin-left:50px;
+	margin-top:20px;
+	height:120px;
+}
+
+.oneTeacher img{
+	width:80px;
+	height:100px;
+}
+
+.dis1,.dis2{
+	float:left;
+}
+
+.dis1{
+	width:100px;
+}
+
+.dis2{
+	width:950px;
+}
+
+.dis2 p{
+	color:#ddd;
+	margin-top:15px;
+}
+
+.dis2 .teacherName{
+	font-weight:bold;
+	color:#00b0f0;
+	font-size: 18px;
+}
+
+#allTeachers{
+	margin-left:50px;
+	width:1000px;
+}
+
+#allTeachers div{
+	width:90px;
+	height:90px;
+	text-align: center;
+	line-height: 90px;
+	color:white;
+	font-size: 17px;
+	float:left;
+}
+
+#allTeachers div:hover{
+	cursor:pointer;
+	cursor:hand;
+	text-decoration: underline;
+}
+
+.activeT{
+	text-decoration: underline;
+}
+
+.tchName1{
+	background-image: url("../images/tchnameBack.png");
+}
+
+.tchName2{
+	background-image: url("../images/tchnameBack.png");
+	background-position: 90px 0;
+}
+
+.tchName3{
+	background-image: url("../images/tchnameBack.png");
+	background-position: 0 90px;
+}
+.tchName4{
+	background-image: url("../images/tchnameBack.png");
+	background-position: 90px 90px;
+}
