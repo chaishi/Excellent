@@ -1,0 +1,41 @@
+.indentCenter2{
+	width:1150px;
+	height:670px;
+	margin:0 auto;
+	padding-top:20px;
+}
+
+.attr{
+	font-size: 17px;
+	font-weight: bold;
+	margin:30px 0 30px 0;
+}
+
+.rect{
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+	width:0;
+	height:0;
+	border:5px solid transparent;
+	border-left-color:#0055aa;
+}
+
+.topLeft,.topRight{
+	float:left;
+	color:white;
+}
+
+.topLeft{
+	margin-left:50px;
+	width:400px;
+}
+
+.topRight{
+	margin-left:100px;
+}
+
+.topLeft p,.topRight p{
+	text-indent: 6em;
+}
+
