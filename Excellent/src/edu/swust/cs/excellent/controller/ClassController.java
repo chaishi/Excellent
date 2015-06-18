@@ -36,7 +36,7 @@ public class ClassController extends CommonController{
 		LoginInterceptor.class,AuthorityInterceptor.class
 	})
 	public void getClassList(){
-		renderJ("class_list",editClassImpl.getList().getList());
+		renderJ("class_list",editClassImpl.getList(getParaToInt("nowPage",1), getParaToInt("rowNum",10)));
 	}
 
 

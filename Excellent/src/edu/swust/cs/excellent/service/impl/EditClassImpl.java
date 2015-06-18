@@ -23,11 +23,11 @@ public class EditClassImpl implements IEditClass {
 
 	Logger logger_disk = Logger.getLogger("Disk"); 
 	Logger logger_mail = Logger.getLogger("MAIL");
-	
+
 	private static final String SELECT_CLASS_INFO = "select id,classNum "
-			                                   +  "from class where id!="+Constant.PUPPET_CLASS_ID
-			                                   +" order by classNum ";
-	
+			+  "from class where id!="+Constant.PUPPET_CLASS_ID
+			+" order by classNum ";
+
 	private static final String SELECT_SOFT_CLASS_INFO = "select study_model "
 			+  "from class "
 			+ "where classNum like '\"%软%'\"";
@@ -49,18 +49,47 @@ public class EditClassImpl implements IEditClass {
 			+ " set class_id=? where class_id="+Constant.PUPPET_CLASS_ID;
 
 	private static final String EXPORT_GROUP_TO_EXCEL = "select id,leader,group_name,slogan,achieve,flags,tips "
-			                                           +  "from `group`  where class_id=?";
-	
+			+  "from `group`  where class_id=?";
+
 	private static final String SELECT_LEADER_IN_GROUP =  "select school_id,true_name "
-            + "from student where a.id=";
-	
+			+ "from student where a.id=";
+
 	private static final String SELECT_STUDENT_IN_GROUP =  "select school_id,true_name "
-			                                                 + "from student a ,group b where a.group_id=b.group_id and a.id!=";
-	
+			+ "from student a ,group b where a.group_id=b.group_id and a.id!=";
+
+	private static final String SELECT_STUDY_MODEL="select study_model "
+			+ " from class where classNum like ";
+
 	@Override
 	public boolean add(Class t) {
 		try {
+			if (t.getStr("study_model").trim().equals("")){
+				String sql= SELECT_STUDY_MODEL;
+				if (t.getStr("classNum").contains("软")){
+					sql+="'%软%'";
+				}else if (t.getStr("classNum").contains("计")){
+					sql+="'%计%'";
+				}else{
+					logger_disk.warn("添加非软件或计科班级");
+					return false;
+				}
+
+				List<Class> lt=Class.dao.find(sql);
+				if (lt==null && lt.size()==0){
+					logger_mail.warn(t.getStr("classNum")+"未设置默认班级简介");
+					return false;
+				}
+				for (Class p:lt){
+					if (p.getStr("study_model")!=null && !p.getStr("study_model").trim().equals("")){
+                           t.set("study_model", p.get("study_model"));
+                           break;
+					}
+				}
+
+
+			}
 			t.save();
+
 			logger_disk.info("新增班级:"+t.getStr("classNum"));
 			return true;
 		} catch (Exception e) {
@@ -82,14 +111,14 @@ public class EditClassImpl implements IEditClass {
 
 	@Override
 	public Class merge(Class t) {
-         
+
 		return null;
 	}
 
 
 	@Override
 	public Page<Class> getList() {
-		
+
 		return null;
 	}
 
@@ -128,7 +157,7 @@ public class EditClassImpl implements IEditClass {
 
 	@Override
 	public Page<Class> getList(int numPage, int numPerPage) {
-	  return	Class.dao.paginate(1, 100000,"select id,classNum"  ,  " from class where id!="+Constant.PUPPET_CLASS_ID +" order by classNum ");
+		return	Class.dao.paginate(1, 100000,"select id,classNum"  ,  " from class where id!="+Constant.PUPPET_CLASS_ID +" order by classNum ");
 	}
 
 	@Override
@@ -185,11 +214,11 @@ public class EditClassImpl implements IEditClass {
 		int i=0;
 		int max=-1;
 		for (Group p:group){
-		    stus.get(i).add(Student.dao.findFirst(SELECT_LEADER_IN_GROUP,p.getInt("id")));
-		    List<Student> stuList = Student.dao.find(SELECT_STUDENT_IN_GROUP,p.getInt("id"));
-		    max=max>stuList.size()+1?max:stuList.size()+1;
-		    stus.get(i).addAll(stuList);
-		    i++;
+			stus.get(i).add(Student.dao.findFirst(SELECT_LEADER_IN_GROUP,p.getInt("id")));
+			List<Student> stuList = Student.dao.find(SELECT_STUDENT_IN_GROUP,p.getInt("id"));
+			max=max>stuList.size()+1?max:stuList.size()+1;
+			stus.get(i).addAll(stuList);
+			i++;
 		}
 		String[] ss = {"队名","口号","成就","好友标签","团队寄语"};
 		String[] s = {"group_name","slogan","achieve","flags","tips"};
