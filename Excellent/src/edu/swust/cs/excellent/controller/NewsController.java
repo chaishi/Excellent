@@ -44,7 +44,16 @@ public class NewsController extends CommonController {
 			Page<News> page = CacheKit.get("news_cache",type+"-"+pageNum+"-"+numPerPage ,
 					new IDataLoader(){
 				public Object load() {    
-					return editNewsImpl.getList(pageNum,numPerPage);  
+					Page<News> news = editNewsImpl.getList(pageNum,numPerPage);  
+					if (news==null)
+						return null;
+					for (News p:news.getList()){
+						String  content=p.getStr("content");
+						String summary=content.substring(0,Math.min(50, content.length()-1))+"...";
+						p.put("summary",summary);
+						p.remove("content");
+					}
+					return news;
 				}}); 
 
 			//Page<News> page=editNewsImpl.getList(pageNum,numPerPage);
@@ -53,7 +62,16 @@ public class NewsController extends CommonController {
 			Page<News> page = CacheKit.get("news_cache",type+"-"+pageNum+"-"+numPerPage ,
 					new IDataLoader(){
 				public Object load() {    
-					return editNewsImpl.getList(pageNum,numPerPage,para);  
+					Page<News> news = editNewsImpl.getList(pageNum,numPerPage,para);
+					if (news==null)
+						return null;
+					for (News p:news.getList()){
+						String  content=p.getStr("content");
+						String summary=content.substring(0,Math.min(50, content.length()-1))+"...";
+						p.put("summary",summary);
+						p.remove("content");
+					}
+					return news;
 				}}); 
 
 			//Page<News> page=editNewsImpl.getList(pageNum,numPerPage);
