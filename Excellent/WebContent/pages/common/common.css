@@ -89,6 +89,10 @@ textarea{
 	text-decoration: underline;
 }
 
+.active1{
+	text-decoration: underline;
+}
+
 /* 展示页面 */
 .navbar .navbar-header>span{
 	color:#eee;
@@ -101,11 +105,18 @@ textarea{
    	padding-top:10px;
  }
 .navbar .navbar-nav>li>a{
-  	color:#eee;
+  	color:white;
   	font-size:15px;
 }
 .navbar .navbar-nav>li>a:hover{
-	color:white;
 	font-size:16px;
 	background-color: transparent;
+}
+
+.center{
+	text-align: center;
+}
+
+.bold{
+	font-weight: bold;
 }

@@ -1,5 +1,5 @@
 $(function(){
-	common.serActive(2);
+	common.serActive(2,0);
 	common.getClasses(["#classId","#classIddel"],studentInfoMngr.getStdNameList);//函数用来显示默认的姓名列表
 	common.addCickToNav(studentInfoMngr.showContent);
 	studentInfoMngr.delegateEdit();

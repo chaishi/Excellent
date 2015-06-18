@@ -1,5 +1,5 @@
 $(function(){
-	common.serActive(3);
+	common.serActive(3,0);
 	common.addCickToNav(recruitEdit.showContent);
 	recruitEdit.getEditor();
 	recruitEdit.pubRecuit();
@@ -38,11 +38,31 @@ var recruitEdit = {};
 		$("#pubRecuitBtn").click(function(){
 			var title = $("#title").val();
 			var content = editor.html();
-			if(title == "" || content == "" || clas == ""){
+			if(title == "" || content == ""){
 				alert("请完善信息！");
 				return;
 			}
 			console.log(title,content);
+			$.ajax({
+				url:"/Excellent/news/writeNews",
+				type:"post",
+				data:{
+					title : title,
+					content : content,
+					type:2
+				},
+				success:function(data){
+					if(data.success === true){
+						alert("发布成功！");
+						window.open("recruitInfo.html#" + data.result.id);
+					}else{
+						alert("发布失败！");
+					}
+				},
+				error:function(){
+					alert("发布招新信息请求失败！");
+				}
+			});
 		});
 	};
 	

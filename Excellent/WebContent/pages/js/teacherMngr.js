@@ -1,5 +1,5 @@
 $(function(){
-	common.serActive(4);
+	common.serActive(4,0);
 	common.addCickToNav(teacherMngr.showContent);
 	teacherMngr.addClick();
 	teacherMngr.getTeacherList();
