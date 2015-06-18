@@ -64,12 +64,12 @@ var classMngr = {};
 				return;
 			}
 			$.ajax({
-				url:"",
+				url:"/Excellent/class/setClassInfo",
 				type:"post",
 				dataType:"json",
 				data:{
-					content:content,
-					classTypeSelect:classTypeSelect
+					introContent: content,
+					classType: classTypeSelect
 				},
 				success:function(data){
 					if(data.success === true){
@@ -91,7 +91,7 @@ var classMngr = {};
 		$("#addClassBtn").click(function(){
 			var className = $("#className").val();
 			$.ajax({
-				url:"",
+				url:"/Excellent/class/newClass",
 				type:"post",
 				dataType:"json",
 				data:{

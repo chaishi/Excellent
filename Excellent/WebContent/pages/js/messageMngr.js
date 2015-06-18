@@ -23,7 +23,7 @@ var messageMngr = {};
 						html += '<tr>'
 				  			 +		'<td class = "time">'+msgList[i].msgPubTime+'</td>'
 				  			 +		'<td>'+msgList[i].msgContent+'</td>'
-				  			 +		'<td class = "smWidth"><button type="button" class="btn" value = "'+msgList[i].msgId+'">删除</button></td>'
+				  			 +		'<td class = "smWidth"><button type="button" class="btn btn-sm" value = "'+msgList[i].msgId+'">删除</button></td>'
 				  			 +	'</tr>';
 					}
 					$("#messageList").html(html);

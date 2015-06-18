@@ -85,11 +85,11 @@ var classIntroMngr = {};
 	//获取班级动态列表
 	page.getDynamicList = function(){
 		$.getJSON(
-			"/Excellent/pages/json/dynamicList.json",
-			/*{
+			"/Excellent/news/showClassNewsList",
+			{
 				rowNum:15,
 				nowPage:1
-			},*/
+			},
 			function(data){
 				if(data.success === true){
 					var dymList = data.result;
@@ -97,10 +97,10 @@ var classIntroMngr = {};
 					var url = "/Excellent/pages/dynamicInfo.html";
 					for(var i = 0,len = dymList.length; i < len; i++){
 						html += '<tr>'
-							 +  '<td class = "titleWidth" onclick = "pageToNew(\''+url+'\','+dymList[i].atyId+')">'+dymList[i].atyTitle+'</td>'
-			  				 +	'<td>'+dymList[i].actyTime+'</td>'
-			  				 +	'<td><button value = "'+dymList[i].atyId+'" type="button" class="btn btn-default btn-xs">编辑</button></td>'
-			  				 +	'<td><button value = "'+dymList[i].atyId+'" type="button" class="btn btn-default btn-xs">删除</button></td>'
+							 +  '<td class = "titleWidth" onclick = "pageToNew(\''+url+'\','+dymList[i].id+')">'+dymList[i].title+'</td>'
+			  				 +	'<td>'+dymList[i].pub_time+'</td>'
+			  				 +	'<td><button value = "'+dymList[i].id+'" type="button" class="btn btn-default btn-xs">编辑</button></td>'
+			  				 +	'<td><button value = "'+dymList[i].id+'" type="button" class="btn btn-default btn-xs">删除</button></td>'
 							 +  '</tr>';
 					}
 					$("#dynamicList").html(html);

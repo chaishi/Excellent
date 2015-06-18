@@ -106,6 +106,12 @@ textarea{
 	padding-top:20px;
 }
 
+.pageContent1{
+	width:1150px;
+	margin:0 auto;
+	margin-top:20px;
+}
+
 .navbar .navbar-header>span{
 	color:#eee;
 	font-size: 18px;
@@ -131,4 +137,14 @@ textarea{
 
 .bold{
 	font-weight: bold;
+}
+
+.guide{
+	width:auto;
+	height:50px;
+}
+
+.guide img{
+	width:20px;
+	height:20px;
 }

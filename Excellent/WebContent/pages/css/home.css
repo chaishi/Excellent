@@ -79,6 +79,7 @@
 	color:#666;
 	font-size:13px;
 	margin-top:10px;
+	line-height: 25px;
 }
 
 #dymList img{
@@ -87,7 +88,7 @@
 }
 
 .oneDym{
-	height:80px;
+	height:100px;
 	margin-top:30px;
 	border-bottom: 1px solid #eee;
 }
