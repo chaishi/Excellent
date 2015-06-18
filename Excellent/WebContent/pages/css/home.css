@@ -1,11 +1,6 @@
-#top{
-	width:100%;
-	height:500px;
-	background-image: url("../images/background.jpg");
-}
-
 .indentCenter{
 	width:1150px;
+	height:500px;
 	margin:0 auto;
 	padding-top:20px;
 }
