@@ -1,9 +1,8 @@
 $(function(){
 	common.serActive(2,0);
-	common.getClasses(["#classId","#classIddel"],studentInfoMngr.getStdNameList);//函数用来显示默认的姓名列表
+	common.getClasses(["#classId","#classIddel"],studentInfoMngr.afterGetClassList);//函数用来显示默认的分组列表
 	common.addCickToNav(studentInfoMngr.showContent);
 	studentInfoMngr.delegateEdit();
-	studentInfoMngr.getGroupList();
 	studentInfoMngr.addClick();
 });
 
@@ -19,8 +18,25 @@ var studentInfoMngr = {};
 			var val = obj.val();
 			if(name === "编辑"){
 				//alert(val);
+				page.getStudentInfo(val);
+				$.ajax({
+					
+				});
 			}else if(name === "删除"){
-				alert(val);
+				$.ajax({
+					url:"/Excellent/stu/deleteStudent",
+					type:"post",
+					data:{
+						id:val
+					},
+					success:function(data){
+						if(data.success){
+							alert("删除成功，请刷新查看！");
+						}else{
+							alert("删除失败");
+						}
+					}
+				});
 			}
 		});
 	};
@@ -67,16 +83,16 @@ var studentInfoMngr = {};
 	//根据classId获取班级分组情况
 	page.getGroupList = function(classId){
 		$.getJSON(
-			"/Excellent/pages/json/groupList.json",
-			//{
-			//	classId:classId
-			//},
+			"/Excellent/class/getGroupList",
+			{
+				class_id:classId
+			},
 			function(data){
 				if(data.success === true){
 					var html = "";
-					var groups = data.result;
+					var groups = data.result.details;
 					for(var i = 0, len = groups.length; i < len ; i++){
-						html += '<option value = "'+groups[i].groupId+'">'+groups[i].groupName+'</option>';
+						html += '<option value = "'+groups[i].id+'">'+groups[i].group_name+'</option>';
 					}
 					$("#groupSelect").html(html);
 				}else{
@@ -93,7 +109,7 @@ var studentInfoMngr = {};
 		var studentName = $("#studentName").val();
 		var studentId = $("#studentId").val();
 		var graduateInfo = $("#graduateInfo").val();
-		var prizeInfo = $("#prizeInfo").val();
+		var prizeInfo = $("#prizeInfo").val().split(",");
 		var describle = $("#describle").val();
 		console.log(classId,groupSelect,studentName,studentId,graduateInfo,prizeInfo,describle);
 		if(studentName == ""){
@@ -105,22 +121,22 @@ var studentInfoMngr = {};
 			return;
 		}
 		$.ajax({
-			url:"",
+			url:"/Excellent/stu/newStudent",
 			type:"post",
 			dataType:"json",
 			data:{
-				classId : classId,
-				groupId : groupSelect,
-				stdName : studentName,
-				stdId : studentId,
-				graduate : graduateInfo,
+				class_id : classId,
+				group_id : groupSelect,
+				true_name : studentName,
+				school_id : studentId,
+				//graduate : graduateInfo,
 				prizes : prizeInfo,
-				stdInfo : describle
+				others : describle
 			},
 			success:function(data){
 				if(data.success){
 					alert("添加成功！");
-					window.open("/Excellent/pages/studentInfo.html");
+					window.open("/Excellent/pages/studentInfo.html#"+data.result.details);
 				}else{
 					alert("添加失败！");
 				}
@@ -131,22 +147,54 @@ var studentInfoMngr = {};
 		});
 	}
 	
+	//获取学生详情
+	page.getStudentInfo = function(studentdId){
+		$.getJSON(
+			"/Excellent/stu/getStuInfo",
+			{
+				stdId:studentdId
+			},
+			function(data){
+				if(data.success){
+					var std = data.result.stu_detail;
+				//	$("#classIdEdit").attr();
+					$("#classIdEdit").val(std.class_id);
+					$("#studentNameEdit").val(std.true_name);
+					$("#studentId").val(std.school_id);
+					$("#groupNameEdit").val(std.group_name);
+					$("#graduateInfo").val("暂无");
+					var prizes = "";
+					for(var i = 0, len = std.prizes.length; i < len; i++){
+						prizes += ""+std.prizes[i]+"";
+						if(i != len - 1)
+							prizes += ",";
+					}
+					if(i == 0)prizes = "暂无";
+					$("#prizesEdit").val(prizes);
+					$("#otherEdit").val(std.other);
+				}else{
+					alert("获取学生详情失败！");
+				}
+			}
+		);
+	};
+	
 	//获取学生姓名列表
 	page.getStdNameList = function(classId){
 		$.getJSON(
-			"/Excellent/pages/json/studentNameList.json",
-			/*{
-				classId:classId
-			},*/
+			"/Excellent/stu/getStuList",
+			{
+				class_id:classId
+			},
 			function(data){
 				if(data.success){
-					var stds = data.result;
+					var stds = data.result.stu_list;
 					var html = '<tr><th>序号</th><th>姓名</th><th>删除</th><th>编辑</th></tr>';
 					for(var i = 0, len = stds.length; i < len; i++){
 						html += '<tr>'
-				  			 +  '<td>1</td><td>'+stds[i].studentName+'</td>'
-				  			 +  '<td><button type="button" class="btn btn-sm" value = "'+stds[i].studentId+'">删除</button></td>'
-				  			 +  '<td><button type="button" class="btn btn-sm" value = "'+stds[i].studentId+'"  data-toggle="modal" data-target="#editStudent">编辑</button></td>'
+				  			 +  '<td>1</td><td>'+stds[i].true_name+'</td>'
+				  			 +  '<td><button type="button" class="btn btn-sm" value = "'+stds[i].id+'">删除</button></td>'
+				  			 +  '<td><button type="button" class="btn btn-sm" value = "'+stds[i].id+'"  data-toggle="modal" data-target="#editStudent">编辑</button></td>'
 				  			 + '</tr>';
 					}
 					$("#studentList").html(html);
@@ -156,5 +204,11 @@ var studentInfoMngr = {};
 				}
 			}
 		);
+	};
+	
+	//一进入页面，获取班级列表后，需要立即执行的函数，1：该班级的分组情况 2：该班级的学生列表
+	page.afterGetClassList = function(classId){
+		page.getGroupList(classId);
+		page.getStdNameList(classId);
 	};
 })(studentInfoMngr);
