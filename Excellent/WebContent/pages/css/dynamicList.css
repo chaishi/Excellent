@@ -1,1 +1,9 @@
+#dynamicsTbl td,#dynamicsTbl th{
+	border:0;
+}
 
+.newsHover:hover{
+	cursor:pointer;
+	cursor:hand;
+	text-decoration: underline;
+}

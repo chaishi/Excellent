@@ -43,15 +43,15 @@ var common = {};
 		var ids = arguments[0];
 		var fun = arguments[1];
 		$.ajax({
-			url:"/Excellent/pages/json/classNameList.json",
+			url:"/Excellent/class/getClassList",
 			type:"get",
 			dataType:"json",
 			success:function(data){
 				if(data.success === true){
-					var classList = data.result;
+					var classList = data.result.class_list.list;
 					var html = "";
 					for(var i = 0, len = classList.length; i < len; i++){
-						html += '<option value = "'+classList[i].classId+'">'+classList[i].className+'</option>';
+						html += '<option value = "'+classList[i].id+'">'+classList[i].classNum+'</option>';
 					}
 					for(var j = 0, n = ids.length; j < n; j++){
 						$(ids[j]).html(html);

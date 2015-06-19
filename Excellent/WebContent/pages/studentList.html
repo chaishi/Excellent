@@ -5,7 +5,7 @@
 		<title>学子风采</title>
 		<link rel="stylesheet" href="/Excellent/pages/bootstrap-3.2.0-dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="/Excellent/pages/common/common.css" />
-		<link rel="stylesheet" href="/Excellent/pages/css/dynamicList.css" />
+		<link rel="stylesheet" href="/Excellent/pages/css/studentList.css" />
 	</head>
 	<body>
 		<div id = "top">
@@ -29,10 +29,45 @@
 				</nav>
 			</div>
 		</div>
-		
+		<div id = "studenListContent" class = "pageContent1">
+			<div class = "guide"><img src = "images/guide.png"/>&nbsp;&nbsp;&nbsp;&nbsp;当前位置：学子风采</div>
+			
+			<div id = "search">
+				<form class="form-inline">
+	   			    <div class="form-group">
+	   			  		<label for="studentName">姓名：</label>
+				    	<input id="studentName"  maxlength="10" type="text" class="form-control" placeholder="学生姓名">
+				    </div> &nbsp;&nbsp;&nbsp;&nbsp;
+				    <div class="form-group">
+	   			  		<label for="studentId">学号：</label>
+				    	<input id="studentId" maxlength="10" type="text" class="form-control" placeholder="学生学号">
+				    </div> &nbsp;&nbsp;&nbsp;&nbsp;
+				    <div class="form-group">
+				    	<label for="classNameSel">班级:</label>
+				    	<select id = "classNameSel" class="form-control">
+						    <option>1</option>
+						    <option>2</option>
+						</select>
+				    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+				    <button id="dishSearch" type="button" class="But-self btn">查 询</button>
+				</form>
+			</div>
+			
+			<table id = "studentList" class="table table-bordered">
+				<tr><th>序号</th><th>姓名</th><th>学号</th><th>班级</th><th>小组</th><th>奖项</th><th>毕业去向</th></tr>
+			  	<tr>
+			  		<td>1</td><td><a href = "studentInfo.html#">罗雪</a></td>
+			  		<td>20121179</td>
+			  		<td>软件卓越1201</td>
+			  		<td>第二组（菜鸟队）</td>
+			  		<td>四联奖学金</td>
+			  		<td>百度科技有限公司</td>
+			    </tr>
+			</table>
+		</div>
 		<script type="text/javascript" src = "/Excellent/pages/common/jquery-1.8.1.min.js"></script>
 		<script type="text/javascript" src="/Excellent/pages/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/Excellent/pages/common/common.js"></script>
-		<script type="text/javascript" src = "/Excellent/pages/js/dynamicList.js"></script>
+		<script type="text/javascript" src = "/Excellent/pages/js/studentList.js"></script>
 	</body>
 </html>

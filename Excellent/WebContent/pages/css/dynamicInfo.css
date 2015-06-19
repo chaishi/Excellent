@@ -1,0 +1,19 @@
+.dymTitle,.littleAttr{
+	width:100%;
+	text-align: center;
+}
+
+.dymTitle h4{
+	color:black;
+	font-weight: bold;
+}
+
+.littleAttr .littleDis{
+	padding:10px 8px 0 8px;	
+}
+
+#dynamicContent{
+	width:900px;
+	margin:0 auto;
+	margin-top:50px;
+}

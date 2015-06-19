@@ -84,8 +84,8 @@ textarea{
 }
 
 .titleWidth:hover{
-	cursor:hand;
 	cursor:pointer;
+	cursor:hand;
 	text-decoration: underline;
 }
 
@@ -97,6 +97,7 @@ textarea{
 #top{
 	width:100%;
 	background-image: url("../images/background.jpg");
+	background-size: cover;
 }
 
 .indentCenter1{
@@ -104,6 +105,20 @@ textarea{
 	height:90px;
 	margin:0 auto;
 	padding-top:20px;
+}
+
+.indentCenter2{
+	width:1150px;
+	height:auto;
+	min-height:670px;
+	margin:0 auto;
+	padding-top:20px;
+}
+
+.pageContent1{
+	width:1150px;
+	margin:0 auto;
+	margin-top:20px;
 }
 
 .navbar .navbar-header>span{
@@ -131,4 +146,14 @@ textarea{
 
 .bold{
 	font-weight: bold;
+}
+
+.guide{
+	width:auto;
+	height:50px;
+}
+
+.guide img{
+	width:20px;
+	height:20px;
 }
