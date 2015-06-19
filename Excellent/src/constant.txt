@@ -8,7 +8,7 @@ UPLOAD_EXCEL_PATH = excel
 UPLOAD_IMGAGE_PATH = img
 
 #文件的暂存路径
-FILE_TEMPORARY_SVAE_DIR = webRoot\\upload\\
+FILE_TEMPORARY_SVAE_DIR = WebContent\\upload\\
 
 #从excel导入数据时的数据有效列数
 EXCEL_GROUP_VALID_COLUMNS = 5
@@ -26,17 +26,17 @@ DB_PSWD =
 DEVMODE = true
 
 #返回值起始路径
-BASE_PATH = /excellent
+BASE_PATH = /Excellent/
 
 #上传Excel路径
-UPLOAD_FILE_PATH = file
+UPLOAD_FILE_PATH = /pages/file/
 
-UPLOAD_IMGAGE_PATH = img
+UPLOAD_IMGAGE_PATH = /pages/images/
 #Image文件的允许后缀名
 UPLOAD_IMGAE_EXTENSION = .jpg,.jepg,.bmp,.gif,.jpeg2000,.tiff,.psd,.png,.svg
 
 #上传excel类型
-UPLOAD_FILE_EXTENSION = .xml,.xls,.xmls,.h
+UPLOAD_FILE_EXTENSION = .xml,.xls,.xmls,.h,.txt,.doc,.docx
 
 #定时器配置
 JOB_PROPERTY = job.properties

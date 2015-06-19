@@ -36,7 +36,7 @@ public class FileController extends CommonController{
 		try {
 			FileInputStream fis = new FileInputStream(source);
 			fileName = generateTimeString() + extension;
-			File targetDir = new File(PathKit.getWebRootPath() + "/dwz/" + Constant.UPLOAD_IMGAE_EXTENSION );
+			File targetDir = new File(PathKit.getWebRootPath() + Constant.UPLOAD_IMGAGE_PATH);
 			if (!targetDir.exists()) {
 				targetDir.mkdirs();
 			}
@@ -52,7 +52,7 @@ public class FileController extends CommonController{
 			fos.close();
 			fis.close();
 			source.delete();
-			setAttr("url", Constant.BASE_PATH  + Constant.UPLOAD_IMGAE_EXTENSION +"/"+ fileName);
+			setAttr("url", Constant.BASE_PATH + Constant.UPLOAD_IMGAGE_PATH+fileName);
 			setAttr("error", 0);
 		} catch (FileNotFoundException e) {
 			setAttr("error", 1);
@@ -102,7 +102,7 @@ public class FileController extends CommonController{
 			fos.close();
 			fis.close();
 			source.delete();
-			setAttr("url", Constant.BASE_PATH  + Constant.UPLOAD_FILE_EXTENSION +"/"+ fileName);
+			setAttr("url", Constant.BASE_PATH + Constant.UPLOAD_FILE_PATH+fileName);
 			setAttr("error", 0);
 		} catch (FileNotFoundException e) {
 			setAttr("error", 1);

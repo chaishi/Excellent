@@ -20,10 +20,18 @@ var classIntroMngr = {};
 (function(page){
 	var editor;
 	page.getEditor = function(){
+		var options = {
+		    basePath:'kindeditor-4.1.10/',
+			allowFileManager:true,
+			uploadJson:"/Excellent/file/uploadfile",
+			imageUploadJson:"/Excellent/file/uploadImg"	,
+			afterUpload:function(url){
+				console.log(url);
+				$('textarea[name="content"]').innerHtml='<img src='+url+'>';
+			},
+		};
 		KindEditor.ready(function(K) {
-			editor = K.create('textarea[name="content"]', {
-				allowFileManager : true
-			});
+			editor = K.create('textarea[name="content"]', options);
 		});
 	};
 	
@@ -92,13 +100,13 @@ var classIntroMngr = {};
 			},
 			function(data){
 				if(data.success === true){
-					var dymList = data.result;
+					var dymList = data.result.details;
 					var html = "";
 					var url = "/Excellent/pages/dynamicInfo.html";
 					for(var i = 0,len = dymList.length; i < len; i++){
 						html += '<tr>'
 							 +  '<td class = "titleWidth" onclick = "pageToNew(\''+url+'\','+dymList[i].id+')">'+dymList[i].title+'</td>'
-			  				 +	'<td>'+dymList[i].pub_time+'</td>'
+			  				 +	'<td>'+dymList[i].happen_time+'</td>'
 			  				 +	'<td><button value = "'+dymList[i].id+'" type="button" class="btn btn-default btn-xs">编辑</button></td>'
 			  				 +	'<td><button value = "'+dymList[i].id+'" type="button" class="btn btn-default btn-xs">删除</button></td>'
 							 +  '</tr>';
@@ -124,7 +132,23 @@ var classIntroMngr = {};
 			if(name === "编辑"){
 				pageToNew("/Excellent/pages/dynamicEditMngr.html",val);
 			}else if(name === "删除"){
-				alert(val);
+				$.ajax({
+					url:"/Excellent/news/deleteNews",
+					data:{
+						atyId:val
+					},
+					type:"post",
+					success:function(data){
+						if(data.success === true){
+							alert("删除成功！");
+						}else{
+							alert("删除失败！");
+						}
+					},
+					error:function(){
+						alert("删除请求失败！");
+					}
+				});
 			}
 		});
 	};

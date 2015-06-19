@@ -65,16 +65,16 @@ var teacherMngr = {};
 	//获取老师列表
 	page.getTeacherList = function(){
 		$.getJSON(
-			"/Excellent/pages/json/teacherList.json",
+			"/Excellent/teacher/getTeacherList",
 			function(data){
 				if(data.success){
-					var tchList = data.result;
+					var tchList = data.result.details;
 					var html = "<tr><th>序号</th><th>姓名</th><th>头像</th><th>删除</th></tr>";
 					for(var i = 0, len = tchList.length; i < len; i++){
 						html += '<tr>'
-							 + 		'<td>'+(i + 1)+'</td><td>'+tchList[i].teacherName+'</td>'
-							 + 		'<td><img src = "'+tchList[i].teacherHeadPath+'"/></td>'
-							 + 		'<td><button type="button" class="btn btn-sm" value = "'+tchList[i].teacherId+'">删除</button></td>'
+							 + 		'<td>'+(i + 1)+'</td><td>'+tchList[i].true_name+'</td>'
+							 + 		'<td><img src = "'+tchList[i].photo+'"/></td>'
+							 + 		'<td><button type="button" class="btn btn-sm" value = "'+tchList[i].id+'">删除</button></td>'
 							 +	'</tr>'; 
 					}
 					$("#teacherList").html(html);
@@ -93,6 +93,25 @@ var teacherMngr = {};
 			var val = obj.val();
 			if(name === "删除"){
 				alert(val);
+				$.ajax({
+					url:"/Excellent/teacher/deleteTeacher",
+					data:{
+						teacherId:val
+					},
+					type:"post",
+					success:function(data){
+						if(data.success==true){
+							alert("删除成功！");
+							page.getTeacherList();
+						}
+						else{
+							alert("删除失败！");
+						}
+					},
+					error:function(){
+						alert("请求失败！");
+					}
+				});
 			}
 		});
 	};

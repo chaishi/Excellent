@@ -69,22 +69,22 @@ var recruitEdit = {};
 	//获取招新信息列表
 	page.getDynamicList = function(){
 		$.getJSON(
-			"/Excellent/pages/json/recuitList.json",
+			"/Excellent/news/showClassNewsList",
 			/*{
 				rowNum:15,
 				nowPage:1
 			},*/
 			function(data){
 				if(data.success === true){
-					var recuits = data.result;
+					var recuits = data.result.details;
 					var html = "";
 					var url = "/Excellent/pages/recruitInfo.html";
 					for(var i = 0,len = recuits.length; i < len; i++){
 						html += '<tr>'
-							 +  '<td class = "titleWidth" onclick = "pageToNew(\''+url+'\','+recuits[i].recuritId+')">'+recuits[i].recuritTitle+'</td>'
-			  				 +	'<td>'+recuits[i].pubTime+'</td>'
-			  				 +	'<td><button value = "'+recuits[i].recuritId+'" type="button" class="btn btn-default btn-xs">编辑</button></td>'
-			  				 +	'<td><button value = "'+recuits[i].recuritId+'" type="button" class="btn btn-default btn-xs">删除</button></td>'
+							 +  '<td class = "titleWidth" onclick = "pageToNew(\''+url+'\','+recuits[i].id+')">'+recuits[i].title+'</td>'
+			  				 +	'<td>'+recuits[i].happen_time+'</td>'
+			  				 +	'<td><button value = "'+recuits[i].id+'" type="button" class="btn btn-default btn-xs">编辑</button></td>'
+			  				 +	'<td><button value = "'+recuits[i].id+'" type="button" class="btn btn-default btn-xs">删除</button></td>'
 							 +  '</tr>';
 					}
 					$("#recuitList").html(html);
@@ -109,6 +109,24 @@ var recruitEdit = {};
 				pageToNew("/Excellent/pages/recruitEditMngr.html",val);
 			}else if(name === "删除"){
 				alert(val);
+				$.ajax({
+					url:"/Excellent/news/deleteNews",
+					data:{
+						atyId:val
+					},
+					success:function(data){
+						if(data.success==true){
+							alert("删除成功");
+							page.getDynamicList();
+						}
+						else{
+							alert("删除失败！");
+						}
+					},
+					error:function(){
+						alert("删除请求失败！");
+					}
+				});
 			}
 		});
 	};

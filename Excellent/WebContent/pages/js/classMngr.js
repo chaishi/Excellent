@@ -115,15 +115,15 @@ var classMngr = {};
 	//获取班级列表-表格形式
 	page.getClassList = function(){
 		$.ajax({
-			url:"/Excellent/pages/json/classNameList.json",
+			url:"/Excellent/class/getClassList",
 			type:"get",
 			dataType:"json",
 			success:function(data){
 				if(data.success === true){
-					var classList = data.result;
+					var classList = data.result.class_list.list;
 					var html = "<tr><th>序号</th><th>班级</th><th>删除</th></tr>";
 					for(var i = 0, len = classList.length; i < len; i++){
-						html += '<tr><td>'+(i + 1)+'</td><td>'+classList[i].className+'</td><td><button type="button" class="btn btn-sm" value = "'+classList[i].classId+'">删除</button></td></tr>';
+						html += '<tr><td>'+(i + 1)+'</td><td>'+classList[i].classNum+'</td><td><button type="button" class="btn btn-sm" value = "'+classList[i].id+'">删除</button></td></tr>';
 					}
 					$("#classList").html(html);
 					page.deleteClass();

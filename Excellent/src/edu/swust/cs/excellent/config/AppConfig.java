@@ -17,6 +17,7 @@ import com.jfinal.render.ViewType;
 
 import edu.swust.cs.excellent.controller.ClassController;
 import edu.swust.cs.excellent.controller.FileController;
+import edu.swust.cs.excellent.controller.GlobalDebugInterceptor;
 import edu.swust.cs.excellent.controller.IndexController;
 import edu.swust.cs.excellent.controller.NewsController;
 import edu.swust.cs.excellent.controller.NoteController;
@@ -92,9 +93,7 @@ public class AppConfig extends JFinalConfig{
      */
     @Override
     public void configInterceptor(Interceptors me) {
-        // TODO Auto-generated method stub
-        
-        
+       me.add(new GlobalDebugInterceptor());
     }
 
     @Override
@@ -102,5 +101,7 @@ public class AppConfig extends JFinalConfig{
         // TODO Auto-generated method stub
         me.add(new SessionHandler());
     }
+    
+    
 
 }
