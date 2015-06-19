@@ -49,6 +49,8 @@ public class NewsController extends CommonController {
 						return null;
 					for (News p:news.getList()){
 						String  content=p.getStr("content");
+						if (content.trim().equals(""))
+							continue;
 						String summary=content.substring(0,Math.min(50, content.length()-1))+"...";
 						p.put("summary",summary);
 						p.remove("content");
@@ -67,6 +69,8 @@ public class NewsController extends CommonController {
 						return null;
 					for (News p:news.getList()){
 						String  content=p.getStr("content");
+						if (content.trim().equals(""))
+							continue;
 						String summary=content.substring(0,Math.min(50, content.length()-1))+"...";
 						p.put("summary",summary);
 						p.remove("content");
