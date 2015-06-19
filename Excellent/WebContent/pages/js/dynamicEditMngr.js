@@ -29,15 +29,20 @@ var editDynamic = {};
 	
 	//根据动态Id 获取 动态内容
 	page.getDynamic = function(){
+		var dynamicId = location.hash.split("#");
+		//console.log(dynamicId[1]);
 		$.getJSON(
-			"/Excellent/pages/json/dynamicInfo.json",
+			"/Excellent/news/showNewsDetail",
+			{
+				atyId:dynamicId[1]
+			},
 			function(data){
 				if(data.success){
-					var dym = data.result;
-					$("#title").val(dym.atyTitle); //动态标题
-					$("#classSelect").val(dym.className); //班级
-					$("#dynamicDate").val(dym.atyDate); //动态时间
-					editor.html(dym.atyContent); //动态内容
+					var dym = data.result.details;
+					$("#title").val(dym.title); //动态标题
+					$("#classSelect").val(dym.classNum); //班级
+					$("#dynamicDate").val(dym.happen_time); //动态时间
+					editor.html(dym.content); //动态内容
 				}else{
 					alert("获取班级动态详情失败！");
 				}

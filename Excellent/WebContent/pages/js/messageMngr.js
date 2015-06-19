@@ -14,16 +14,16 @@ var messageMngr = {};
 	//加载留言列表
 	page.loadMessages = function(){
 		$.getJSON(
-			"/Excellent/pages/json/messageList.json",
+			"/Excellent/note/getNotesList",
 			function(data){
 				if(data.success){
-					var msgList = data.result;
+					var msgList = data.result.details;
 					var html = '<tr><th class = "time">时间</th><th>留言</th><th> </th></tr>';
 					for(var i = 0, len = msgList.length; i < len; i++){
 						html += '<tr>'
-				  			 +		'<td class = "time">'+msgList[i].msgPubTime+'</td>'
-				  			 +		'<td>'+msgList[i].msgContent+'</td>'
-				  			 +		'<td class = "smWidth"><button type="button" class="btn btn-sm" value = "'+msgList[i].msgId+'">删除</button></td>'
+				  			 +		'<td class = "time">'+msgList[i].timestamp+'</td>'
+				  			 +		'<td>'+msgList[i].content+'</td>'
+				  			 +		'<td class = "smWidth"><button type="button" class="btn btn-sm" value = "'+msgList[i].id+'">删除</button></td>'
 				  			 +	'</tr>';
 					}
 					$("#messageList").html(html);
@@ -44,6 +44,7 @@ var messageMngr = {};
 			var val = obj.val();
 			if(name === "删除"){
 				alert(val);
+				
 			}
 		});
 	};
