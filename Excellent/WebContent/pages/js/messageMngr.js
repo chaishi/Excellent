@@ -44,7 +44,24 @@ var messageMngr = {};
 			var val = obj.val();
 			if(name === "删除"){
 				alert(val);
-				
+				$.ajax({
+					url:"/Excellent/note/deleteNote",
+					data:{
+						note_id: val
+					},
+					type:"post",
+					success:function(data){
+						if(data.success === true){
+							alert("删除成功！");
+							page.loadMessages();
+						}else{
+							alert("删除失败！");
+						}
+					},
+					error:function(){
+						alert("删除请求失败！");
+					}
+				});
 			}
 		});
 	};
