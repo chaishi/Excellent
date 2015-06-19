@@ -105,7 +105,7 @@ public class NewsController extends CommonController {
 		String time = format.format(calendar.getTime());
 		News  news = new News().set("title", getPara("title ",""))
 				.set("type", getParaToInt("type",1))
-				.set("content", getPara("content ",""))
+				.set("content", getPara("content",""))
 				.set("author", getName())
 				.set("happen_time", getPara("happen_time",time))
 				.set("class_id", getPara("class_id",""));
