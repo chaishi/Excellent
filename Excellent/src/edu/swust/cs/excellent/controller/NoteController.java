@@ -42,15 +42,15 @@ public class NoteController extends CommonController {
 	public void getNotesList(){
 		int pageNum = getParaToInt("nowPage",1);
 		int numPerPage = getParaToInt("rowNum",10);
-		if (getSessionAttr("userType").equals(Constant.ADMIN)){
-			Page<Note> notePages = CacheKit.get("note_cache", "admin"+pageNum+"-"+numPerPage,
-					                       new IDataLoader(){
-				                                public Object load() {    
-					                                return editNoteImpl.getAllNoteList(pageNum,numPerPage);  
-				                           }});
-			renderP(notePages, "details");
-			return ;
-		}
+//		if (getSessionAttr("userType").equals(Constant.ADMIN)){
+//			Page<Note> notePages = CacheKit.get("note_cache", "admin"+pageNum+"-"+numPerPage,
+//					                       new IDataLoader(){
+//				                                public Object load() {    
+//					                                return editNoteImpl.getAllNoteList(pageNum,numPerPage);  
+//				                           }});
+//			renderP(notePages, "details");
+//			return ;
+//		}
 		Page<Note> notePages = CacheKit.get("note_cache", pageNum+"-"+numPerPage,
                 new IDataLoader(){
                      public Object load() {    
