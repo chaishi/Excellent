@@ -132,6 +132,8 @@ var classIntroMngr = {};
 			if(name === "编辑"){
 				pageToNew("/Excellent/pages/dynamicEditMngr.html",val);
 			}else if(name === "删除"){
+				if(confirm("确认删除吗？") === false)
+					return;
 				$.ajax({
 					url:"/Excellent/news/deleteNews",
 					data:{
@@ -140,6 +142,7 @@ var classIntroMngr = {};
 					type:"post",
 					success:function(data){
 						if(data.success === true){
+							page.getDynamicList();
 							alert("删除成功！");
 						}else{
 							alert("删除失败！");

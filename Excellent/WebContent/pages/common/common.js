@@ -51,13 +51,16 @@ var common = {};
 					var classList = data.result.class_list.list;
 					var html = "";
 					for(var i = 0, len = classList.length; i < len; i++){
-						html += '<option value = "'+classList[i].id+'">'+classList[i].classNum+'</option>';
+						if(i == 0)
+							html += '<option value = "'+classList[i].id+'" selected>'+classList[i].classNum+'</option>';
+						else
+							html += '<option value = "'+classList[i].id+'">'+classList[i].classNum+'</option>';
 					}
 					for(var j = 0, n = ids.length; j < n; j++){
 						$(ids[j]).html(html);
 					}
 					if(typeof fun === "function"){
-						fun(classList[0].classId);
+						fun(classList[0].id);
 					}
 				}else{
 					console.log("班级列表获取失败!");
