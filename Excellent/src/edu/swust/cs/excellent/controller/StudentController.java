@@ -24,7 +24,7 @@ public class StudentController extends CommonController {
 		renderJ("stu_list",editStudentImpl.getStuList(getParaToInt("class_id")));
 	}
 
-	public void getStuInfo(){
+	public void getStuInfo(){ 
 		renderJ("stu_detail",editStudentImpl.getDetail(getParaToInt("stdId")));
 	}
 
@@ -87,6 +87,7 @@ public class StudentController extends CommonController {
 		String tName=getPara("true_name");
 		String sid=getPara("school_id");
 		String other=getPara("others");
+		String sign=getPara("sign");
 		String prize=getPara("prizes");
 
 		Student stu = new Student();
@@ -95,6 +96,7 @@ public class StudentController extends CommonController {
 		stu.set("true_name", tName);
 		stu.set("school_id", sid);
 		stu.set("other", other);
+		stu.set("self_sign", sign);
 		editStudentImpl.add(stu);
 
 		Award award=new Award();
@@ -154,8 +156,8 @@ public class StudentController extends CommonController {
 	public void queryStudent(){
 		int id=getParaToInt("stdId");
 		String name=getPara("stdName");
-		int clsType;
-		clsType = getParaToInt("classType",-1);
+		String clsType;
+		clsType = getPara("class","");
 
 		int rowNum=getParaToInt("rowNum",10);
 		int nowPage=getParaToInt("nowPage",1);

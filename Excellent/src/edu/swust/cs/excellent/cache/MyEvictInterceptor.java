@@ -14,19 +14,19 @@ public class MyEvictInterceptor implements Interceptor {
 		ai.invoke();
 		Map<Integer,String[]> map = buildCacheName(ai);
 
-		//若非MycacaheNamekey
-		String[] cacheNames = map.get(1);
+		String[] cacheNames = map.get(2);
 		if (cacheNames!=null){
 			for (String p:cacheNames){
 				CacheKit.removeAll(p);
 			}
 		}
 
-		String[] cahceNameKeys =  map.get(2);
-		if (cahceNameKeys!=null && cahceNameKeys.length%2!=0) {
+		String[] cacheNameKeys =  map.get(1);
+		//长度为一时应该不是异常,可能是缓存未产生
+		if (cacheNameKeys!=null && cacheNameKeys.length!=1 && cacheNameKeys.length%2!=0) {
 			throw new 
 			RuntimeException("MyEvictInterceptor MyCahceNameKey  annotation keys shoud be even account.");
-		}else if (cahceNameKeys!=null && cacheNames!=null){
+		}else if (cacheNameKeys!=null && cacheNames!=null){
 			for (int i=0;i<cacheNames.length;i+=2){
 				CacheKit.remove(cacheNames[i],cacheNames[i+1]);
 			}
@@ -36,10 +36,10 @@ public class MyEvictInterceptor implements Interceptor {
 	private Map<Integer,String[]> buildCacheName(ActionInvocation ai) {
 
 		Map<Integer,String[]> map = new HashMap<Integer,String[]>();
-		MyCaChaNameKey cacheNameKey = ai.getController().getClass().getAnnotation(MyCaChaNameKey.class);
+		MyCaCheNameKey cacheNameKey = ai.getController().getClass().getAnnotation(MyCaCheNameKey.class);
 		if (cacheNameKey != null)
 			map.put(1, cacheNameKey.value());
-		cacheNameKey = ai.getMethod().getAnnotation(MyCaChaNameKey.class);
+		cacheNameKey = ai.getMethod().getAnnotation(MyCaCheNameKey.class);
 		if (cacheNameKey != null)
 			map.put(1, cacheNameKey.value());
 

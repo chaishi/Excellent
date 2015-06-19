@@ -86,14 +86,7 @@ public class EditStudentImpl implements IEditStudent {
 	}
 
 	@Override
-	public Page<Student> queryStudent(Student stu,int classType, int nowPage, int pageSize) {
-
-		String clsType="";
-		if (classType==1){
-			clsType="计";
-		}else if (classType==0){
-			clsType="软";
-		}
+	public Page<Student> queryStudent(Student stu,String cls, int nowPage, int pageSize) {
 		String sql=SELECT_STUDENT_QUERY;
 		if  (stu.getStr("school_id")!=null && !stu.getStr("school_id").trim().equals("")){
 			sql=sql+" and school_id like '%"+stu.getStr("school_id")+"%'";
@@ -101,8 +94,8 @@ public class EditStudentImpl implements IEditStudent {
 		if (stu.getStr("true_name")!=null && !stu.getStr("true_name").trim().equals("")){
 			sql+=" and true_name like '%"+stu.getStr("true_name")+stu.getStr("true_name")+"%'";
 		}
-		if (!clsType.equals(""))
-		sql+=" and classNum like '%"+clsType+"%'";
+		if (!cls.equals(""))
+		sql+=" and classNum like '%"+cls+"%'";
 		return Student.dao.paginate(nowPage, pageSize,"select a.*,b.classNum,c.group_name " , sql);
 	}
 

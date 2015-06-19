@@ -25,5 +25,5 @@ public interface IEditStudent extends IBase<Student> {
 	/**
 	 * 获取查询结果 
 	 */
-	public  Page<Student> queryStudent(Student stu,int classType,int nowPage,int pageSize);
+	public  Page<Student> queryStudent(Student stu,String cls,int nowPage,int pageSize);
 }
