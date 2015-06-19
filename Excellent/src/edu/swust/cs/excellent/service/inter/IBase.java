@@ -9,4 +9,5 @@ public interface IBase<T> {
    public Page<T> getList();
    public Page<T> getList(int numPage,int numPerPage);
    public T getDetail(int id);
+   public  String getLastError();
 }

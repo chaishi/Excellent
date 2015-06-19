@@ -11,7 +11,7 @@ import edu.swust.cs.excellent.model.Student;
 import edu.swust.cs.excellent.service.inter.IEditStudent;
 
 @Service("editStudentImpl")
-public class EditStudentImpl implements IEditStudent {
+public class EditStudentImpl extends BaseImpl implements IEditStudent {
 
 	public static final String SELECT_STUDENT_DETAIL = "select a.*,b.group_name,c.id,c.classNum "
 			+ "from student a,`group` b,class c "
@@ -99,4 +99,5 @@ public class EditStudentImpl implements IEditStudent {
 		return Student.dao.paginate(nowPage, pageSize,"select a.*,b.classNum,c.group_name " , sql);
 	}
 
+	
 }

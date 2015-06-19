@@ -14,6 +14,7 @@ import edu.swust.cs.excellent.config.Constant;
 import edu.swust.cs.excellent.model.Class;
 import edu.swust.cs.excellent.model.Group;
 import edu.swust.cs.excellent.service.inter.IEditClass;
+import edu.swust.cs.excellent.validator.ClassValidator;
 
 public class ClassController extends CommonController{
 	@Inject.BY_TYPE
@@ -58,11 +59,15 @@ public class ClassController extends CommonController{
 		Constant.AUTHORITY_ADMIN
 	})
 	@Before({
-		LoginInterceptor.class,AuthorityInterceptor.class
+		LoginInterceptor.class,AuthorityInterceptor.class,ClassValidator.class
 	})
 	public void newClass(){
-		renderJ(editClassImpl.add(new Class().set("classNum", getPara("className"))
-				.set("study_model",getPara("study_model",""))));
+		if (editClassImpl.add(new Class().set("classNum", getPara("className"))
+				.set("study_model",getPara("study_model","")))){
+			renderJ(true);
+		}else{
+			renderError(editClassImpl.getLastError());
+		}
 	}
 	@Authority({
 		Constant.AUTHORITY_ADMIN
@@ -137,10 +142,10 @@ public class ClassController extends CommonController{
 		}
 		renderError("该班级未分组");
 	}
-	
+
 	public void getGroupList(){
 		renderJ("details", editClassImpl.getGroupList(getParaToInt("class_id")));
 	}
-	
+
 
 }

@@ -10,7 +10,7 @@ import edu.swust.cs.excellent.model.News_extend;
 import edu.swust.cs.excellent.service.inter.IEditNews;
 
 @Service("editNewsImpl")
-public class EditNewsImpl implements IEditNews {
+public class EditNewsImpl extends BaseImpl implements IEditNews {
 
 	Logger logger_disk = Logger.getLogger("Disk"); 
 	Logger logger_mail = Logger.getLogger("MAIL");
@@ -128,5 +128,7 @@ public class EditNewsImpl implements IEditNews {
 	public Page<News> getList(int numPage, int numPerPage) {
 		return News.dao.paginate(numPage, numPerPage, "select id,title,pub_time,content,happen_time", " from news order by importance,happen_time ");
 	}
+
+
 
 }

@@ -9,7 +9,7 @@ import edu.swust.cs.excellent.model.Note;
 import edu.swust.cs.excellent.service.inter.IEditNote;
 
 @Service("editNoteImpl")
-public class EditNoteImpl implements IEditNote {
+public class EditNoteImpl extends BaseImpl implements IEditNote {
 
 	Logger logger_disk = Logger.getLogger("Disk"); 
 	Logger logger_mail = Logger.getLogger("MAIL");
@@ -91,7 +91,7 @@ public class EditNoteImpl implements IEditNote {
 	public Page<Note> getAllNoteList(int numPage, int numPerPage){
 		return Note.dao.paginate(numPage, numPerPage,"select id,noter_id,content,timestamp" , " from notes order by is_passed asc,timestamp desc");
 	}
-	
-	
+
+		
 
 }

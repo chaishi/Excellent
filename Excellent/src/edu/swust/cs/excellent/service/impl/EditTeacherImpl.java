@@ -1,6 +1,5 @@
 package edu.swust.cs.excellent.service.impl;
 
-import org.eclipse.jdt.internal.compiler.ast.ReturnStatement;
 import org.springframework.stereotype.Service;
 
 import com.jfinal.plugin.activerecord.Page;
@@ -9,7 +8,7 @@ import edu.swust.cs.excellent.model.Teacher;
 import edu.swust.cs.excellent.service.inter.IEditTeacher;
 
 @Service("editTeacherImpl")
-public class EditTeacherImpl implements IEditTeacher{
+public class EditTeacherImpl extends BaseImpl implements IEditTeacher{
 
 	@Override
 	public boolean add(Teacher t) {
@@ -43,5 +42,7 @@ public class EditTeacherImpl implements IEditTeacher{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

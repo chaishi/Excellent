@@ -19,7 +19,7 @@ import edu.swust.cs.excellent.service.inter.IEditClass;
 import edu.swust.cs.excellent.util.ExcelTool;
 
 @Service("editClassImpl")
-public class EditClassImpl implements IEditClass {
+public class EditClassImpl extends BaseImpl implements IEditClass {
 
 	Logger logger_disk = Logger.getLogger("Disk"); 
 	Logger logger_mail = Logger.getLogger("MAIL");
@@ -71,12 +71,14 @@ public class EditClassImpl implements IEditClass {
 					sql+="'%计%'";
 				}else{
 					logger_disk.warn("添加非软件或计科班级");
+                    lastError="添加非软件或计科班级";
 					return false;
 				}
 
 				List<Class> lt=Class.dao.find(sql);
 				if (lt==null && lt.size()==0){
 					logger_mail.warn(t.getStr("classNum")+"未设置默认班级简介");
+					lastError=t.getStr("classNum")+"未设置默认班级简介";
 					return false;
 				}
 				for (Class p:lt){
@@ -89,13 +91,12 @@ public class EditClassImpl implements IEditClass {
 
 			}
 			t.save();
-
 			logger_disk.info("新增班级:"+t.getStr("classNum"));
 			return true;
 		} catch (Exception e) {
 			logger_disk.warn("添加班级出错");
+			return false;
 		}
-		return false;
 	}
 
 	@Override
@@ -232,6 +233,5 @@ public class EditClassImpl implements IEditClass {
 		return group;
 	}
 
-
-
+	
 }

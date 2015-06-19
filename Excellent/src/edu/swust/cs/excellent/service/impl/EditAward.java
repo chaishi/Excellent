@@ -10,7 +10,7 @@ import edu.swust.cs.excellent.model.Class;
 import edu.swust.cs.excellent.service.inter.IEditAward;
 
 @Service("editAwardImpl")
-public class EditAward implements IEditAward {
+public class EditAward extends BaseImpl implements IEditAward {
 
 	Logger logger_disk = Logger.getLogger("Disk"); 
 	Logger logger_mail = Logger.getLogger("MAIL");
@@ -92,5 +92,6 @@ public class EditAward implements IEditAward {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }
