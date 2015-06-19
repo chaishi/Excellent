@@ -26,6 +26,7 @@ import edu.swust.cs.excellent.cache.MyCacheName;
 import edu.swust.cs.excellent.cache.MyEvictInterceptor;
 import edu.swust.cs.excellent.config.Constant;
 import edu.swust.cs.excellent.model.News;
+import edu.swust.cs.excellent.model.News_extend;
 import edu.swust.cs.excellent.service.inter.IEditNews;
 
 import com.jfinal.plugin.spring.Inject;
@@ -85,11 +86,17 @@ public class NewsController extends CommonController {
 
 	public void showNewsDetail(){
 		int id = getParaToInt("atyId");
+		News_extend.dao.browse(id);
 		News news = CacheKit.get("news_cache", id) ;
 		if (news == null){
 			news = editNewsImpl.getDetail(id);
 			CacheKit.put("news_cache", id, news);
 		}
+		News_extend ne=News_extend.dao.findById(id);
+
+		news.put("browses", ne.getInt("browses"));
+		news.put("up_news", ne.getInt("up_news"));
+
 		renderJ("details", news);
 	}
 
@@ -103,7 +110,7 @@ public class NewsController extends CommonController {
 		Calendar calendar = Calendar.getInstance();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 		String time = format.format(calendar.getTime());
-		News  news = new News().set("title", getPara("title ",""))
+		News  news = new News().set("title", getPara("title",""))
 				.set("type", getParaToInt("type",1))
 				.set("content", getPara("content",""))
 				.set("author", getName())

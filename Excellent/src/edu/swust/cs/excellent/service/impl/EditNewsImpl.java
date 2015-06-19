@@ -15,15 +15,17 @@ public class EditNewsImpl implements IEditNews {
 	Logger logger_disk = Logger.getLogger("Disk"); 
 	Logger logger_mail = Logger.getLogger("MAIL");
 
-	private static final String SELECT_NEWS_DETAIL = "select title,classNum,content,happen_time,pub_time,author,importance,up_news,browses "
-			+ " from news a,news_extend b,class c"
-			+ " where a.id=b.id  and a.class_id=c.id and a.id=?";
+	private static final String SELECT_NEWS_DETAIL = "select title,classNum,content,happen_time,pub_time,author,importance "
+			+ " from news a,class c"
+			+ " where  a.class_id=c.id and a.id=?";
 	@Override
 	public boolean add(News t) {
 		try {
 			t.save();
 			News_extend ne=new News_extend();
-			ne.set("id", t.getInt("id")).save();
+			ne.set("id", t.getInt("id"))
+			  .set("browses", 0)
+			  .set("up_news", 0).save();
 			logger_disk.info("新增新闻:id="+t.getInt("id"));
 			return true;
 		} catch (Exception e) {
@@ -35,6 +37,7 @@ public class EditNewsImpl implements IEditNews {
 	@Override
 	public boolean delete(int id) {
 		try {
+			News_extend.dao.deleteById(id);
 			News.dao.deleteById(id);
 			logger_disk.info("删除新闻:id="+id);
 			return true;
@@ -65,9 +68,9 @@ public class EditNewsImpl implements IEditNews {
 	@Override
 	public News getDetail(int id) {
 		News news = News.dao.findFirst(SELECT_NEWS_DETAIL,id);
-		if (news!=null){
-			News_extend.dao.browse(id);
-		}
+//		if (news!=null){
+//			News_extend.dao.browse(id);
+//		}
 		return news;
 	}
 
