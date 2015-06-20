@@ -180,6 +180,13 @@ public class EditClassImpl extends BaseImpl implements IEditClass {
 	@Override
 	public boolean addGroup(Group group) {
 		try {
+			
+		    Group g = Group.dao.findFirst("select id from group where group_name=? and class_id=?",group.getStr("group_name"),group.getStr("class_id"));
+			if (g!=null){
+				lastError="该组名在改班级中已经添加";
+				logger_disk.warn("该组名在改班级中已经添加");
+				return false;
+			}
 			Db.update(INSERT_GROUP,group.getStr("group_name"),
 					group.getInt("leader"),
 					group.getStr("slogan"),

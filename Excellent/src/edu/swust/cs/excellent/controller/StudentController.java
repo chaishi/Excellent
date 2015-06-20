@@ -99,10 +99,14 @@ public class StudentController extends CommonController {
 		stu.set("self_sign", sign);
 		editStudentImpl.add(stu);
 
-		Award award=new Award();
-		award.set("comment", prize);
-		award.set("refrence_id", stu.getInt("id"));
-		editAwardImpl.add(award);
+		String[] prizes=prize.split(",");
+		if (prizes!=null)
+		for (String p:prizes){
+			Award award=new Award();
+			award.set("comment", p);
+			award.set("refrence_id", stu.getInt("id"));
+			editAwardImpl.add(award);
+		}
 		renderJ("details",stu.getInt("id"));
 	}
 

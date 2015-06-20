@@ -95,7 +95,11 @@ public class ClassController extends CommonController{
 		//    			set("tips",getPara("tips","")).
 		//    			set("class_id",getParaToInt("class_id")).
 		//    			set("achieve",getPara("achieve"));
-		renderJ(editClassImpl.addGroup(group));
+		if (editClassImpl.addGroup(group)){
+			renderJ(true);
+		}else{
+			renderError(editClassImpl.getLastError());
+		}
 	}
 
 	@Authority({
