@@ -4,8 +4,13 @@
 }
 
 .dymTitle h4{
-	color:black;
+	color:#333;
 	font-weight: bold;
+}
+
+.littleAttr{
+	color:#666;
+	margin-top:20px;
 }
 
 .littleAttr .littleDis{
@@ -16,4 +21,6 @@
 	width:900px;
 	margin:0 auto;
 	margin-top:50px;
+	line-height: 25px;
+	color:#333;
 }

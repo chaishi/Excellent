@@ -6,14 +6,13 @@
 
 $(function(){
 	common.serActive(1,0);
-	common.getClasses(["#classSelect1","#classSelect2"]);
+	common.getClasses(["#classSelect1","#classSelect2"],classMngr.searchGroupList);
 	common.addCickToNav(classMngr.showContent);
 	classMngr.getEditor();
 	classMngr.saveClassIntro();
 	classMngr.addClass();
 	classMngr.addGroup();
 	classMngr.addClickToSearchGroup();
-	classMngr.searchGroupList();
 });
 
 var classMngr = {};
@@ -146,7 +145,7 @@ var classMngr = {};
 			if(name === "删除"){
 				alert(val);
 				$.ajax({
-					url:"",
+					url:"/Excellent/class/deleteClass",
 					dataType:"json",
 					data:{
 						classId:val
@@ -172,12 +171,12 @@ var classMngr = {};
 			var groupName = $("#groupName").val();
 			var classSelect = $("#classSelect1").val();
 			$.ajax({
-				url:"",
+				url:"/Excellent/class/addGroup",
 				type:"post",
 				dataType:"json",
 				data:{
-					groupName:groupName,
-					classId:classSelect
+					"group.group_name":groupName,
+					"group.class_id":classSelect
 				},
 				success:function(data){
 					if(data.success === true){
@@ -200,16 +199,15 @@ var classMngr = {};
 			var name= obj.html();
 			var val = obj.val();
 			if(name === "删除"){
-				alert(val);
 				$.ajax({
-					url:"",
+					url:"/Excellent/class/deleteGroup",
 					dataType:"json",
 					data:{
-						groupId:val
+						id:val
 					},
 					success:function(data){
 						if(data.success){
-							alert("删除成功！");
+							alert("删除成功！请刷新查看");
 						}else{
 							alert("删除失败！");
 						}
@@ -224,26 +222,26 @@ var classMngr = {};
 	
 	page.addClickToSearchGroup = function(){
 		$("#searchGroup").click(function(){
-			page.searchGroupList();
+			var classId = $("#classSelect2").val();
+			page.searchGroupList(classId);
 		});
 	};
 	
 	//根据班级查询分组情况
-	page.searchGroupList = function(){
-		var classId = $("#classSelect2");
+	page.searchGroupList = function(classId){
 		$.ajax({
-			url:"/Excellent/pages/json/groupList.json",
+			url:"/Excellent/class/getGroupList",
 			type:"get",
 			dataType:"json",
-			/*data:{
-				classId:classId
-			},*/
+			data:{
+				class_id:classId
+			},
 			success:function(data){
-				var groupList = data.result;
+				var groupList = data.result.details;
 				var html = "<tr><th>序号</th><th>分组</th><th>删除</th></tr>";
 				if(data.success === true){
 					for(var i = 0, len = groupList.length; i < len; i++){
-						html += '<tr><td>'+(i + 1)+'</td><td>'+groupList[i].groupName+'</td><td><button type="button" class="btn btn-sm" value = "'+groupList[i].groupId+'">删除</button></td></tr>';
+						html += '<tr><td>'+(i + 1)+'</td><td>'+groupList[i].group_name+'</td><td><button type="button" class="btn btn-sm" value = "'+groupList[i].id+'">删除</button></td></tr>';
 					}
 					$("#groupList").html(html);
 					page.deleteGroup();
