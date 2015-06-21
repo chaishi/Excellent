@@ -146,14 +146,15 @@ public class StudentController extends CommonController {
 			renderError();
 		}
 
-		Award award=new Award();
-		award.set("comment", prize);
-		award.set("refrence_id", stu.getInt("id"));
-		try {
+		String[] prizes=prize.split(",");
+		if (prizes!=null)
+		for (String p:prizes){
+			Award award=new Award();
+			award.set("comment", p);
+			award.set("refrence_id", stu.getInt("id"));
 			editAwardImpl.merge(award);
-		} catch (Exception e) {
-			renderError();
 		}
+		renderJ("details",stu.getInt("id"));
 		renderJ("details",stu.getInt("id"));
 	}
 
