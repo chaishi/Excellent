@@ -21,7 +21,8 @@ public class EditNoteImpl extends BaseImpl implements IEditNote {
 			logger_disk.info("新增留言:id"+t.getInt("id"));
 			return true;
 		} catch (Exception e) {
-			logger_disk.info("新增留言:id"+t.getInt("id")+"失败");
+			logger_disk.error("新增留言:"+"失败");
+            logger_disk_we.error("新增留言:失败");
 		}
 		return false;
 	}
@@ -34,6 +35,7 @@ public class EditNoteImpl extends BaseImpl implements IEditNote {
 			return true;
 		} catch (Exception e) {
 			logger_disk.info("删除留言:id"+id+"失败");
+			logger_disk_we.error("删除留言:id"+id+"失败");
 		}
 		return false;
 	}
@@ -46,6 +48,7 @@ public class EditNoteImpl extends BaseImpl implements IEditNote {
 			return t;
 		} catch (Exception e) {
 			logger_disk.info("通过留言:id"+t.getInt("id")+"失败");
+			logger_disk_we.error("通过留言:id"+t.getInt("id")+"失败");
 		}
 		return null;
 	}

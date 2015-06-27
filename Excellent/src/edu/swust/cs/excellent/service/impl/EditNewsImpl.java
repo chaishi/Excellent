@@ -29,7 +29,8 @@ public class EditNewsImpl extends BaseImpl implements IEditNews {
 			logger_disk.info("新增新闻:id="+t.getInt("id"));
 			return true;
 		} catch (Exception e) {
-			logger_disk.info("新增新闻:id="+t.getInt("id")+"失败");
+			logger_disk.error("新增新闻:id="+t.getInt("id")+"失败");
+			logger_disk_we.error("新增新闻:id="+t.getInt("id")+"失败");
 		}
 		return false;
 	}
@@ -43,6 +44,7 @@ public class EditNewsImpl extends BaseImpl implements IEditNews {
 			return true;
 		} catch (Exception e) {
 			logger_disk.info("删除新闻:id="+id+"失败");
+			logger_disk_we.error("删除新闻:id="+id+"失败");
 		}
 		return false;
 	}
@@ -55,6 +57,7 @@ public class EditNewsImpl extends BaseImpl implements IEditNews {
 			return t;
 		} catch (Exception e) {
 			logger_disk.warn("修改新闻:id="+t.getInt("id"));
+			logger_disk_we.warn("修改新闻:id="+t.getInt("id"));
 		}
 		return null;
 	}

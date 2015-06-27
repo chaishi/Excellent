@@ -12,9 +12,8 @@ import edu.swust.cs.excellent.service.inter.IEditAward;
 @Service("editAwardImpl")
 public class EditAward extends BaseImpl implements IEditAward {
 
-	Logger logger_disk = Logger.getLogger("Disk"); 
-	Logger logger_mail = Logger.getLogger("MAIL");
 
+	
 	@Override
 	public boolean add(Award t) {
 		try{

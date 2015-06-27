@@ -21,6 +21,31 @@ import com.jfinal.kit.PropKit;
  */
 public class Constant {
 
+	/**
+	 * 邮件提醒管理员系统异常的警告错误日志的上限阈值(M)
+	 */
+	public static long WARN_ERROR_LOG_LIMIT=50;
+	
+	/**
+	 * 警告错误日志存储时间(天)
+	 */
+	public static int WARN_ERROR_LOG_LIFETIME=30;
+	
+	/**
+	 * 普通日志存储时间(天)
+	 */
+	public static int INFO_LOG_LIFETIME=10;
+	
+	/**
+	 * 日志路径系统变量Key
+	 */
+	public static String LOG4JDIRKEY="log4jDir";
+	
+	/**
+	 * 日志存放目录
+	 */
+	public static String LOG4JDIR="log";
+	
 	
 	public static int PUPPET_CLASS_ID = 1;
 	

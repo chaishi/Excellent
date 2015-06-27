@@ -1,8 +1,16 @@
-#傀儡class表Id
+#傀儡class表Id(此值需和数据库中值对应)
 PUPPET_CLASS_ID = 1
+#邮件提醒管理员系统异常的警告错误日志的上限阈值(M)
+WARN_ERROR_LIMIT=50
 
 #excel的存储路径
 UPLOAD_EXCEL_PATH = excel
+
+# 警告错误日志存储时间(天)
+WARN_ERROR_LOG_LIFETIME = 30
+
+普通日志存储时间(天)
+INFO_LOG_LIFETIME = 10
 
 #图片的存储路径
 UPLOAD_IMGAGE_PATH = img
