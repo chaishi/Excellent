@@ -63,6 +63,13 @@ public class EditClassImpl extends BaseImpl implements IEditClass {
 	@Override
 	public boolean add(Class t) {
 		try {
+			
+			Class tt=Class.dao.findFirst("select id from class where classNum=?",t.getStr("classNum"));
+			if  (tt!=null){
+				lastError="班级重复添加";
+				return false;
+			}
+			
 			if (t.getStr("study_model").trim().equals("")){
 				String sql= SELECT_STUDY_MODEL;
 				if (t.getStr("classNum").contains("软")){
@@ -181,7 +188,7 @@ public class EditClassImpl extends BaseImpl implements IEditClass {
 	public boolean addGroup(Group group) {
 		try {
 			
-		    Group g = Group.dao.findFirst("select id from `group` where group_name='?' and class_id=?",group.getStr("group_name"),group.getStr("class_id"));
+		    Group g = Group.dao.findFirst("select id from `group` where group_name=? and class_id=?",group.getStr("group_name"),group.getInt("class_id"));
 			if (g!=null){
 				lastError="该组名在改班级中已经添加";
 				logger_disk.warn("该组名在改班级中已经添加");
