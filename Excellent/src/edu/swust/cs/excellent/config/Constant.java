@@ -162,6 +162,10 @@ public class Constant {
 						p.set(p.getName(), Boolean.getBoolean(r));
 					}else if (p.getName()=="PUPPET_CLASS_ID"){
 						p.set(p.getName(), Integer.parseInt(r));
+					}else if (p.getName()=="WARN_ERROR_LOG_LIFETIME"){
+						p.set(p.getName(), Integer.parseInt(r));
+					}else if (p.getName()=="INFO_LOG_LIFETIME"){
+						p.set(p.getName(),Integer.parseInt(r));
 					}else{
 					   p.set(p.getName(),r);
 					}
