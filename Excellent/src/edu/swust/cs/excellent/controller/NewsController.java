@@ -86,7 +86,13 @@ public class NewsController extends CommonController {
 
 	public void showNewsDetail(){
 		int id = getParaToInt("atyId");
-		News_extend.dao.browse(id);
+		try {
+			News_extend.dao.browse(id);
+		} catch (Exception e) {
+			//means 该新闻已经删除
+			renderError("该动态已被删除");
+			return;
+		}
 		News news = CacheKit.get("news_cache", id) ;
 		if (news == null){
 			news = editNewsImpl.getDetail(id);
@@ -115,13 +121,13 @@ public class NewsController extends CommonController {
 				.set("content", getPara("content",""))
 				.set("author", getName())
 				.set("happen_time", getPara("happen_time",time))
-				.set("class_id", getPara("class_id",""));
+				.set("class_id", getPara("class_id","1"));
 		boolean r=editNewsImpl.add(news);
 		if  (r){
 			add("id",news.getInt("id"));
 			renderJ();
 		}else{
-			renderError("添加失败");
+			renderError("添加失败:"+editNewsImpl.getLastError());
 		}
 	}
 
