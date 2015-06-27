@@ -142,9 +142,11 @@ public class StudentController extends CommonController {
 		stu.set("school_id", sid);
 		stu.set("other", other);
 		try {
-			editStudentImpl.merge(stu);
+			
+			if (editStudentImpl.merge(stu)==null)
+				renderError(editStudentImpl.getLastError());
 		} catch (Exception e) {
-			renderError();
+			renderError(editStudentImpl.getLastError());
 		}
 
 		String[] prizes=prize.split(",");
