@@ -27,6 +27,8 @@ public class CleanLogJob implements Job{
 					if (getSize(p)/1024/1024>Constant.WARN_ERROR_LOG_LIMIT){
 						Logger logger=Logger.getLogger("MAIL");
 						logger.error("系统出现了异常,可能遭受攻击或者负载过大,请及时处理");
+						//备份数据库以防万一
+						new DBBackUpJob().execute(null);
 					}
 					dealFile(p,"we");
 				}
