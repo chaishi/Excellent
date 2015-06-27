@@ -157,3 +157,13 @@ textarea{
 	width:20px;
 	height:20px;
 }
+
+#devidePage .totalNum{
+	display: inline-block;
+	width:100px;
+	margin-top:28px;
+}
+
+#devidePage ul,#devidePage .totalNum{
+	float:left;
+}

@@ -9,10 +9,8 @@ $(function(){
 	common.getClasses(["#classSelect1","#classSelect2"],classMngr.searchGroupList);
 	common.addCickToNav(classMngr.showContent);
 	classMngr.getEditor();
-	classMngr.saveClassIntro();
-	classMngr.addClass();
-	classMngr.addGroup();
-	classMngr.addClickToSearchGroup();
+	classMngr.addClick();
+	classMngr.getClassList();
 });
 
 var classMngr = {};
@@ -34,80 +32,91 @@ var classMngr = {};
 		var classGroup = $("#classGroup");
 		switch(i){
 		case 0:{
-			classIntro.show();
-			classAddDel.hide();
+			classIntro.hide();
+			classAddDel.show();
 			classGroup.hide();
 		}break;
 		case 1:{
 			classIntro.hide();
-			classAddDel.show();
-			classGroup.hide();
-			page.getClassList();
-		}break;
-		case 2:{
-			classIntro.hide();
 			classAddDel.hide();
 			classGroup.show();
+		}break;
+		case 2:{
+			classIntro.show();
+			classAddDel.hide();
+			classGroup.hide();
 		}break;
 		}
 	}
 	
+	page.addClick = function(){
+		$("#saveEdit").click(function(){
+			page.saveClassIntro();
+		});
+		$("#addClassBtn").click(function(){
+			page.addClass();
+		});
+		$("#addGroupBtn").click(function(){
+			page.addGroup();
+		});
+		$("#searchGroup").click(function(){
+			var classId = $("#classSelect2").val();
+			page.searchGroupList(classId);
+		});
+	};
+	
 	//保存编辑 班级简介
 	page.saveClassIntro = function(){
-		$("#saveEdit").click(function(){
-			var content = editor.html(); //班级简介内容
-			var classTypeSelect = $("#classTypeSelect").val();//班级类型
-			console.log(content,classTypeSelect);
-			if(content == "" || classTypeSelect == ""){
-				alert("请完善信息！");
-				return;
-			}
-			$.ajax({
-				url:"/Excellent/class/setClassInfo",
-				type:"post",
-				dataType:"json",
-				data:{
-					introContent: content,
-					classType: classTypeSelect
-				},
-				success:function(data){
-					if(data.success === true){
-						alert("保存成功！");
-						window.open("/Excellent/pages/classIntro.html");
-					}else{
-						alert("保存失败，请重新尝试！");
-					}
-				},
-				error:function(){
-					alert("保存请求失败！");
+		var content = editor.html(); //班级简介内容
+		var classTypeSelect = $("#classTypeSelect").val();//班级类型
+		console.log(content,classTypeSelect);
+		if(content == "" || classTypeSelect == ""){
+			alert("请完善信息！");
+			return;
+		}
+		$.ajax({
+			url:"/Excellent/class/setClassInfo",
+			type:"post",
+			dataType:"json",
+			data:{
+				introContent: content,
+				classType: classTypeSelect
+			},
+			success:function(data){
+				if(data.success === true){
+					alert("保存成功！");
+					window.open("/Excellent/pages/classIntro.html");
+				}else{
+					alert("保存失败，请重新尝试！");
 				}
-			});
+			},
+			error:function(){
+				alert("保存请求失败！");
+			}
 		});
 	};
 	
 	//添加班级
 	page.addClass = function(){
-		$("#addClassBtn").click(function(){
-			var className = $("#className").val();
-			$.ajax({
-				url:"/Excellent/class/newClass",
-				type:"post",
-				dataType:"json",
-				data:{
-					className:className
-				},
-				success:function(data){
-					if(data.success === true){
-						alert("添加成功！");
-						page.getClassList();
-					}else{
-						alert("添加失败，请重新尝试！");
-					}
-				},
-				error:function(){
-					alert("添加请求失败！");
+		var className = $("#className").val();
+		$.ajax({
+			url:"/Excellent/class/newClass",
+			type:"post",
+			dataType:"json",
+			data:{
+				className:className
+			},
+			success:function(data){
+				if(data.success === true){
+					alert("添加成功！");
+					page.getClassList();
+				}else{
+					alert("添加失败: "+data.error+" ！");
 				}
-			});
+			},
+			error:function(){
+				alert("添加请求失败！");
+			}
 		});
 	}
 	
@@ -143,7 +152,6 @@ var classMngr = {};
 			var name= obj.html();
 			var val = obj.val();
 			if(name === "删除"){
-				alert(val);
 				$.ajax({
 					url:"/Excellent/class/deleteClass",
 					dataType:"json",
@@ -153,6 +161,7 @@ var classMngr = {};
 					success:function(data){
 						if(data.success){
 							alert("删除成功！");
+							location.reload();
 						}else{
 							alert("删除失败！");
 						}
@@ -167,28 +176,26 @@ var classMngr = {};
 	
 	//为某个班级添加分组
 	page.addGroup = function(){
-		$("#addGroupBtn").click(function(){
-			var groupName = $("#groupName").val();
-			var classSelect = $("#classSelect1").val();
-			$.ajax({
-				url:"/Excellent/class/addGroup",
-				type:"post",
-				dataType:"json",
-				data:{
-					"group.group_name":groupName,
-					"group.class_id":classSelect
-				},
-				success:function(data){
-					if(data.success === true){
-						alert("添加成功，请刷新查看！");
-					}else{
-						alert("添加失败，请重新尝试！");
-					}
-				},
-				error:function(){
-					alert("添加请求失败！");
+		var groupName = $("#groupName").val();
+		var classSelect = $("#classSelect1").val();
+		$.ajax({
+			url:"/Excellent/class/addGroup",
+			type:"post",
+			dataType:"json",
+			data:{
+				"group.group_name":groupName,
+				"group.class_id":classSelect
+			},
+			success:function(data){
+				if(data.success === true){
+					alert("添加成功，请刷新查看！");
+				}else{
+					alert("添加失败：" + data.error + " ！");
 				}
-			});
+			},
+			error:function(){
+				alert("添加请求失败！");
+			}
 		});
 	};
 	
@@ -208,6 +215,7 @@ var classMngr = {};
 					success:function(data){
 						if(data.success){
 							alert("删除成功！请刷新查看");
+							location.reload();
 						}else{
 							alert("删除失败！");
 						}
@@ -217,13 +225,6 @@ var classMngr = {};
 					}
 				});
 			}
-		});
-	};
-	
-	page.addClickToSearchGroup = function(){
-		$("#searchGroup").click(function(){
-			var classId = $("#classSelect2").val();
-			page.searchGroupList(classId);
 		});
 	};
 	

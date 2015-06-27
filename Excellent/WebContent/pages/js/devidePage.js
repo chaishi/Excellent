@@ -3,11 +3,11 @@ var flagDelegate = false;//是否已经添加事件代理
 
 /**
  * @author luoxue
- * @param {totalPage:总页数; avgNum:每一批显示多少页数;page:当前批; fun: 点击页号时，待执行的函数}
+ * @param {totalPage:总页数; avgNum:每一批显示多少页数;page:当前批; totalNum:总条数; fun: 点击页号时，待执行的函数}
  * @return {}
  * @notes 函数功能：获取分页
  */
-function loadDevidePage(totalPage,avgNum,page,fun){
+function loadDevidePage(totalPage,avgNum,page,totalNum,fun){
 	//创建一个ul
   	var ul = $("<ul></ul>");
   	//为ul添加内容
@@ -29,8 +29,11 @@ function loadDevidePage(totalPage,avgNum,page,fun){
   		return;
   	}
   	ul.append( $("<li class='next'><a><span aria-hidden='true'>&raquo;</span></a></li>") );
+  	var totalNum = "<span class = 'totalNum'>共  <span id = 'totalNum'>"+totalNum+"</span> 条记录</span> ";
   	$("#devidePage").empty();
+  	$("#devidePage").append(totalNum);
   	$("#devidePage").append(ul);
+  	$("#devidePage").append("<br style = 'clear:left'>");
   	//添加css样式
   	$("#devidePage ul").addClass("pagination");
   	somePageClick(fun);

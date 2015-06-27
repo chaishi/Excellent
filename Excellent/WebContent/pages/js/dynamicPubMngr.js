@@ -26,7 +26,6 @@ var classIntroMngr = {};
 			uploadJson:"/Excellent/file/uploadfile",
 			imageUploadJson:"/Excellent/file/uploadImg"	,
 			afterUpload:function(url){
-				console.log(url);
 				$('textarea[name="content"]').innerHtml='<img src='+url+'>';
 			},
 		};
@@ -46,7 +45,7 @@ var classIntroMngr = {};
 		case 1:{
 			pubDynamicCon.hide();
 			delEditDinamics.show();
-			page.getDynamicList();
+			page.getDynamicList.run(1);
 		}break;
 		}
 	};
@@ -91,33 +90,44 @@ var classIntroMngr = {};
 	
 	
 	//获取班级动态列表
-	page.getDynamicList = function(){
-		$.getJSON(
-			"/Excellent/news/showClassNewsList",
-			{
-				rowNum:15,
-				nowPage:1
-			},
-			function(data){
-				if(data.success === true){
-					var dymList = data.result.details;
-					var html = "";
-					var url = "/Excellent/pages/dynamicInfo.html";
-					for(var i = 0,len = dymList.length; i < len; i++){
-						html += '<tr>'
-							 +  '<td class = "titleWidth" onclick = "pageToNew(\''+url+'\','+dymList[i].id+')">'+dymList[i].title+'</td>'
-			  				 +	'<td>'+dymList[i].happen_time+'</td>'
-			  				 +	'<td><button value = "'+dymList[i].id+'" type="button" class="btn btn-default btn-xs">编辑</button></td>'
-			  				 +	'<td><button value = "'+dymList[i].id+'" type="button" class="btn btn-default btn-xs">删除</button></td>'
-							 +  '</tr>';
+	page.getDynamicList = {
+		rowNum:15,
+		pageNum:1,
+		loadPage:false,
+		run:function(index){
+			$.getJSON(
+				"/Excellent/news/showClassNewsList",
+				{
+					rowNum:this.rowNum,
+					nowPage:index
+				},
+				function(data){
+					if(data.success === true){
+						var dymList = data.result.details;
+						var html = "";
+						var url = "/Excellent/pages/dynamicInfo.html";
+						for(var i = 0,len = dymList.length; i < len; i++){
+							html += '<tr>'
+								 +  '<td class = "titleWidth" onclick = "pageToNew(\''+url+'\','+dymList[i].id+')">'+dymList[i].title+'</td>'
+				  				 +	'<td>'+dymList[i].happen_time+'</td>'
+				  				 +	'<td><button value = "'+dymList[i].id+'" type="button" class="btn btn-default btn-xs">编辑</button></td>'
+				  				 +	'<td><button value = "'+dymList[i].id+'" type="button" class="btn btn-default btn-xs">删除</button></td>'
+								 +  '</tr>';
+						}
+						$("#dynamicList").html(html);
+						page.addClickDymList();
+						//加载分页
+						if(page.getDynamicList.loadPage == false){
+							page.getDynamicList.pageNum = data.result.totalPage;
+							loadDevidePage(page.getDynamicList.pageNum,10,1,data.result.totalRow,page.getDynamicList);
+							page.getDynamicList.loadPage = true;//分页已完成
+						}
+					}else{
+						alert("获取班级动态列表失败，请刷新重试！");
 					}
-					$("#dynamicList").html(html);
-					page.addClickDymList();
-				}else{
-					alert("获取班级动态列表失败，请刷新重试！");
 				}
-			}
-		);
+			);
+		}
 	};
 	
 	//给动态列表添加点击事件
@@ -142,8 +152,8 @@ var classIntroMngr = {};
 					type:"post",
 					success:function(data){
 						if(data.success === true){
-							page.getDynamicList();
 							alert("删除成功！");
+							location.reload();
 						}else{
 							alert("删除失败！");
 						}
