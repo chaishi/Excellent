@@ -155,7 +155,6 @@ public class StudentController extends CommonController {
 			editAwardImpl.merge(award);
 		}
 		renderJ("details",stu.getInt("id"));
-		renderJ("details",stu.getInt("id"));
 	}
 
 	public void queryStudent(){

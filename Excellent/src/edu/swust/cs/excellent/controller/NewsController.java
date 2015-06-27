@@ -133,7 +133,7 @@ public class NewsController extends CommonController {
 	@Before({LoginInterceptor.class,AuthorityInterceptor.class,MyEvictInterceptor.class})
 	@MyCacheName({"index_cache","news_cache"})
 	public void mergeNews(){
-		renderJ(null==editNewsImpl.merge(getModel(News.class,"news")));
+		renderJ(null!=editNewsImpl.merge(getModel(News.class,"news")));
 	}
 
 	@Authority({
