@@ -42,13 +42,13 @@ var recruitEdit = {};
 				alert("请完善信息！");
 				return;
 			}
-			console.log(title,content);
+			//console.log(title,content);
 			$.ajax({
 				url:"/Excellent/news/writeNews",
 				type:"post",
 				data:{
-					title : title,
-					content : content,
+					title: title,
+					content: content,
 					type:2
 				},
 				success:function(data){
@@ -70,10 +70,11 @@ var recruitEdit = {};
 	page.getDynamicList = function(){
 		$.getJSON(
 			"/Excellent/news/showClassNewsList",
-			/*{
+			{
 				rowNum:15,
-				nowPage:1
-			},*/
+				nowPage:1,
+				type:2
+			},
 			function(data){
 				if(data.success === true){
 					var recuits = data.result.details;

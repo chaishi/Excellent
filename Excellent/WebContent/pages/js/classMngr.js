@@ -10,6 +10,7 @@ $(function(){
 	common.addCickToNav(classMngr.showContent);
 	classMngr.getEditor();
 	classMngr.addClick();
+	classMngr.getClassList();
 });
 
 var classMngr = {};
@@ -34,7 +35,6 @@ var classMngr = {};
 			classIntro.hide();
 			classAddDel.show();
 			classGroup.hide();
-			page.getClassList();
 		}break;
 		case 1:{
 			classIntro.hide();
@@ -111,7 +111,7 @@ var classMngr = {};
 					alert("添加成功！");
 					page.getClassList();
 				}else{
-					alert("添加失败，请重新尝试！");
+					alert("添加失败: "+data.error+" ！");
 				}
 			},
 			error:function(){
@@ -190,7 +190,7 @@ var classMngr = {};
 				if(data.success === true){
 					alert("添加成功，请刷新查看！");
 				}else{
-					alert("添加失败，请重新尝试！");
+					alert("添加失败：" + data.error + " ！");
 				}
 			},
 			error:function(){

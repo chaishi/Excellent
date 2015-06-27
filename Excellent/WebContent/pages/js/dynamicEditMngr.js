@@ -110,7 +110,7 @@ var editDynamic = {};
 				success:function(data){
 					if(data.success === true){
 						alert("保存成功！");
-						window.open("/Excellent/pages/DynamicsInfo.html#" + dynamicId[1]);
+						window.open("/Excellent/pages/dynamicInfo.html#" + dynamicId[1]);
 					}else{
 						alert("保存失败，请重新尝试！");
 					}

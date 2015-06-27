@@ -109,9 +109,9 @@ var studentInfoMngr = {};
 		var studentName = $("#studentName").val();
 		var studentId = $("#studentId").val();
 		var graduateInfo = $("#graduateInfo").val();
-		var prizeInfo = $("#prizeInfo").val().split(",");
+		var prizeInfo = $("#prizeInfo").val();
 		var describle = $("#describle").val();
-		console.log(classId,groupSelect,studentName,studentId,graduateInfo,prizeInfo,describle);
+		//console.log(classId,groupSelect,studentName,studentId,graduateInfo,prizeInfo,describle);
 		if(studentName == ""){
 			alert("请输入学生姓名！");
 			return;
@@ -125,13 +125,13 @@ var studentInfoMngr = {};
 			type:"post",
 			dataType:"json",
 			data:{
-				class_id : classId,
-				group_id : groupSelect,
-				true_name : studentName,
-				school_id : studentId,
-				//graduate : graduateInfo,
-				prizes : prizeInfo,
-				others : describle
+				class_id: classId,
+				group_id: groupSelect,
+				true_name: studentName,
+				school_id: studentId,
+				other: graduateInfo,
+				prizes: prizeInfo,
+				self_sign: describle
 			},
 			success:function(data){
 				if(data.success){

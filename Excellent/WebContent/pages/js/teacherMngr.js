@@ -3,6 +3,7 @@ $(function(){
 	common.addCickToNav(teacherMngr.showContent);
 	teacherMngr.addClick();
 	teacherMngr.getTeacherList();
+	teacherMngr.upLoadImg();
 });
 
 var teacherMngr = {};
@@ -13,6 +14,9 @@ var teacherMngr = {};
 	page.addClick = function(){
 		$("#addTeacherBtn").click(function(){
 			page.addTeacher();
+		});
+		$("#prelook").click(function(){
+			page.upLoadImg();
 		});
 	};
 	
@@ -31,23 +35,76 @@ var teacherMngr = {};
 		}
 	};
 	
+	page.upLoadImg = function(){
+		 $("#teacherHeaderFile").change(function(){
+	        //创建FormData对象
+	        var data = new FormData();
+	        //为FormData对象添加数据
+	        $.each($('#teacherHeaderFile')[0].files, function(i, file) {
+	            data.append('upload_file', file);
+	        });
+	        $.ajax({
+	            url:'/Excellent/file/uploadImg',
+	            type:'POST',
+	            data:data,
+	            cache: false,
+	            contentType: false,    //不可缺
+	            processData: false,    //不可缺
+	            success:function(data){
+	                data = $(data).html();
+	                if($("#feedback").children('img').length == 0) $("#feedback").append(data.replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
+	                else $("#feedback").children('img').eq(0).before(data.replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
+	            }
+	        });
+	    });
+	/*	var img = $("#teacherHeaderFile").val();
+		console.log(img);
+		$.ajaxFileUpload  
+        (  
+            {  
+                url: '/Excellent/file/uploadImg',  
+                secureuri: false,  
+                fileElementId: 'fileToUpload',  
+                dataType: 'html',  
+                beforeSend: function() {  
+                    $("#loading").show();  
+                },  
+                complete: function() {  
+                    $("#loading").hide();  
+                },  
+                success: function(data, status) {  
+                    if (typeof (data.error) != 'undefined') {  
+                        if (data.error != '') {  
+                            alert(data.error);  
+                        } else {  
+                            alert(data.msg);  
+                        }  
+                    }  
+                },  
+                error: function(data, status, e) {  
+                    alert(e);  
+                }  
+            }  
+        ); */
+	};
+	
 	//添加老师
 	page.addTeacher = function(){
 		var teacherName = $("#teacherName").val();
 		var teacherDsb = $("#teacherDsb").val();
-		var teacherHeaderFile = $("#teacherHeaderFile").val();
+		var teacherHeaderFile = $("#headImg").attr("src");
 		if(teacherName == "" || teacherDsb == "" || teacherHeaderFile == ""){
 			alert("请完善信息！");
 			return;
 		}
 		$.ajax({
-			url:"",
+			url:"/Excellent/teacher/newTeacher",
 			type:"post",
 			dataType:"json",
 			data:{
-				teacherName: teacherName,
-				teacherHeadPath: teacherHeaderFile,
-				teacherDescrible: teacherDsb
+				"t.true_name": teacherName,
+				"t.photo": teacherHeaderFile,
+				"t.tips": teacherDsb
 			},
 			success:function(data){
 				if(data.success === true){

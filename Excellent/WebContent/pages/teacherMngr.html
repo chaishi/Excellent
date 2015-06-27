@@ -56,16 +56,20 @@
 						    <label for="teacherDsb">老师简介：</label>
 						    <textarea class="form-control" cols = "100" rows = "5" id = "teacherDsb"></textarea>
 					    </div><br><br>
-					    
-					     <div class="form-group">
-						    <label for="exampleInputFile">老师头像:</label>
-						    <input type="file" id="teacherHeaderFile" class="btn">
-						    <button id = "prelook" type="button" class="btn">预览</button><br><br>
-						    <img id = "headImg" src = "images/logo.png"/>
-						</div><br><br>
-					    
-					    <button id = "addTeacherBtn" type="button" class="btn btn-primary">添加老师</button>
 					</form>
+				    <!-- <iframe id="uploadImg" name="uploadImg" style="display:none"></iframe>
+					<form target = "uploadImg" action="/Excellent/file/uploadImg" method="post">  
+						<input type="file" name="file" id="fileImg"/> 
+						<input type="submit" value="上传" id="sub"/>
+						<input type="button" value="预览" id="preview"/>
+					</form>   -->
+				     <div class="form-group">
+					    <label for="teacherHeaderFile">老师头像:</label>
+					    <input type="file" id="teacherHeaderFile" class="btn">
+					    <button id = "prelook" type="button" class="btn">上 传</button><br><br>
+					    <img id = "headImg" src = "images/logo.png"/>
+					</div><br><br>
+					<button id = "addTeacherBtn" type="button" class="btn btn-primary">添加老师</button>
 				</div>
 				
 				<div id = "delTeacherInfo" class= "displayNone">
@@ -83,6 +87,7 @@
 		
 		<script type="text/javascript" src="/Excellent/pages/common/jquery-1.8.1.min.js"></script>
 		<script type="text/javascript" src="/Excellent/pages/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/common/ajaxfileupload.js"></script>
 		<script type="text/javascript" src="/Excellent/pages/common/common.js"></script>
 		<script type="text/javascript" src="/Excellent/pages/js/teacherMngr.js"></script>
 	</body>
