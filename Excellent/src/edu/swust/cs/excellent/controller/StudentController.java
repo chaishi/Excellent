@@ -84,11 +84,11 @@ public class StudentController extends CommonController {
 	public void newStudent(){
 		int cid=getParaToInt("class_id");
 		int gid=getParaToInt("group_id");
-		String tName=getPara("true_name");
-		String sid=getPara("school_id");
-		String other=getPara("others");
-		String sign=getPara("sign");
-		String prize=getPara("prizes");
+		String tName=getPara("true_name","");
+		String sid=getPara("school_id","");
+		String other=getPara("others","");
+		String sign=getPara("self_sign","");
+		String prize=getPara("prizes","");
 
 		Student stu = new Student();
 		stu.set("class_id", cid);
