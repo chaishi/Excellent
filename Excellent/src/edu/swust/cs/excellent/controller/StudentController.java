@@ -105,6 +105,7 @@ public class StudentController extends CommonController {
 			Award award=new Award();
 			award.set("comment", p);
 			award.set("refrence_id", stu.getInt("id"));
+			award.set("flag",1);
 			editAwardImpl.add(award);
 		}
 		renderJ("details",stu.getInt("id"));
