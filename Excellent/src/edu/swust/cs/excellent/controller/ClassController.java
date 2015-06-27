@@ -76,7 +76,7 @@ public class ClassController extends CommonController{
 		LoginInterceptor.class,AuthorityInterceptor.class
 	})
 	public void deleteClass(){
-		renderJ(editClassImpl.delete(getParaToInt("atyId")));
+		renderJ(editClassImpl.delete(getParaToInt("classId")));
 	}
 
 	@Authority({
