@@ -114,7 +114,7 @@ public class EditNewsImpl extends BaseImpl implements IEditNews {
 			if (classNum.trim().length()!=1)
 			   cls=classNum.substring(1,classNum.length()-1);
 			if (cls.trim().equals("")){
-				return  News.dao.paginate(numPage, numPerPage, "select id,title,pub_time,happen_time", " from news where type=2 order by importance,happen_time ");
+				return  News.dao.paginate(numPage, numPerPage, "select id,title,pub_time,happen_time,content", " from news where type=2 order by importance,happen_time ");
 			}
 			sql=" from news where type=1 and classNum like '%"+cls
 					+ "%' order by importance,happen_time ";
