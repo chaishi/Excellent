@@ -90,13 +90,14 @@ public class NewsController extends CommonController {
 	private String getCharacter(String str){
 		if (str==null || str.equals(""))
 			return "";
-//		String r="";
-//		String regex="([\u4e00-\u9fa5]+)";
-//		Matcher matcher = Pattern.compile(regex).matcher(str);
-//		if(matcher.find()){
-//			r+=matcher.group(0);
-//		}
-		return HtmlUtil.getTextFromHtml(str);
+		String r="";
+		String regex="([\u4e00-\u9fa5]+)";
+		Matcher matcher = Pattern.compile(regex).matcher(str);
+		if(matcher.find()){
+			r+=matcher.group(0);
+		}
+		//return HtmlUtil.getTextFromHtml(str);
+		return r;
 	}
 	
 	public void showNewsDetail(){
