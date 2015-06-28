@@ -46,7 +46,7 @@ public class EditClassImpl extends BaseImpl implements IEditClass {
 			+ " set class_id=? where class_id="+Constant.PUPPET_CLASS_ID;
 
 	private static final String EXPORT_GROUP_TO_EXCEL = "select id,leader,group_name,slogan,achieve,flags,tips "
-			+  "from `group`  where class_id=?";
+			+  "from `group`  where class_id=? order by id desc";
 
 	private static final String SELECT_LEADER_IN_GROUP =  "select school_id,true_name "
 			+ "from student where a.id=";

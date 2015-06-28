@@ -31,8 +31,9 @@ public class NoteController extends CommonController {
 		Constant.AUTHORITY_STUDENT,Constant.AUTHORITY_TEACHER,Constant.AUTHORITY_ADMIN
 	})
 	@Before({
-		LoginInterceptor.class,AuthorityInterceptor.class
+		LoginInterceptor.class,AuthorityInterceptor.class,MyEvictInterceptor.class
 	})
+	@MyCacheName("note_cache")
 	public void saySomething(){
 		renderJ(editNoteImpl.add(new Note().set("content", getPara("msgContent"))
 				.set("noter_id", getUserId())));
