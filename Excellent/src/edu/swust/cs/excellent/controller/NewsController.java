@@ -100,7 +100,7 @@ public class NewsController extends CommonController {
 //			r+=matcher.group(0);
 //		}
 		str = str.replaceAll("[、.，,。？]", " ");
-		return str.replaceAll("[^、 \u4e00-\u9fa5]+","");
+		return str.replaceAll("[^、 0-9\u4e00-\u9fa5]+","");
 		//return HtmlUtil.getTextFromHtml(str);
 		//return r;
 	}
