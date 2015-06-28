@@ -170,6 +170,11 @@ public class StudentController extends CommonController {
 		String clsType;
 		clsType = getPara("classID","");
 
+		if (id.equals("") && name.equals("") && clsType.equals("")){
+			renderError("请至少指定一个查询条件");
+			return;
+		}
+		
 		int rowNum=getParaToInt("rowNum",10);
 		int nowPage=getParaToInt("nowPage",1);
 		Student stu=new Student();
