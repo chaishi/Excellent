@@ -5,3 +5,35 @@
 #messageList th,#messageList td{
 	border:0;
 }
+
+.pageContent1{
+	border:1px double #eee;
+	height:500px;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	margin-top:50px;
+}
+
+#messagesBoard{
+	height:500px;	
+}
+
+.pageContent1 .left{
+	margin-top:-30px;
+	margin-left:-30px;
+}
+.oneMsg{
+	width:1000px;
+	margin:0 auto;
+}
+
+.msgTime{
+	color:#0055aa;
+}
+
+.msgContent{
+	margin-top:15px;
+	margin-bottom:15px;
+	line-height: 25px;
+}

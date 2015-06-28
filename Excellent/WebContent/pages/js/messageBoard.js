@@ -8,24 +8,27 @@ var messageBoard = {};
 (function(page){
 	//加载留言列表
 	page.loadMessages = {
-		rowNum:15,
+		rowNum:4,
 		pageNum:1,
 		loadPage:false,
 		run:function(index){
 			$.getJSON(
 				"/Excellent/note/getNotesList",
 				{
-					rowNum: 15,
+					rowNum: this.rowNum,
 					nowPage: index
 				},
 				function(data){
 					if(data.success){
 						var msgList = data.result.details;
-						var html = '<tr><th class = "time">时间</th><th>留言</th></tr>';
+						var html = '<br><br><br>';
 						for(var i = 0, len = msgList.length; i < len; i++){
-							html += '<tr><td class = "time">'+msgList[i].timestamp+'</td><td>'+msgList[i].content+'</td></tr>';
+							html += '<div class = "oneMsg">'
+								 +		'<div class = "msgTime">'+msgList[i].timestamp+'</div>'
+								 +		'<div class = "msgContent">'+msgList[i].content+'</div>'
+								 +	'</div>';	
 						}
-						$("#messageList").html(html);
+						$("#messagesBoard").html(html);
 						//加载分页
 						if(page.loadMessages.loadPage == false){
 							page.loadMessages.pageNum = data.result.totalPage;
