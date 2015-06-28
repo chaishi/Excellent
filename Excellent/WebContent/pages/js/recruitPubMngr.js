@@ -3,6 +3,15 @@ $(function(){
 	common.addCickToNav(recruitEdit.showContent);
 	recruitEdit.getEditor();
 	recruitEdit.pubRecuit();
+	
+	$(".form_datetime").datetimepicker({
+        format: "yyyy-mm-dd",
+        weekStart:1,
+        autoclose:true,
+        minView:"month",
+        todayBtn:true,
+        todayHighlight:true
+    });
 });
 
 var recruitEdit = {};
@@ -37,6 +46,7 @@ var recruitEdit = {};
 	page.pubRecuit = function(){
 		$("#pubRecuitBtn").click(function(){
 			var title = $("#title").val();
+			var dynamicDate = $("#dynamicDate").val();
 			var content = editor.html();
 			if(title == "" || content == ""){
 				alert("请完善信息！");
@@ -49,7 +59,8 @@ var recruitEdit = {};
 				data:{
 					title: title,
 					content: content,
-					type:2
+					type:2,
+					happen_time:dynamicDate
 				},
 				success:function(data){
 					if(data.success === true){

@@ -13,6 +13,7 @@
 		</style>
 		<link rel="stylesheet" href="/Excellent/pages/bootstrap-3.2.0-dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="/Excellent/pages/kindeditor-4.1.10/themes/default/default.css" />
+		<link rel="stylesheet" href="/Excellent/pages/bootstrap-3.2.0-dist/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="/Excellent/pages/common/common.css" />
 		<link rel="stylesheet" href="/Excellent/pages/css/recruitPubMngr.css" />
 	</head>
@@ -60,10 +61,14 @@
 						<br><br>
 						<textarea name="content" style="width:1000px;height:400px;visibility:hidden;resize: none"></textarea>
 						<br>
+						<div class="input-append date form_datetime">
+							<span class="name1">日期： &nbsp;&nbsp;</span>
+						    <input id = "dynamicDate" size="16" type="text" value="" readonly>
+						    <span class="add-on"><i class="icon-th"></i></span>
+						</div><br>
 						<div>
 							<input type = button value = "发布招新信息" id = "pubRecuitBtn" class = "bigButton"/>
-						</div>
-						<br><br>
+						</div><br><br>
 					</form>		
 				</div>
 				<div id = "delEditRecuit" class = "displayNone">
@@ -82,6 +87,7 @@
 		<script type="text/javascript" src="/Excellent/pages/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/Excellent/pages/kindeditor-4.1.10/kindeditor-min.js"></script>
 		<script type="text/javascript" src="/Excellent/pages/kindeditor-4.1.10/lang/zh_CN.js"></script>
+		<script type="text/javascript" src="/Excellent/pages/bootstrap-3.2.0-dist/js/bootstrap-datetimepicker.min.js"></script>
 		<script type="text/javascript" src="/Excellent/pages/common/common.js"></script>
 		<script type="text/javascript" src="/Excellent/pages/js/recruitPubMngr.js"></script>
 	</body>

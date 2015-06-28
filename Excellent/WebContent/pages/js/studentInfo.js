@@ -22,14 +22,14 @@ var studentInfo = {};
 					$("#stdId").html(std.school_id);
 					$("#stdGroup").html(std.group_name);
 					$("#stdClassname").html(std.classNum);
-					$("#stdGraduate").html("暂无");
+					$("#stdGraduate").html(std.other);
 					var prizes = "";
 					for(var i = 0, len = std.prizes.length; i < len; i++){
 						prizes += "<p>"+std.prizes[i]+"</p>";
 					}
 					if(i == 0)prizes = "<p>暂无</p>";
 					$("#stdPrizes").html(prizes);
-					$("#stdOther").html(std.other);
+					$("#stdOther").html(std.self_sign);
 				}else{
 					alert("获取学生详情失败！");
 				}
