@@ -44,12 +44,12 @@ public class EditStudentImpl extends BaseImpl implements IEditStudent {
 	@Override
 	public Student merge(Student t) {
 		if (t.update()){
-			logger_disk.info("修改学号为"+t.getStr("school_id")+"姓名为:"+t.getStr("true_name")+"id为:"+t.getStr("id")+"的学生信息");
+			logger_disk.info("修改学号为"+t.getStr("school_id")+"姓名为:"+t.getStr("true_name")+"id为:"+t.getInt("id")+"的学生信息");
 			return t;
 		}
 		lastError="尝试修改学号为"+t.getStr("school_id")+"姓名为:"+t.getStr("true_name")+"的学生信息失败";
-		logger_disk.info("尝试修改学号为"+t.getStr("school_id")+"姓名为:"+t.getStr("true_name")+"id为:"+t.getStr("id")+"的学生信息失败");
-		logger_disk_we.error("尝试修改学号为"+t.getStr("school_id")+"姓名为:"+t.getStr("true_name")+"id为:"+t.getStr("id")+"的学生信息失败");
+		logger_disk.info("尝试修改学号为"+t.getStr("school_id")+"姓名为:"+t.getStr("true_name")+"id为:"+t.getInt("id")+"的学生信息失败");
+		logger_disk_we.error("尝试修改学号为"+t.getStr("school_id")+"姓名为:"+t.getStr("true_name")+"id为:"+t.getInt("id")+"的学生信息失败");
 		return null;
 	}
 

@@ -27,4 +27,11 @@ public interface IEditAward extends IBase<Award>{
 	 * 活得个人获奖情况列表
 	 */
 	public Page<Award> getStudentAward(int stuId);
+ 
+	/**
+	 * 根据Id删除某个学生的获奖情况
+	 * @param id
+	 * @return
+	 */
+	public boolean deleByStuId(int id);
 }
