@@ -30,6 +30,7 @@ import edu.swust.cs.excellent.config.Constant;
 import edu.swust.cs.excellent.model.News;
 import edu.swust.cs.excellent.model.News_extend;
 import edu.swust.cs.excellent.service.inter.IEditNews;
+import edu.swust.cs.excellent.util.HtmlUtil;
 
 import com.jfinal.plugin.spring.Inject;
 
@@ -89,13 +90,13 @@ public class NewsController extends CommonController {
 	private String getCharacter(String str){
 		if (str==null || str.equals(""))
 			return "";
-		String r="";
-		String regex="([\u4e00-\u9fa5]+)";
-		Matcher matcher = Pattern.compile(regex).matcher(str);
-		if(matcher.find()){
-			r+=matcher.group(0);
-		}
-		return r;
+//		String r="";
+//		String regex="([\u4e00-\u9fa5]+)";
+//		Matcher matcher = Pattern.compile(regex).matcher(str);
+//		if(matcher.find()){
+//			r+=matcher.group(0);
+//		}
+		return HtmlUtil.getTextFromHtml(str);
 	}
 	
 	public void showNewsDetail(){
