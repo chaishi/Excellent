@@ -3,8 +3,7 @@ package edu.swust.cs.excellent.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Page;
@@ -56,7 +55,7 @@ public class NewsController extends CommonController {
 						if (content.trim().equals(""))
 							continue;
 						String summary=getCharacter(content);
-						summary=summary.substring(0,Math.min(Constant.NEWS_PREVIEW_LENGTH, content.length()-1))+"...";
+						summary=summary.substring(0,Math.min(Constant.NEWS_PREVIEW_LENGTH, summary.length()-1))+"...";
 						p.put("summary",summary);
 						p.remove("content");
 					}
@@ -77,7 +76,7 @@ public class NewsController extends CommonController {
 						if (content.trim().equals(""))
 							continue;
 						String summary=getCharacter(content);
-						summary=summary.substring(0,Math.min(Constant.NEWS_PREVIEW_LENGTH, content.length()-1))+"...";
+						summary=summary.substring(0,Math.min(Constant.NEWS_PREVIEW_LENGTH, summary.length()-1))+"...";
 						p.put("summary",summary);
 						p.remove("content");
 					}
