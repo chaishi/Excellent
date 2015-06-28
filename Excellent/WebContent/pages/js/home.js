@@ -8,6 +8,7 @@ $(function(){
 	common.serActive(0,1);
 	home.addClick();
 	home.getTeacherData();
+	home.getClassDynamic();
 });
 
 var home = {};
@@ -39,9 +40,39 @@ var home = {};
 				alert("发表请求失败！");
 			}
 		});
-	}
+	};
 	
-	//获取教师列表信息
+	//student show.获取班级动态列表
+	page.getClassDynamic = function(){
+		$.getJSON(
+			"/Excellent/news/showClassNewsList",
+			{
+				rowNum:5,
+				nowPage:1
+			},
+			function(data){
+				if(data.success === true){
+					var dymList = data.result.details;
+					var html = "";
+					var url = "/Excellent/pages/dynamicInfo.html";
+					$("#dymList").empty();
+					for(var i = 0,len = dymList.length; i < len; i++){
+						var summary = dymList[i].summary.match( /[\u4E00-\u9FFF]+/ig);
+						console.log(summary);
+						html += '<div class = "oneDym">'
+							 +  	'<h5><img src = "images/guide.png">'+dymList[i].title+'</h5>'
+							 +  	'<p>'+summary+'</p>'
+							 +  '</div>';	
+					}
+					$("#dymList").html(html);
+				}else{
+					alert("获取班级动态列表失败！");
+				}
+			}
+		);
+	};
+	
+	//teacher show.获取教师列表信息
 	page.getTeacherData = function(){
 		$.getJSON(
 			"/Excellent/teacher/getTeacherList",

@@ -167,3 +167,7 @@ textarea{
 #devidePage ul,#devidePage .totalNum{
 	float:left;
 }
+
+table{
+	font-family: 宋体;
+}
