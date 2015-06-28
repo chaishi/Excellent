@@ -84,7 +84,7 @@ public class EditNoteImpl extends BaseImpl implements IEditNote {
 	public Page<Note> getList(int numPage, int numPerPage) {
 		return Note.dao.paginate(numPage, numPerPage, "select id,noter_id,content,timestamp", "from notes "
 				//+ "where is_passed=1 "
-				+ "order by timestamp");
+				+ "order by timestamp desc");
 	}
 	
 	/**
