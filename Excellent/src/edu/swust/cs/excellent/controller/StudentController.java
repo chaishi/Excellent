@@ -2,6 +2,7 @@ package edu.swust.cs.excellent.controller;
 
 
 import com.jfinal.aop.Before;
+import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.spring.Inject;
 
 import edu.swust.cs.excellent.authorized.Authority;
@@ -101,13 +102,13 @@ public class StudentController extends CommonController {
 
 		String[] prizes=prize.split(",");
 		if (prizes!=null)
-		for (String p:prizes){
-			Award award=new Award();
-			award.set("comment", p);
-			award.set("refrence_id", stu.getInt("id"));
-			award.set("flag",1);
-			editAwardImpl.add(award);
-		}
+			for (String p:prizes){
+				Award award=new Award();
+				award.set("comment", p);
+				award.set("refrence_id", stu.getInt("id"));
+				award.set("flag",1);
+				editAwardImpl.add(award);
+			}
 		renderJ("details",stu.getInt("id"));
 	}
 
@@ -142,7 +143,7 @@ public class StudentController extends CommonController {
 		stu.set("school_id", sid);
 		stu.set("other", other);
 		try {
-			
+
 			if (editStudentImpl.merge(stu)==null)
 				renderError(editStudentImpl.getLastError());
 		} catch (Exception e) {
@@ -150,31 +151,37 @@ public class StudentController extends CommonController {
 		}
 
 		editAwardImpl.deleByStuId(stu.getInt("id"));
-		
+
 		String[] prizes=prize.split(",");
 		if (prizes!=null)
-		for (String p:prizes){
-			Award award=new Award();
-			award.set("comment", p);
-			award.set("refrence_id", stu.getInt("id"));
-			award.set("flag", 1);
-			editAwardImpl.add(award);
-		}
+			for (String p:prizes){
+				Award award=new Award();
+				award.set("comment", p);
+				award.set("refrence_id", stu.getInt("id"));
+				award.set("flag", 1);
+				editAwardImpl.add(award);
+			}
 		renderJ("details",stu.getInt("id"));
 	}
 
 	public void queryStudent(){
-		int id=getParaToInt("stdId");
-		String name=getPara("stdName");
+		String id=getPara("stdId","");
+		String name=getPara("stdName","");
 		String clsType;
-		clsType = getPara("class","");
+		clsType = getPara("classID","");
 
 		int rowNum=getParaToInt("rowNum",10);
 		int nowPage=getParaToInt("nowPage",1);
 		Student stu=new Student();
-		stu.set("id", id);
+		stu.set("school_id", id);
 		stu.set("true_name", name);
-		renderJ("details",editStudentImpl.queryStudent(stu,clsType , nowPage, rowNum));
+		Page<Student> pStu=editStudentImpl.queryStudent(stu,clsType , nowPage, rowNum);
+		if (pStu==null){
+			renderError(editStudentImpl.getLastError());
+			return;
+		}else{
+			renderJ("details",pStu);
+		}
 	}
 
 }

@@ -98,10 +98,18 @@ public class EditStudentImpl extends BaseImpl implements IEditStudent {
 			sql=sql+" and school_id like '%"+stu.getStr("school_id")+"%'";
 		}
 		if (stu.getStr("true_name")!=null && !stu.getStr("true_name").trim().equals("")){
-			sql+=" and true_name like '%"+stu.getStr("true_name")+stu.getStr("true_name")+"%'";
+			sql+=" and true_name like '%"+stu.getStr("true_name")+"%'";
 		}
-		if (!cls.equals(""))
-			sql+=" and classNum like '%"+cls+"%'";
+		if (!cls.equals("")){
+			int cid=0;
+			try {
+				cid=Integer.parseInt(cls);
+			} catch (Exception e) {
+				lastError="班级数字序号错误";
+				return  null;
+			}
+			sql+=" and b.id="+cid;
+		}
 		return Student.dao.paginate(nowPage, pageSize,"select a.*,b.classNum,c.group_name " , sql);
 	}
 
