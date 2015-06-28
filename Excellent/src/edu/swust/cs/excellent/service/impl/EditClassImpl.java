@@ -21,9 +21,6 @@ import edu.swust.cs.excellent.util.ExcelTool;
 @Service("editClassImpl")
 public class EditClassImpl extends BaseImpl implements IEditClass {
 
-	Logger logger_disk = Logger.getLogger("Disk"); 
-	Logger logger_mail = Logger.getLogger("MAIL");
-
 	private static final String SELECT_CLASS_INFO = "select id,classNum "
 			+  "from class where id!="+Constant.PUPPET_CLASS_ID
 			+" order by classNum ";

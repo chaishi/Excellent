@@ -3,6 +3,7 @@ package edu.swust.cs.excellent.service.impl;
 import org.springframework.stereotype.Service;
 
 import com.jfinal.log.Logger;
+import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 
 import edu.swust.cs.excellent.model.Award;
@@ -12,9 +13,8 @@ import edu.swust.cs.excellent.service.inter.IEditAward;
 @Service("editAwardImpl")
 public class EditAward extends BaseImpl implements IEditAward {
 
-	Logger logger_disk = Logger.getLogger("Disk"); 
-	Logger logger_mail = Logger.getLogger("MAIL");
 
+	
 	@Override
 	public boolean add(Award t) {
 		try{
@@ -91,6 +91,11 @@ public class EditAward extends BaseImpl implements IEditAward {
 	public Page<Award> getList(int numPage, int numPerPage) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean deleByStuId(int id) {
+		return Db.update("delete from  award where refrence_id=? and flag=1",id)!=0;
 	}
 
 

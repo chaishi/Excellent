@@ -1,8 +1,10 @@
 package edu.swust.cs.excellent.controller;
 
 import java.util.Map;
+
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
+import com.jfinal.log.Logger;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.spring.IocInterceptor;
 
@@ -11,6 +13,10 @@ import edu.swust.cs.excellent.config.Constant;
 @Before(IocInterceptor.class)
 public class CommonController extends Controller{
 
+	Logger logger_disk = Logger.getLogger("Disk"); 
+	Logger logger_mail = Logger.getLogger("MAIL");
+	Logger logger_disk_we = Logger.getLogger("DiskWE");
+	
 	private Response response = Response.getInstance();
 
 	/**

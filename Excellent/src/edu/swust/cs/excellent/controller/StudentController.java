@@ -82,8 +82,8 @@ public class StudentController extends CommonController {
 		LoginInterceptor.class,AuthorityInterceptor.class
 	})
 	public void newStudent(){
-		int cid=getParaToInt("class_id");
-		int gid=getParaToInt("group_id");
+		int cid=getParaToInt("class_id",1);
+		int gid=getParaToInt("group_id",1);
 		String tName=getPara("true_name","");
 		String sid=getPara("school_id","");
 		String other=getPara("others","");
@@ -105,6 +105,7 @@ public class StudentController extends CommonController {
 			Award award=new Award();
 			award.set("comment", p);
 			award.set("refrence_id", stu.getInt("id"));
+			award.set("flag",1);
 			editAwardImpl.add(award);
 		}
 		renderJ("details",stu.getInt("id"));
@@ -126,12 +127,12 @@ public class StudentController extends CommonController {
 	@Before({LoginInterceptor.class,AuthorityInterceptor.class})
 	public void updateStudent(){
 		int id=getParaToInt("id");
-		int cid=getParaToInt("class_id");
-		int gid=getParaToInt("group_id");
-		String tName=getPara("true_name");
-		String sid=getPara("school_id");
-		String other=getPara("others");
-		String prize=getPara("prizes");
+		int cid=getParaToInt("class_id",1);
+		int gid=getParaToInt("group_id",1);
+		String tName=getPara("true_name","");
+		String sid=getPara("school_id","");
+		String other=getPara("others","");
+		String prize=getPara("prizes","");
 
 		Student stu = new Student();
 		stu.set("id", id);
@@ -141,18 +142,23 @@ public class StudentController extends CommonController {
 		stu.set("school_id", sid);
 		stu.set("other", other);
 		try {
-			editStudentImpl.merge(stu);
+			
+			if (editStudentImpl.merge(stu)==null)
+				renderError(editStudentImpl.getLastError());
 		} catch (Exception e) {
-			renderError();
+			renderError(editStudentImpl.getLastError());
 		}
 
+		editAwardImpl.deleByStuId(stu.getInt("id"));
+		
 		String[] prizes=prize.split(",");
 		if (prizes!=null)
 		for (String p:prizes){
 			Award award=new Award();
 			award.set("comment", p);
 			award.set("refrence_id", stu.getInt("id"));
-			editAwardImpl.merge(award);
+			award.set("flag", 1);
+			editAwardImpl.add(award);
 		}
 		renderJ("details",stu.getInt("id"));
 	}

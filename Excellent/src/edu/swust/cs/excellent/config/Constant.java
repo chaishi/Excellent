@@ -1,6 +1,7 @@
 package edu.swust.cs.excellent.config;
 
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,6 +13,7 @@ import java.util.Properties;
 import com.jfinal.core.Const;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
+import com.jfinal.log.Logger;
 
 
 /**
@@ -21,6 +23,51 @@ import com.jfinal.kit.PropKit;
  */
 public class Constant {
 
+	/**
+	 * 是否将数据库备份发送到管理员邮箱
+	 */
+	public static boolean DB_IS_TOSENDMAIL=false;
+	
+	/**
+	 * 邮件提醒管理员系统异常的警告错误日志的上限阈值(M)
+	 */
+	public static long WARN_ERROR_LOG_LIMIT=50;
+	
+	/**
+	 * 保留的数据库备份份数
+	 */
+	public static int DB_BACKUP_COPIES=3;
+	
+	/**
+	 * 默认数据库文件备份路径
+	 */
+	public static final String DEFAULT_DB_BACKUP_PATH="DBBackUp";
+	
+	/**
+	 * 数据库文件备份路径
+	 */
+	public static String DB_BACKUP_PATH="DBBackUp";
+	
+	/**
+	 * 警告错误日志存储时间(天)
+	 */
+	public static int WARN_ERROR_LOG_LIFETIME=30;
+	
+	/**
+	 * 普通日志存储时间(天)
+	 */
+	public static int INFO_LOG_LIFETIME=10;
+	
+	/**
+	 * 日志路径系统变量Key
+	 */
+	public static String LOG4JDIRKEY="log4jDir";
+	
+	/**
+	 * 日志存放目录
+	 */
+	public static String LOG4JDIR="log";
+	
 	
 	public static int PUPPET_CLASS_ID = 1;
 	
@@ -137,8 +184,19 @@ public class Constant {
 						p.set(p.getName(), Boolean.getBoolean(r));
 					}else if (p.getName()=="PUPPET_CLASS_ID"){
 						p.set(p.getName(), Integer.parseInt(r));
+					}else if (p.getName()=="WARN_ERROR_LOG_LIFETIME"){
+						p.set(p.getName(), Integer.parseInt(r));
+					}else if (p.getName()=="INFO_LOG_LIFETIME"){
+						p.set(p.getName(),Integer.parseInt(r));
+					}else if (p.getName()=="DB_BACKUP_COPIES"){
+						p.set(p.getName(), Integer.parseInt(r));
+					}else if (p.getName()=="DB_IS_TOSENDMAIL"){
+						p.set(p.getName(),Boolean.valueOf(r));
 					}else{
 					   p.set(p.getName(),r);
+					   if (p.getName().equals("DB_BACKUP_PATH")){
+						   p.set(p.getName(),initDBBackUp(r));
+					   }
 					}
 				} catch (Exception e) {
 					System.out.println("======================================");
@@ -153,5 +211,17 @@ public class Constant {
 		 }
 	}
 
+	private static String initDBBackUp(String r){
+		File file=new File(r);
+		if (!file.exists()){
+			file.mkdir();
+		}else if (!file.isDirectory()){
+			Logger.getLogger("DiskWE").warn("数据库备份文件路径不是一个文件夹,系统将使用默认路径");
+			Logger.getLogger("MAIL").error("数据库备份文件路径不是一个文件夹,系统将使用默认路径");
+			return initDBBackUp(Constant.DEFAULT_DB_BACKUP_PATH);
+		}
+		return r;
+	}
+	
 
 }
