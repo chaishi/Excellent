@@ -11,6 +11,7 @@ $(function(){
 var messageMngr = {};
 
 (function(page){
+	
 	//加载留言列表
 	page.loadMessages = {
 		rowNum:15,
@@ -47,7 +48,6 @@ var messageMngr = {};
 					}
 				}
 			);
-			loadDevidePage(10,5,1,{run:function(){console.log(1);}});
 		}
 	};
 	
@@ -58,7 +58,6 @@ var messageMngr = {};
 			var name= obj.html();
 			var val = obj.val();
 			if(name === "删除"){
-				alert(val);
 				$.ajax({
 					url:"/Excellent/note/deleteNote",
 					data:{
@@ -68,7 +67,7 @@ var messageMngr = {};
 					success:function(data){
 						if(data.success === true){
 							alert("删除成功！");
-							page.loadMessages();
+							page.loadMessages.run(1);
 						}else{
 							alert("删除失败！");
 						}
