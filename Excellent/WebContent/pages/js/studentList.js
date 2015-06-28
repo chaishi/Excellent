@@ -1,6 +1,7 @@
 $(function(){
 	common.serActive(3,1);
 	common.getClasses(["#classIdforstd"],studentList.getStudentList);//班级列表加载完成后，自动获取第一个班级的学生信息列表
+	studentList.addClick();
 });
 
 var studentList = {};
@@ -19,13 +20,23 @@ var studentList = {};
 		$.getJSON(
 			"/Excellent/stu/queryStudent",
 			{
-				stdId:20121179,
-				stdName:"罗雪",
-				classId:classId
+				classID:classId
 			},
 			function(data){
 				if(data.success === true){
-					
+					var std = data.result.details.list;
+					var html = "<tr><th>序号</th><th>姓名</th><th>学号</th><th>班级</th><th>小组</th><th>奖项</th><th>毕业去向</th></tr>";
+					for(var i = 0,len = std.length; i < len;i++){
+						html += '<tr>'
+							 + 		'<td>'+(i+1)+'</td><td><a href = "studentInfo.html#'+std[i].id+'">'+std[i].true_name+'</a></td>'
+							 + 		'<td>'+std[i].school_id+'</td>'
+							 + 		'<td>'+std[i].classNum+'</td>'
+							 + 		'<td>'+std[i].group_name+'</td>'
+							 + 		'<td>'+std[i].classNum+'</td>'//奖项
+							 + 		'<td>'+std[i].other+'</td>'
+						  	 +   '</tr>';
+					}
+					$("#studentList").html(html);
 				}else{
 					alert("获取学生信息列表失败！");
 				}
