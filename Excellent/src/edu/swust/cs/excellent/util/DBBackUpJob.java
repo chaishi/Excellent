@@ -30,7 +30,7 @@ public class DBBackUpJob implements Job{
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		backup();
 
-	//	clean();
+		clean();
 	}
 
 	
@@ -131,7 +131,7 @@ public class DBBackUpJob implements Job{
 	}
 
 	private void clean(){
-		File file=new File(PathKit.getWebRootPath()+Constant.DB_BACKUP_PATH);
+		File file=new File(PathKit.getWebRootPath()+"\\"+Constant.DB_BACKUP_PATH);
 		if (!file.isDirectory()){
 			Logger.getLogger("DiskWE").error("数据库备份文件夹异常");
 			Logger.getLogger("MAIL").error("数据库备份文佳佳异常");
