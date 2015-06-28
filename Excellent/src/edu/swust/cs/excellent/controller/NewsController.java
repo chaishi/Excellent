@@ -55,8 +55,9 @@ public class NewsController extends CommonController {
 						String  content=p.getStr("content");
 						if (content.trim().equals(""))
 							continue;
-						String summary=content.substring(0,Math.min(Constant.NEWS_PREVIEW_LENGTH, content.length()-1))+"...";
-						p.put("summary",getCharacter(summary));
+						String summary=getCharacter(content);
+						summary=summary.substring(0,Math.min(Constant.NEWS_PREVIEW_LENGTH, content.length()-1))+"...";
+						p.put("summary",summary);
 						p.remove("content");
 					}
 					return news;
@@ -75,8 +76,9 @@ public class NewsController extends CommonController {
 						String  content=p.getStr("content");
 						if (content.trim().equals(""))
 							continue;
-						String summary=content.substring(0,Math.min(Constant.NEWS_PREVIEW_LENGTH, content.length()-1))+"...";
-						p.put("summary",getCharacter(summary));
+						String summary=getCharacter(content);
+						summary=summary.substring(0,Math.min(Constant.NEWS_PREVIEW_LENGTH, content.length()-1))+"...";
+						p.put("summary",summary);
 						p.remove("content");
 					}
 					return news;
@@ -90,14 +92,18 @@ public class NewsController extends CommonController {
 	private String getCharacter(String str){
 		if (str==null || str.equals(""))
 			return "";
-		String r="";
-		String regex="([\u4e00-\u9fa5]+)";
-		Matcher matcher = Pattern.compile(regex).matcher(str);
-		if(matcher.find()){
-			r+=matcher.group(0);
-		}
+//		String r="";
+//		String regex="([(u4e00-\\u9fa5)]+)";
+//		Matcher matcher = Pattern.compile(regex).matcher(str);
+//		int i=0;
+//		String rr=null;
+//		while (matcher.find()){
+//			r+=matcher.group(0);
+//		}
+		str = str.replaceAll("[.，,。？]", " ");
+		return str.replaceAll("[^、 \u4e00-\u9fa5]+","");
 		//return HtmlUtil.getTextFromHtml(str);
-		return r;
+		//return r;
 	}
 	
 	public void showNewsDetail(){
@@ -166,6 +172,12 @@ public class NewsController extends CommonController {
 	@MyCacheName({"index_cache","news_cache"})
 	public void deleteNews(){
 		renderJ(editNewsImpl.delete(getParaToInt("atyId")));
+	}
+	
+	
+	public static void main(String args[]){
+		String str="计算机科学与技术学院第三届卓越班OJ选拔考试须知', '<p style=\"font-size:14.3999996185303px;color:#404040;text-indent:2em;font-family:Arial, Verdana, Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal;text-align:start;background:#FFFFFF;\">\n	<strong>一、&nbsp;<span class=\"Apple-converted-space\">&nbsp;</span></strong><strong>考试地点 ：</strong>\n</p>\n<p style=\"font-size:14.3999996185303px;color:#404040;text-indent:2em;font-family:Arial, Verdana, Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal;text-align:start;background:#FFFFFF;\">\n	由于实验室容量有限，特将同学们分配到 东六A317和东六A319两个实验室， 请同学们自己下载名单, 确认自己所在的考试地点。\n</p>\n<p style=\"font-size:14.3999996185303px;color:#404040;text-indent:2em;font-family:Arial, Verdana, Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal;text-align:start;background:#FFFFFF;\">\n	<strong>二、&nbsp;<span class=\"Apple-converted-space\">&nbsp;</span></strong><strong>考试时间 ：</strong>\n</p>\n<p style=\"font-size:14.3999996185303px;color:#404040;text-indent:2em;font-family:Arial, Verdana, Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal;text-align:start;background:#FFFFFF;\">\n	所有考生统一在5月20日中午12:30 ~ 17:30进行考试，请同学们提前15分钟抵达考场，迟到30分钟不允许进入考场，完成答题可提前离开。\n</p>\n<p style=\"font-size:14.3999996185303px;color:#404040;text-indent:2em;font-family:Arial, Verdana, Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal;text-align:start;background:#FFFFFF;\">\n	<strong>三、考试规则 ：</strong>\n</p>\n<p style=\"font-size:14.3999996185303px;color:#404040;text-indent:2em;font-family:Arial, Verdana, Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal;text-align:start;background:#FFFFFF;\">\n	&nbsp;&nbsp; &nbsp;（1）迟到30分钟不允许进入考场，可提前交卷。\n</p>\n<p style=\"font-size:14.3999996185303px;color:#404040;text-indent:2em;font-family:Arial, Verdana, Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal;text-align:start;background:#FFFFFF;\">\n	&nbsp;&nbsp; &nbsp;（2）请每位同学携带 身份证 和 校园一卡通 进入考场。\n</p>\n<p style=\"font-size:14.3999996185303px;color:#404040;text-indent:2em;font-family:Arial, Verdana, Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal;text-align:start;background:#FFFFFF;\">\n	&nbsp;&nbsp; &nbsp;（3）考试期间不允许相互交谈，一经发现，立刻取消考试资格。\n</p>\n<p style=\"font-size:14.3999996185303px;color:#404040;text-indent:2em;font-family:Arial, Verdana, Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal;text-align:start;background:#FFFFFF;\">\n	&nbsp;&nbsp;&nbsp; （4）考试只可携带《C程序设计》（谭浩强 第四版），不允许携带其它参考资料。\n</p>\n<p style=\"font-size:14.3999996185303px;color:#404040;text-indent:2em;font-family:Arial, Verdana, Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal;text-align:start;background:#FFFFFF;\">\n	<strong>四、录取：</strong>\n</p>\n<p style=\"font-size:14.3999996185303px;color:#404040;text-indent:2em;font-family:Arial, Verdana, Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal;text-align:start;background:#FFFFFF;\">\n	此次机考完毕后录取成绩排名前64名进入下一轮面试环节。\n</p>\n<p style=\"font-size:14.3999996185303px;color:#404040;text-indent:2em;font-family:Arial, Verdana, Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal;text-align:start;background:#FFFFFF;\">\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;2012.5.17\n</p>\n<p style=\"font-size:14.3999996185303px;color:#404040;text-indent:2em;font-family:Arial, Verdana, Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal;text-align:start;background:#FFFFFF;\">\n	&nbsp;\n</p>\n<p style=\"font-size:14.3999996185303px;color:#404040;text-indent:2em;font-family:Arial, Verdana, Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal;text-align:start;background:#FFFFFF;\">\n	<a href=\"http://www.cs.swust.edu.cn/uploads/%E7%AC%AC%E4%B8%89%E5%B1%8A%E5%8D%93%E8%B6%8A%E7%8F%ADOJ%E8%80%83%E8%AF%95%E5%AE%89%E6%8E%92.xls\">考试名单及地点安排</a>\n</p>\n<br />";
+		System.out.println(new NewsController().getCharacter(str));
 	}
 	
 }
