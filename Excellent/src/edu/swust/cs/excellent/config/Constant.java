@@ -24,6 +24,11 @@ import com.jfinal.log.Logger;
 public class Constant {
 
 	/**
+	 * 新闻列表预览信息的最大长度
+	 */
+	public static int NEWS_PREVIEW_LENGTH=100;
+	
+	/**
 	 * 是否将数据库备份发送到管理员邮箱
 	 */
 	public static boolean DB_IS_TOSENDMAIL=false;
@@ -192,6 +197,8 @@ public class Constant {
 						p.set(p.getName(), Integer.parseInt(r));
 					}else if (p.getName()=="DB_IS_TOSENDMAIL"){
 						p.set(p.getName(),Boolean.valueOf(r));
+					}else if (p.getName()=="NEWS_PREVIEW_LENGTH"){
+						p.set(p.getName(), Integer.parseInt(r));
 					}else{
 					   p.set(p.getName(),r);
 					   if (p.getName().equals("DB_BACKUP_PATH")){

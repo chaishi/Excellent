@@ -3,6 +3,8 @@ package edu.swust.cs.excellent.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Page;
@@ -52,8 +54,8 @@ public class NewsController extends CommonController {
 						String  content=p.getStr("content");
 						if (content.trim().equals(""))
 							continue;
-						String summary=content.substring(0,Math.min(50, content.length()-1))+"...";
-						p.put("summary",summary);
+						String summary=content.substring(0,Math.min(Constant.NEWS_PREVIEW_LENGTH, content.length()-1))+"...";
+						p.put("summary",getCharacter(summary));
 						p.remove("content");
 					}
 					return news;
@@ -72,8 +74,8 @@ public class NewsController extends CommonController {
 						String  content=p.getStr("content");
 						if (content.trim().equals(""))
 							continue;
-						String summary=content.substring(0,Math.min(50, content.length()-1))+"...";
-						p.put("summary",summary);
+						String summary=content.substring(0,Math.min(Constant.NEWS_PREVIEW_LENGTH, content.length()-1))+"...";
+						p.put("summary",getCharacter(summary));
 						p.remove("content");
 					}
 					return news;
@@ -84,6 +86,18 @@ public class NewsController extends CommonController {
 		}
 	}
 
+	private String getCharacter(String str){
+		if (str==null || str.equals(""))
+			return "";
+		String r="";
+		String regex="([\u4e00-\u9fa5]+)";
+		Matcher matcher = Pattern.compile(regex).matcher(str);
+		if(matcher.find()){
+			r+=matcher.group(0);
+		}
+		return r;
+	}
+	
 	public void showNewsDetail(){
 		int id = getParaToInt("atyId");
 		try {
@@ -151,5 +165,5 @@ public class NewsController extends CommonController {
 	public void deleteNews(){
 		renderJ(editNewsImpl.delete(getParaToInt("atyId")));
 	}
-
+	
 }

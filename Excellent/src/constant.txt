@@ -3,6 +3,9 @@ PUPPET_CLASS_ID = 1
 #邮件提醒管理员系统异常的警告错误日志的上限阈值(M)
 WARN_ERROR_LIMIT=50
 
+#新闻列表预览信息的最大长度
+NEWS_PREVIEW_LENGTH=100
+
 #保留的数据库备份份数
 DB_BACKUP_COPIES = 3
 
