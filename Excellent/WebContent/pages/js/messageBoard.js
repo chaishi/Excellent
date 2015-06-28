@@ -16,7 +16,7 @@ var messageBoard = {};
 				"/Excellent/note/getNotesList",
 				{
 					rowNum: 15,
-					nowPage: 1
+					nowPage: index
 				},
 				function(data){
 					if(data.success){

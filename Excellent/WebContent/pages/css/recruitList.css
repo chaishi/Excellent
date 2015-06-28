@@ -1,0 +1,11 @@
+.timeWidth{
+	width:100px;
+}
+
+#recruitTbl{
+	width:100%;
+}
+
+#recruitTbl th,#recruitTbl td{
+	border:0;
+}

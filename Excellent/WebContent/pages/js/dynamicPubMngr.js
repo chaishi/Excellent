@@ -57,7 +57,6 @@ var classIntroMngr = {};
 			var content = editor.html(); //动态内容
 			var classId = $("#classSelect").val(); //班级
 			var dynamicDate = $("#dynamicDate").val(); //动态时间
-			console.log(title,content,classId,dynamicDate);
 			if(title == "" || content == "" || classId == "" || dynamicDate == ""){
 				alert("请完善信息！");
 				return;

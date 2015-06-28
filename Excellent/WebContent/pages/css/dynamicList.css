@@ -2,8 +2,16 @@
 	border:0;
 }
 
+#dynamicsTbl{
+	width:100%;
+}
+
 .newsHover:hover{
 	cursor:pointer;
 	cursor:hand;
 	text-decoration: underline;
+}
+
+.timeWidth{
+	width:100px;
 }

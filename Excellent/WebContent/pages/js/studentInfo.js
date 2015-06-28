@@ -25,7 +25,7 @@ var studentInfo = {};
 					$("#stdGraduate").html(std.other);
 					var prizes = "";
 					for(var i = 0, len = std.prizes.length; i < len; i++){
-						prizes += "<p>"+std.prizes[i]+"</p>";
+						prizes += "<p>"+std.prizes[i].comment+"</p>";
 					}
 					if(i == 0)prizes = "<p>暂无</p>";
 					$("#stdPrizes").html(prizes);

@@ -202,7 +202,7 @@ var studentInfoMngr = {};
 					$("#graduateEdit").val(std.other);
 					var prizes = "";
 					for(var i = 0, len = std.prizes.length; i < len; i++){
-						prizes += ""+std.prizes[i]+"";
+						prizes += ""+std.prizes[i].comment+"";
 						if(i != len - 1)
 							prizes += ",";
 					}
@@ -212,7 +212,7 @@ var studentInfoMngr = {};
 					
 					//获取分组
 					page.getGroupList(std.class_id,"#groupIdEdit");
-					$("#groupIdEdit").val(std.group_name);//分组id
+					$("#groupIdEdit").val(std.group_id);//分组id
 				}else{
 					alert("获取学生详情失败！");
 				}

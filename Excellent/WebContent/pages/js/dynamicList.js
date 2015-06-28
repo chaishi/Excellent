@@ -24,7 +24,7 @@ var dynamicList = {};
 						var html = "";
 						var url = "/Excellent/pages/dynamicInfo.html";
 						for(var i = 0,len = dymList.length; i < len; i++){
-							html += '<tr><td class = "newsHover" onclick = "pageToNew(\''+url+'\','+dymList[i].id+')">'+dymList[i].title+'</td><td>'+dymList[i].happen_time+'</td></tr>';
+							html += '<tr><td class = "newsHover" onclick = "pageToNew(\''+url+'\','+dymList[i].id+')">'+dymList[i].title+'</td><td class="timeWidth">'+dymList[i].happen_time+'</td></tr>';
 						}
 						$("#dynamicsTbl").html(html);
 						//加载分页

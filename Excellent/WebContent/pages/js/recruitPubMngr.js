@@ -37,7 +37,7 @@ var recruitEdit = {};
 		case 1:{
 			pubRecuit.hide();
 			delEditRecuit.show();
-			page.getDynamicList();
+			page.getDynamicList.run(1);
 		}break;
 		}
 	};
@@ -78,34 +78,45 @@ var recruitEdit = {};
 	};
 	
 	//获取招新信息列表
-	page.getDynamicList = function(){
-		$.getJSON(
-			"/Excellent/news/showClassNewsList",
-			{
-				rowNum:15,
-				nowPage:1,
-				type:2
-			},
-			function(data){
-				if(data.success === true){
-					var recuits = data.result.details;
-					var html = "";
-					var url = "/Excellent/pages/recruitInfo.html";
-					for(var i = 0,len = recuits.length; i < len; i++){
-						html += '<tr>'
-							 +  '<td class = "titleWidth" onclick = "pageToNew(\''+url+'\','+recuits[i].id+')">'+recuits[i].title+'</td>'
-			  				 +	'<td>'+recuits[i].happen_time+'</td>'
-			  				 +	'<td><button value = "'+recuits[i].id+'" type="button" class="btn btn-default btn-xs">编辑</button></td>'
-			  				 +	'<td><button value = "'+recuits[i].id+'" type="button" class="btn btn-default btn-xs">删除</button></td>'
-							 +  '</tr>';
+	page.getDynamicList = {
+		rowNum:15,
+		pageNum:1,
+		loadPage:false,
+		run:function(index){
+			$.getJSON(
+				"/Excellent/news/showClassNewsList",
+				{
+					rowNum:this.rowNum,
+					nowPage:index,
+					type:2
+				},
+				function(data){
+					if(data.success === true){
+						var recuits = data.result.details;
+						var html = "";
+						var url = "/Excellent/pages/recruitInfo.html";
+						for(var i = 0,len = recuits.length; i < len; i++){
+							html += '<tr>'
+								 +  '<td class = "titleWidth" onclick = "pageToNew(\''+url+'\','+recuits[i].id+')">'+recuits[i].title+'</td>'
+				  				 +	'<td>'+recuits[i].happen_time+'</td>'
+				  				 +	'<td><button value = "'+recuits[i].id+'" type="button" class="btn btn-default btn-xs">编辑</button></td>'
+				  				 +	'<td><button value = "'+recuits[i].id+'" type="button" class="btn btn-default btn-xs">删除</button></td>'
+								 +  '</tr>';
+						}
+						$("#recuitList").html(html);
+						page.addClickRecuits();
+						//加载分页
+						if(page.getDynamicList.loadPage == false){
+							page.getDynamicList.pageNum = data.result.totalPage;
+							loadDevidePage(page.getDynamicList.pageNum,10,1,data.result.totalRow,page.getDynamicList);
+							page.getDynamicList.loadPage = true;//分页已完成
+						}
+					}else{
+						alert("获取班级动态列表失败，请刷新重试！");
 					}
-					$("#recuitList").html(html);
-					page.addClickRecuits();
-				}else{
-					alert("获取班级动态列表失败，请刷新重试！");
 				}
-			}
-		);
+			);
+		}
 	};
 	
 	//给动态列表添加点击事件
