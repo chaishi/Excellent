@@ -109,7 +109,7 @@ public class EditNewsImpl extends BaseImpl implements IEditNews {
 			if (cls.trim().equals(""))
 				return getList(numPage, numPerPage);
 			sql=" from news where type=2 and classNum like '%"+cls
-					+ "%' order by importance,happen_time ";
+					+ "%' order by importance,happen_time desc";
 			return News.dao.paginate(numPage, numPerPage, "select id,title,pub_time,happen_time,content", sql);
 		}
 		//else
@@ -120,7 +120,7 @@ public class EditNewsImpl extends BaseImpl implements IEditNews {
 				return  News.dao.paginate(numPage, numPerPage, "select id,title,pub_time,happen_time,content", " from news where type=2 order by importance,happen_time ");
 			}
 			sql=" from news where type=1 and classNum like '%"+cls
-					+ "%' order by importance,happen_time ";
+					+ "%' order by happen_time desc,importance ";
 			return News.dao.paginate(numPage, numPerPage,"select id,title,pub_time,happen_time,content",sql);
 		}
 		return null;
@@ -129,7 +129,7 @@ public class EditNewsImpl extends BaseImpl implements IEditNews {
 
 	@Override
 	public Page<News> getList(int numPage, int numPerPage) {
-		return News.dao.paginate(numPage, numPerPage, "select id,title,pub_time,content,happen_time", " from news order by importance,happen_time ");
+		return News.dao.paginate(numPage, numPerPage, "select id,title,pub_time,content,happen_time", " from news order by importance,happen_time desc");
 	}
 
 
