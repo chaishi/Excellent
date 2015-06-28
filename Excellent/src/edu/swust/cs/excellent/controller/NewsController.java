@@ -94,18 +94,21 @@ public class NewsController extends CommonController {
 	private String getCharacter(String str){
 		if (str==null || str.equals(""))
 			return "";
-		String r="";
-		String regex="([(u4e00-\\u9fa5)]+)";
-		Matcher matcher = Pattern.compile(regex).matcher(str);
-		int i=0;
-		String rr=null;
-		while (matcher.find()){
-			r+=matcher.group(0);
+		if (str==null || str.equals(""))
+			return "";
+		
+		String reg1 = "style=\"[\\w|:|;|#|.|,|\\s|%|-]+\"+";
+		String reg2 = "[\\u4E00-\\u9FFF|\\d|，|。|……|…|？|*|%|$|@|！|-|：|:|,|.|\\s|=|+|(|)|{|}|\\[|\\]|“|”|\"|-]+";
+		Matcher mat1 = Pattern.compile(reg1).matcher(str);
+		String r = mat1.replaceAll("");
+		
+		Matcher mat2 = Pattern.compile(reg2).matcher(r);
+		String result = "";
+		while(mat2.find()){
+			result += mat2.group(0);
 		}
-//		str = str.replaceAll("[.，,。？]", " ");
-//		return str.replaceAll("[^ 、0-9\u4e00-\u9fa5]+","");
-		//return HtmlUtil.getTextFromHtml(str);
-		return r;
+		
+		return result;
 	}
 	
 	public void showNewsDetail(){
