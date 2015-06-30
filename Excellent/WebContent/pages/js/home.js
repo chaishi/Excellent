@@ -57,11 +57,9 @@ var home = {};
 					var url = "/Excellent/pages/dynamicInfo.html";
 					$("#dymList").empty();
 					for(var i = 0,len = dymList.length; i < len; i++){
-						var summary = dymList[i].summary.match( /[\u4E00-\u9FFF]+/ig);
-						console.log(summary);
 						html += '<div class = "oneDym">'
-							 +  	'<h5><img src = "images/guide.png">'+dymList[i].title+'</h5>'
-							 +  	'<p>'+summary+'</p>'
+							 +  	'<h5><img src = "images/guide.png"> '+dymList[i].title+'</h5>'
+							 +  	'<p>'+dymList[i].summary+'</p>'
 							 +  '</div>';	
 					}
 					$("#dymList").html(html);
