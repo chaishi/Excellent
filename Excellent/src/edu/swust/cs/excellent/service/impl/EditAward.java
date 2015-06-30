@@ -98,5 +98,10 @@ public class EditAward extends BaseImpl implements IEditAward {
 		return Db.update("delete from  award where refrence_id=? and flag=1",id)!=0;
 	}
 
+	@Override
+	public Award getFirstPrizeByStuId(int id) {
+		return Award.dao.findFirst("select  id,comment from award where flag=1 and refrence_id=?",id);
+	}
+
 
 }

@@ -13,7 +13,7 @@ import edu.swust.cs.excellent.service.inter.IEditStudent;
 @Service("editStudentImpl")
 public class EditStudentImpl extends BaseImpl implements IEditStudent {
 
-	public static final String SELECT_STUDENT_DETAIL = "select a.*,b.group_name,c.id,c.classNum "
+	public static final String SELECT_STUDENT_DETAIL = "select a.id,a.true_name,a.photo,a.group_id,a.class_id,a.school_id,a.other,a.self_sign,b.group_name,c.id,c.classNum "
 			+ "from student a,`group` b,class c "
 			+ "where a.id=? and a.group_id=b.id and b.class_id=c.id";
 
@@ -63,7 +63,7 @@ public class EditStudentImpl extends BaseImpl implements IEditStudent {
 	public Student getDetail(int id) {	
 		Student stu = Student.dao.findFirst(SELECT_STUDENT_DETAIL, id);
 
-		List<Award> awards = Award.dao.find("select * from award where refrence_id=? and flag=1",id);
+		List<Award> awards = Award.dao.find("select comment from award where refrence_id=? and flag=1",id);
 		stu.put("prizes", awards);
 		return stu;
 	}
@@ -110,7 +110,7 @@ public class EditStudentImpl extends BaseImpl implements IEditStudent {
 			}
 			sql+=" and b.id="+cid;
 		}
-		return Student.dao.paginate(nowPage, pageSize,"select a.*,b.classNum,c.group_name " , sql);
+		return Student.dao.paginate(nowPage, pageSize,"select a.id,a.true_name,a.photo,a.group_id,a.class_id,a.school_id,a.other,a.self_sign,b.classNum,c.group_name " , sql);
 	}
 
 

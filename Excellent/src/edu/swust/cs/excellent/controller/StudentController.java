@@ -174,7 +174,7 @@ public class StudentController extends CommonController {
 			renderError("请至少指定一个查询条件");
 			return;
 		}
-		
+
 		int rowNum=getParaToInt("rowNum",10);
 		int nowPage=getParaToInt("nowPage",1);
 		Student stu=new Student();
@@ -185,6 +185,9 @@ public class StudentController extends CommonController {
 			renderError(editStudentImpl.getLastError());
 			return;
 		}else{
+			for (Student  p:pStu.getList()){
+				p.put("prize",editAwardImpl.getFirstPrizeByStuId(p.getInt("id")));
+			}
 			renderJ("details",pStu);
 		}
 	}

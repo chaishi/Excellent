@@ -34,4 +34,6 @@ public interface IEditAward extends IBase<Award>{
 	 * @return
 	 */
 	public boolean deleByStuId(int id);
+	
+	public Award getFirstPrizeByStuId(int id);
 }
