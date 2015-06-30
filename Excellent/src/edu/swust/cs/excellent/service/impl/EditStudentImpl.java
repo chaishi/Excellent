@@ -110,7 +110,7 @@ public class EditStudentImpl extends BaseImpl implements IEditStudent {
 			}
 			sql+=" and b.id="+cid;
 		}
-		return Student.dao.paginate(nowPage, pageSize,"select a.id,a.true_name,a.photo,a.group_id,a.class_id,a.school_id,a.other,a.self_sign,b.classNum,c.group_name " , sql);
+		return Student.dao.paginate(nowPage, pageSize,"select a.id,a.true_name,a.photo,a.group_id,a.class_id,a.school_id,a.other,b.classNum,c.group_name " , sql);
 	}
 
 
