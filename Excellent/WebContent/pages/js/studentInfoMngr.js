@@ -232,7 +232,7 @@ var studentInfoMngr = {};
 	
 	//一进入页面，获取班级列表后，需要立即执行的函数，1：该班级的分组情况 2：该班级的学生列表
 	page.afterGetClassList = function(classId){
-		page.getGroupList(classId);
+		page.getGroupList(classId,"#groupSelect");
 		page.getStdNameList(classId);
 	};
 	
