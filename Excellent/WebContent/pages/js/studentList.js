@@ -26,7 +26,7 @@ var studentList = {};
 			"/Excellent/stu/queryStudent",
 			{
 				classID:classId,
-				rowNum:34,
+				rowNum:40,
 				nowPage:1
 			},
 			function(data){
