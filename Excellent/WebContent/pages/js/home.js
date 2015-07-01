@@ -74,6 +74,11 @@ var home = {};
 	page.getTeacherData = function(){
 		$.getJSON(
 			"/Excellent/teacher/getTeacherList",
+			{
+				rowNum:4,
+				nowPage:1
+				
+			},
 			function(data){
 				if(data.success){
 					var tchList = data.result.details;
