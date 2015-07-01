@@ -29,15 +29,15 @@ function loadDevidePage(totalPage,avgNum,page,totalNum,fun){
   		return;
   	}
   	ul.append( $("<li class='next'><a><span aria-hidden='true'>&raquo;</span></a></li>") );
-  	var totalNum = "<span class = 'totalNum'>共  <span id = 'totalNum'>"+totalNum+"</span> 条记录</span> ";
+  	var totalNumHtml = "<span class = 'totalNum'>共  <span id = 'totalNum'>"+totalNum+"</span> 条记录</span> ";
   	$("#devidePage").empty();
-  	$("#devidePage").append(totalNum);
+  	$("#devidePage").append(totalNumHtml);
   	$("#devidePage").append(ul);
   	$("#devidePage").append("<br style = 'clear:left'>");
   	//添加css样式
   	$("#devidePage ul").addClass("pagination");
   	somePageClick(fun);
-  	lastAndNext(totalPage,avgNum,fun);
+  	lastAndNext(totalPage,avgNum,totalNum,fun);
 }
 /**
  * @author luoxue
@@ -79,19 +79,19 @@ function setActive(index){
  * @return {}
  * @notes:添加点击事件,上一批或者下一批页号
  */
-function lastAndNext(totalPage,avgNum,fun){
+function lastAndNext(totalPage,avgNum,totalNum,fun){
 	var lis = $("#devidePage .pageNum");
 	$(lis[0]).addClass("active");
 	$("#devidePage .last").click(function(){
 		if(g_nowGroup - 1 > 0){
 			g_nowGroup--;
-			loadDevidePage(totalPage,avgNum,g_nowGroup,fun);
+			loadDevidePage(totalPage,avgNum,g_nowGroup,totalNum,fun);
 		}
 	});
 	$("#devidePage .next").click(function(){
 		if(g_nowGroup + 1 < totalPage){
 			g_nowGroup++;
-			loadDevidePage(totalPage,avgNum,g_nowGroup,fun);
+			loadDevidePage(totalPage,avgNum,g_nowGroup,totalNum,fun);
 		}
 	});
 }
