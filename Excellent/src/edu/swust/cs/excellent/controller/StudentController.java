@@ -134,6 +134,7 @@ public class StudentController extends CommonController {
 		String sid=getPara("school_id","");
 		String other=getPara("others","");
 		String prize=getPara("prizes","");
+		String sign=getPara("self_sign","");
 
 		Student stu = new Student();
 		stu.set("id", id);
@@ -142,6 +143,7 @@ public class StudentController extends CommonController {
 		stu.set("true_name", tName);
 		stu.set("school_id", sid);
 		stu.set("other", other);
+		stu.set("self_sign",sign);
 		try {
 
 			if (editStudentImpl.merge(stu)==null)
