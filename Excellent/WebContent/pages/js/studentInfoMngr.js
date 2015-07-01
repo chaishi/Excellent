@@ -9,6 +9,10 @@ $(function(){
 var studentInfoMngr = {};
 
 (function(page){
+	
+	page.flagSaveClick = false; //用于标记是否已经给编辑按钮添加的点击事件
+	page.studentId = 0;//选择编辑按钮时，studentId
+	
 	//获取学生姓名列表
 	page.getStdNameList = function(classId){
 		$.getJSON(
@@ -17,7 +21,7 @@ var studentInfoMngr = {};
 				class_id:classId
 			},
 			function(data){
-				if(data.success){
+				if(data.success === true){
 					var stds = data.result.stu_list;
 					var html = '<tr><th>序号</th><th>姓名</th><th>删除</th><th>编辑</th></tr>';
 					for(var i = 0, len = stds.length; i < len; i++){
@@ -41,19 +45,16 @@ var studentInfoMngr = {};
 		$("#studentList").delegate('td','click',function(){
 			var obj = $($(this).find('button'));
 			var name= obj.html();
-			var studentId = obj.val();
+			page.studentId = obj.val();
 			if(name === "编辑"){
-				page.getStudentInfo(studentId);
-				//为保存编辑添加点击事件
-				$("#saveEditStudent").click(function(){
-					page.saveEditStudent(studentId);
-				});
+				page.getStudentInfo(page.studentId);
+				page.addClickToSave();
 			}else if(name === "删除"){
 				$.ajax({
 					url:"/Excellent/stu/deleteStudent",
 					type:"post",
 					data:{
-						id:studentId
+						id:page.studentId
 					},
 					success:function(data){
 						if(data.success){
@@ -116,8 +117,17 @@ var studentInfoMngr = {};
 				page.getGroupList(classId,"#groupIdEdit");
 			}
 		});
-		
 	};
+	
+	page.addClickToSave = function(){
+		if(page.flagSaveClick === false){
+			//为保存编辑添加点击事件
+			$("#saveEditStudent").click(function(){
+				page.saveEditStudent(page.studentId);
+			});
+			page.flagSaveClick = true;
+		}
+	}
 	
 	//根据classId获取班级分组情况
 	page.getGroupList = function(classId,contentId){
