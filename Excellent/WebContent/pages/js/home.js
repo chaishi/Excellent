@@ -74,6 +74,11 @@ var home = {};
 	page.getTeacherData = function(){
 		$.getJSON(
 			"/Excellent/teacher/getTeacherList",
+			{
+				rowNum:4,
+				nowPage:1
+				
+			},
 			function(data){
 				if(data.success){
 					var tchList = data.result.details;
@@ -82,7 +87,7 @@ var home = {};
 						html += '<div class = "oneTch">'
 							 +    '<div class = "dis1"><img src = "'+tchList[i].photo+'"/> </div>'
 							 +    '<div class = "dis2">'
-							 +	  '<span class = "teacherName">'+tchList[i].name+'</span><br><br>'
+							 +	  '<span class = "teacherName">'+tchList[i].true_name+'</span><br><br>'
 							 +	  '<p>'+tchList[i].study_area+'</p>'
 							 +    '</div>'
 							 +    '<br style = "clear:both">'
