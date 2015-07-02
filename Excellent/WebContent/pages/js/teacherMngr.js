@@ -36,7 +36,7 @@ var teacherMngr = {};
 	};
 	
 	page.upLoadImg = function(){
-		 /*$("#teacherHeaderFile").change(function(){
+		 $("#teacherHeaderFile").change(function(){
 	        //创建FormData对象
 	        var data = new FormData();
 	        //为FormData对象添加数据
@@ -56,7 +56,36 @@ var teacherMngr = {};
 	                else $("#feedback").children('img').eq(0).before(data.replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
 	            }
 	        });
-	    });*/
+	    });
+	/*	var img = $("#teacherHeaderFile").val();
+		console.log(img);
+		$.ajaxFileUpload  
+        (  
+            {  
+                url: '/Excellent/file/uploadImg',  
+                secureuri: false,  
+                fileElementId: 'fileToUpload',  
+                dataType: 'html',  
+                beforeSend: function() {  
+                    $("#loading").show();  
+                },  
+                complete: function() {  
+                    $("#loading").hide();  
+                },  
+                success: function(data, status) {  
+                    if (typeof (data.error) != 'undefined') {  
+                        if (data.error != '') {  
+                            alert(data.error);  
+                        } else {  
+                            alert(data.msg);  
+                        }  
+                    }  
+                },  
+                error: function(data, status, e) {  
+                    alert(e);  
+                }  
+            }  
+        ); */
 	};
 	
 	//添加老师

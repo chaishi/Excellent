@@ -40,7 +40,7 @@ var teacher = {};
 					var html = "";
 					for(var i = 0, len = tchList.length; i < len; i++){
 						var index = (Math.random() * 12 | 0)  % 4 + 1;
-						html += '<div class = "tchName'+index+'">'+tchList[i].true_name+'<span style = "display:none">'+tchList[i].name+'###'+tchList[i].photo+'###'+tchList[i].study_area+'</span></div>';
+						html += '<div class = "tchName'+index+'">'+tchList[i].name+'<span style = "display:none">'+tchList[i].name+'###'+tchList[i].photo+'###'+tchList[i].study_area+'</span></div>';
 					}
 					html += '<br style = "clear:both">';
 					$("#allTeachers").html(html);
