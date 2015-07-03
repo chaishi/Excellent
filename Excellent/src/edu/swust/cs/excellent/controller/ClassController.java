@@ -163,7 +163,7 @@ public class ClassController extends CommonController{
 		LoginInterceptor.class,AuthorityInterceptor.class
 	})
     public void mergeGroupName(){
-    	String name=getPara("gName");
+    	String name=getPara("gName","");
     	int id=getParaToInt("id",-1);
     	if (id==-1 ){
     		renderError("请指定分组组别");
