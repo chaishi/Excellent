@@ -29,7 +29,7 @@ var recruitEdit = {};
 			},
 		};
 		KindEditor.ready(function(K) {
-			editor = K.create('textarea[name="content"]',option);
+			editor = K.create('textarea[name="content"]',options);
 		});
 	};
 	

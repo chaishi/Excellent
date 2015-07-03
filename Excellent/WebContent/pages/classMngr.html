@@ -147,19 +147,42 @@
 							    	<option value = "1101">软件卓越1101</option> -->
 							    </select>
 							</div>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-						    <button id = "searchGroup" type="button" class="btn btn-primary  btn-sm">查询</button>
 						</form>
 					</div>
 					<br>
 					
 					<table id = "groupList" class="table table-condensed">
-						<tr><th>序号</th><th>分组</th><th>删除</th></tr>
-					  	<tr><td>1</td><td>软件卓越1201</td><td><button type="button" class="btn">删除</button></td></tr>
-					  	<tr><td>2</td><td>软件卓越1201</td><td><button type="button" class="btn">删除</button></td></tr>
-					  	<tr><td>3</td><td>软件卓越1201</td><td><button type="button" class="btn">删除</button></td></tr>
+						<!-- <tr><th>序号</th><th>分组</th><th>删除</th></tr>
+					  	<tr><td>1</td><td>软件卓越1201</td><td><button type="button" class="btn">删除</button></td><td><button type="button" class="btn">编辑</button></td></tr> -->
 					</table>
 					
+					
+					<!-- 模态框：编辑分组名称-->
+					
+					<div class="modal fade bs-example-modal-lg" id = "editGroupName">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <h4 class="modal-title">编辑分组名称</h4>
+					      </div>
+					      <div class="modal-body">
+							<div class = "indent">
+								<form class="form-inline">
+								    <div class="form-group">
+									    <label for="groupNameEdit">分组名称：</label>
+									    <input type="text" class="form-control input-sm" id="groupNameEdit" >
+								    </div><br><br>
+								</form>
+							</div>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					        <button id = "saveEditGroupName" type="button" class="btn btn-primary">保存编辑</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
 				</div>
 			</div>
 			<br style="clear:both;">

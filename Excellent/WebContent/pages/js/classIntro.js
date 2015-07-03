@@ -42,10 +42,12 @@ var classIntro = {};
 	
 	page.getSoftIntro = function(){
 		$("#softEngineer").show();
+		page.getEngineerIntro(0);
 	};
 	
 	page.getComputer = function(){
 		$("#computerEngineer").show();
+		page.getEngineerIntro(1);
 	};
 	
 	page.hideAll = function(){
@@ -55,5 +57,21 @@ var classIntro = {};
 		$("#teachMode").hide();
 		$("#companyTrain").hide();
 		$("#logoIntro").hide();
+	};
+	
+	//获取卓越软件(或计科)工程师班级简介,flag = 0,表示卓越软件工程师班简介，flag = 1 表示卓越计科工程师班级简介
+	page.getEngineerIntro = function(flag){
+		$.getJSON(
+			"/Excellent/class/getClassInfo",
+			{
+				"class":flag,
+			},
+			function(data){
+				if(flag === 0)
+					$("#softEngineer").html(data.result.content.study_model);
+				else if(flag === 1)
+					$("#computerEngineer").html(data.result.content.study_model);
+			}
+		);
 	};
 })(classIntro);

@@ -1,6 +1,8 @@
 /* 管理平台 */
 #bannerNav{
 	min-width:1280px;
+    width:auto !important;
+    width:1280px;
 }
 .navbar-inverse .navbar-header>span{
 	color:#ccc;
@@ -95,7 +97,9 @@ textarea{
 
 /* 展示页面 */
 #top{
-	width:100%;
+	min-width:1280px;
+    width:auto !important;
+    width:1280px;
 	background-image: url("../images/background.jpg");
 	background-size: cover;
 }
