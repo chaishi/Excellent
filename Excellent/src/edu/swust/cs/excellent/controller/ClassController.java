@@ -49,10 +49,12 @@ public class ClassController extends CommonController{
 	})
 	public void setClassInfo(){
 		Class cls = new Class().set("study_model", getPara("introContent",""));
-		if (getPara("classType","").equals("卓越软件")){
+		if (getParaToInt("classType",-1).equals(0)){
 			renderJ(editClassImpl.merge(cls, true));   
-		}else if (getPara("classType","").equals("卓越计科"))
+		}else if (getParaToInt("classType",-1).equals(1)){
 			renderJ(editClassImpl.merge(cls, false));
+		}
+		renderError("请指明班级类型");
 	}
 
 	@Authority({
