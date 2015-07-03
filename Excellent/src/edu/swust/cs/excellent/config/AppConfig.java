@@ -72,12 +72,8 @@ public class AppConfig extends JFinalConfig{
                                                Constant.DB_PSWD);
         me.add(c3p0Plugin);
         
-        String osName = System.getProperty("os.name");
-        String path="";
-        if (osName.startsWith("Linux"))
-        	path="/";
-      
-        me.add(new SpringPlugin(new FileSystemXmlApplicationContext(path+PathKit.getRootClassPath() + "/applicationContext.xml")));
+        String osName = System.getProperty("os.name");      
+        me.add(new SpringPlugin(new FileSystemXmlApplicationContext(PathKit.getRootClassPath() + "/applicationContext.xml")));
         ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
         me.add(arp);
         arp.addMapping("admin", Admin.class);
@@ -106,7 +102,4 @@ public class AppConfig extends JFinalConfig{
         // TODO Auto-generated method stub
         me.add(new SessionHandler());
     }
-    
-    
-
 }

@@ -51,8 +51,10 @@ public class ClassController extends CommonController{
 		Class cls = new Class().set("study_model", getPara("introContent",""));
 		if (getParaToInt("classType",-1).equals(0)){
 			renderJ(editClassImpl.merge(cls, true));   
+			return;
 		}else if (getParaToInt("classType",-1).equals(1)){
 			renderJ(editClassImpl.merge(cls, false));
+			return;
 		}
 		renderError("请指明班级类型");
 	}
