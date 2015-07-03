@@ -19,10 +19,17 @@ var recruitEdit = {};
 (function(page){
 	var editor;
 	page.getEditor = function(){
+		var options = {
+		    basePath:'kindeditor-4.1.10/',
+			allowFileManager:true,
+			uploadJson:"/Excellent/file/uploadfile",
+			imageUploadJson:"/Excellent/file/uploadImg"	,
+			afterUpload:function(url){
+				$('textarea[name="content"]').innerHtml='<img src='+url+'>';
+			},
+		};
 		KindEditor.ready(function(K) {
-			editor = K.create('textarea[name="content"]', {
-				allowFileManager : true
-			});
+			editor = K.create('textarea[name="content"]',option);
 		});
 	};
 	
