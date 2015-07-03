@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -57,9 +57,9 @@
 						    <textarea class="form-control" cols = "100" rows = "5" id = "teacherDsb"></textarea>
 					    </div><br><br>
 					</form>
-				    <iframe id="uploadImg" name="uploadImg" style="display:none"></iframe>
+				    <iframe id="uploadImg" name="imgFile" style="display:none"></iframe>
 					<form target = "uploadImg" action="/Excellent/file/uploadImg" method="post" enctype="multipart/form-data">  
-						<input type="file" name="file" id="fileImg"/> 
+						<input type="file" name="imgFile" id="fileImg"/> 
 						<input type="submit" value="上传" id="sub"/>
 						<input type="button" value="预览" id="preview"/>
 					</form>  

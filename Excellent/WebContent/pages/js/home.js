@@ -77,7 +77,6 @@ var home = {};
 			{
 				rowNum:4,
 				nowPage:1
-				
 			},
 			function(data){
 				if(data.success){

@@ -50,6 +50,8 @@ var studentInfoMngr = {};
 				page.getStudentInfo(page.studentId);
 				page.addClickToSave();
 			}else if(name === "删除"){
+				if(confirm("确认删除吗") == false)
+					return;
 				$.ajax({
 					url:"/Excellent/stu/deleteStudent",
 					type:"post",
@@ -130,7 +132,10 @@ var studentInfoMngr = {};
 	}
 	
 	//根据classId获取班级分组情况
-	page.getGroupList = function(classId,contentId){
+	page.getGroupList = function(){
+		var classId = arguments[0];
+		var contentId = arguments[1];
+		var selectGroupId =  arguments[2];
 		$.getJSON(
 			"/Excellent/class/getGroupList",
 			{
@@ -141,7 +146,10 @@ var studentInfoMngr = {};
 					var html = "";
 					var groups = data.result.details;
 					for(var i = 0, len = groups.length; i < len ; i++){
-						html += '<option value = "'+groups[i].id+'">'+groups[i].group_name+'</option>';
+						if(groups[i].id === selectGroupId)
+							html += '<option value = "'+groups[i].id+'" selected>'+groups[i].group_name+'</option>';
+						else
+							html += '<option value = "'+groups[i].id+'">'+groups[i].group_name+'</option>';
 					}
 					$(contentId).html(html);
 				}else{
@@ -221,8 +229,8 @@ var studentInfoMngr = {};
 					$("#otherEdit").val(std.self_sign);
 					
 					//获取分组
-					page.getGroupList(std.class_id,"#groupIdEdit");
-					$("#groupIdEdit").val(std.group_id);//分组id
+					page.getGroupList(std.class_id,"#groupIdEdit",std.group_id);
+					//$("#groupIdEdit").val(std.group_id);//分组id
 				}else{
 					alert("获取学生详情失败！");
 				}

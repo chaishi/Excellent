@@ -83,12 +83,18 @@ function lastAndNext(totalPage,avgNum,totalNum,fun){
 	var lis = $("#devidePage .pageNum");
 	$(lis[0]).addClass("active");
 	$("#devidePage .last").click(function(){
+		var obj = $("#devidePage ul").find("active");
+		console.log(obj.html());
+		//alert(fun.run($(obj.children()).html()));
 		if(g_nowGroup - 1 > 0){
 			g_nowGroup--;
 			loadDevidePage(totalPage,avgNum,g_nowGroup,totalNum,fun);
 		}
 	});
 	$("#devidePage .next").click(function(){
+		var obj = $("#devidePage ul").children();
+		console.log(obj.html());
+		//alert(fun.run($(obj.children()).html()));
 		if(g_nowGroup + 1 < totalPage){
 			g_nowGroup++;
 			loadDevidePage(totalPage,avgNum,g_nowGroup,totalNum,fun);
