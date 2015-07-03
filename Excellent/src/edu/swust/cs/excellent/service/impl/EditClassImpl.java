@@ -27,10 +27,10 @@ public class EditClassImpl extends BaseImpl implements IEditClass {
 
 	private static final String SELECT_SOFT_CLASS_INFO = "select study_model "
 			+  "from class "
-			+ "where classNum like '\"%软%'\"";
+			+ "where classNum like '%软%'";
 	private static final String SELECT_DISK_CLASS_INFO = "select study_model "
 			+  "from class "
-			+ "where classNum like '\"%计%'\"";
+			+ "where classNum like '%计%'";
 
 	private static final String UPDATE_SOFT_CLASS_INFO = "update class set study_model=? "
 			+ "where classNum like \"%软%\"";
