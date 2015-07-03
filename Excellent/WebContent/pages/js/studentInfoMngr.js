@@ -89,9 +89,14 @@ var studentInfoMngr = {};
 	
 	//添加点击事件
 	page.addClick = function(){
-		$("#searchStdNames").click(function(){
-			var classId = $("#classIddel").val();
-			page.getStdNameList(classId);
+		var num = 1;
+		$("#classIddel").click(function(){
+			num++;
+			if(num === 2){
+				num = 0;
+				var classId = $("#classIddel").val();
+				page.getStdNameList(classId);
+			}
 		});
 		
 		$("#addStudentBtn").click(function(){
