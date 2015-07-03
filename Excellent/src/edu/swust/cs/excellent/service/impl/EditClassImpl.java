@@ -244,5 +244,24 @@ public class EditClassImpl extends BaseImpl implements IEditClass {
 		return group;
 	}
 
+	@Override
+	public Group updateGroup(Group g) {
+		Group gg=new Group();
+		gg.set("group_name", g.getStr("group_name"));
+		gg.set("id", g.getInt("id"));
+		try {
+		    if (gg.update())
+			return gg;
+		} catch (Exception e) {
+			lastError="小组名更新失败";
+			Group w=Group.dao.findById(g.getInt("id"));
+			if (w==null){
+				lastError="小组编号不存在";
+			}
+			logger_disk_we.error(lastError);
+		}
+		return null;
+	}
+
 	
 }

@@ -59,6 +59,13 @@ public interface IEditClass extends IBase<Class> {
     public boolean deleteGroup(int id);
     
     /**
+     * 
+     * @param g
+     * @return
+     */
+    public Group updateGroup(Group g);
+    
+    /**
      * 导出小组到excel
      * @param file 导出到的excel
      * @param class_id  

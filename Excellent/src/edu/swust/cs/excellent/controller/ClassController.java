@@ -155,5 +155,35 @@ public class ClassController extends CommonController{
 		renderJ("details", editClassImpl.getGroupList(getParaToInt("class_id")));
 	}
 
+	
+	@Authority({
+		Constant.AUTHORITY_ADMIN
+	})
+	@Before({
+		LoginInterceptor.class,AuthorityInterceptor.class
+	})
+    public void mergeGroupName(){
+    	String name=getPara("gName");
+    	int id=getParaToInt("id",-1);
+    	if (id==-1 ){
+    		renderError("请指定分组组别");
+    		return;
+    	}
+    	if (name.equals("")){
+    		renderError("请指定分组组别");
+    		return;
+    	}
+    	
+    	Group g=new Group();
+    	g.set("group_name", name)
+    	 .set("id", id);
+    	if (editClassImpl.updateGroup(g)!=null){
+    		renderJ();
+    		return;
+    	}else{
+    		renderError(editClassImpl.getLastError());
+    	}
 
+    	
+    }
 }
