@@ -72,7 +72,7 @@ var recruitEdit = {};
 				success:function(data){
 					if(data.success === true){
 						alert("发布成功！");
-						window.open("recruitInfo.html#" + data.result.id);
+						window.open("/Excellent/pages/recruitInfo.html#" + data.result.id);
 					}else{
 						alert("发布失败！");
 					}
