@@ -18,6 +18,10 @@ public class FileController extends CommonController{
 	public  void  uploadImg() {
 		UploadFile file = null;
 		file = getFile("imgFile",Constant.FILE_TEMPORARY_SVAE_DIR);
+		if (file==null){
+			renderError("文件源无效");
+			return ;
+		}
 		File source = file.getFile();
 		String fileName = file.getFileName();
 		String extension = fileName.substring(fileName.lastIndexOf("."));
@@ -68,6 +72,10 @@ public class FileController extends CommonController{
 	public  void  uploadfile() {
 		UploadFile file = null;
 		file = getFile("file",Constant.FILE_TEMPORARY_SVAE_DIR);
+		if (file==null){
+			renderError("文件源无效");
+			return ;
+		}
 		File source = file.getFile();
 		String fileName = file.getFileName();
 		String extension = fileName.substring(fileName.lastIndexOf("."));

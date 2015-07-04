@@ -21,6 +21,7 @@ public class IndexController extends CommonController{
 
 	public void index(){
 		System.out.println("ok");
+		render("/pages/home.html");
 	}
 
 	public void captcha()
