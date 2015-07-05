@@ -20,7 +20,12 @@ public class CleanExcelJob implements Job{
 
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
-		File root = new File(PathKit.getWebRootPath()  +Constant.FILE_TEMPORARY_SVAE_DIR);
+		File root = new File(PathKit.getWebRootPath()  + Constant.FILE_TEMPORARY_SVAE_DIR);
+		
+		if (root==null){
+			return ;
+		}
+		
 		File[] fs = root.listFiles();
 		for (int i=0;i<fs.length;i++) {
 			fs[i].delete();
