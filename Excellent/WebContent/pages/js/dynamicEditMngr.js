@@ -21,7 +21,8 @@ var editDynamic = {};
 	page.getEditor = function(){
 		KindEditor.ready(function(K) {
 			editor = K.create('textarea[name="content"]', {
-				allowFileManager : true
+				allowFileManager : false,
+				uploadJson : '/Excellent/file/uploadfile',
 			});
 			editDynamic.getDynamic();
 		});
