@@ -146,3 +146,8 @@
 #dymList{
 	font-family: 宋体;
 }
+
+.linkHover{
+	cursor:pointer;
+	cursor:hand;
+}

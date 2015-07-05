@@ -20,10 +20,16 @@ var editDynamic = {};
 	var editor;
 	page.getEditor = function(){
 		KindEditor.ready(function(K) {
-			editor = K.create('textarea[name="content"]', {
-				allowFileManager : false,
-				uploadJson : '/Excellent/file/uploadfile',
-			});
+			var options = {
+			    basePath:'kindeditor-4.1.10/',
+				allowFileManager:false,
+				uploadJson:"/Excellent/file/uploadfile",
+				imageUploadJson:"/Excellent/file/uploadImg"	,
+				afterUpload:function(url){
+					$('textarea[name="content"]').innerHtml='<img src='+url+'>';
+				},
+			};
+			editor = K.create('textarea[name="content"]', options);
 			editDynamic.getDynamic();
 		});
 	};

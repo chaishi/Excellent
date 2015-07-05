@@ -58,7 +58,7 @@ var home = {};
 					$("#dymList").empty();
 					for(var i = 0,len = dymList.length; i < len; i++){
 						html += '<div class = "oneDym">'
-							 +  	'<h5><img src = "/Excellent/pages/images/guide.png"> '+dymList[i].title+'</h5>'
+							 +  	'<h5 class = "linkHover" onclick = "pageToNew(\''+url+'\','+dymList[i].id+')"><img src = "/Excellent/pages/images/guide.png"> '+dymList[i].title+'</h5>'
 							 +  	'<p>'+dymList[i].summary+'</p>'
 							 +  '</div>';	
 					}
