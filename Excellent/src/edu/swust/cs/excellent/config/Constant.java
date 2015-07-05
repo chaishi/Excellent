@@ -51,7 +51,7 @@ public class Constant {
 	/**
 	 * 数据库文件备份路径
 	 */
-	public static String DB_BACKUP_PATH="DBBackUp";
+	public static String DB_BACKUP_PATH="/DBBackUp/";
 	
 	/**
 	 * 警告错误日志存储时间(天)

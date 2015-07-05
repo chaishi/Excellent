@@ -12,8 +12,8 @@ DB_BACKUP_COPIES = 3
 #是否将数据库备份发送到管理员邮箱
 DB_IS_TOSENDMAIL=true
 
-#数据库文件备份路径
-DB_BACKUP_PATH= DBBackUp
+#数据库文件备份路径,linux 下需要 使用'/',windows下需要使用"\\",下同
+DB_BACKUP_PATH= /DBBackUp/
 
 #excel的存储路径
 UPLOAD_EXCEL_PATH = excel
@@ -28,7 +28,7 @@ INFO_LOG_LIFETIME = 10
 UPLOAD_IMGAGE_PATH = img
 
 #文件的暂存路径
-FILE_TEMPORARY_SVAE_DIR = WebContent\\upload\\
+FILE_TEMPORARY_SVAE_DIR = /upload/
 
 #从excel导入数据时的数据有效列数
 EXCEL_GROUP_VALID_COLUMNS = 5

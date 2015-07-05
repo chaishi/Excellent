@@ -37,10 +37,21 @@ public class DBBackUpJob implements Job{
 	private void backup(){
 		try {
 			Runtime rt=Runtime.getRuntime();
-			String cmd="cmd /c mysqldump -u"+ Constant.DB_USER
+			String cmd="cmd /c ";
+			String sql = "mysqldump -u"+ Constant.DB_USER
 					+ " -p"+Constant.DB_PSWD
 					+ " --set-charset=utf8 excellent";
-			Process child = rt.exec(cmd);
+			Process child = null;
+			//windows
+			if (System.getProperty("os.name").startsWith("Win") || System.getProperty("os.name").startsWith("win")){
+				child = rt.exec(cmd + sql);
+			}//linux
+			else if (System.getProperty("os.name").startsWith("Lin") || System.getProperty("os.name").startsWith("lin")){
+				child=rt.exec(new String[]{"sh","-c",sql});
+			}//deafult windows 
+			else{
+				child=rt.exec(cmd);
+			}
 			InputStream inputStream = child.getInputStream();
 			InputStreamReader ips = new InputStreamReader(inputStream); 
 
@@ -60,10 +71,15 @@ public class DBBackUpJob implements Job{
 			SimpleDateFormat df=new SimpleDateFormat("yy_MM_dd"); 
 
 			if (Constant.DB_IS_TOSENDMAIL){
-				Logger.getLogger("MAIL").error("并不是一场\r\n数据库备\r\n"+"发送时间:"+df.format(t)+"\r\n"+outStr);
+				Logger.getLogger("MAIL").error("并不是异常\r\n数据库备分\r\n"+"发送时间:"+df.format(t)+"\r\n"+outStr);
 			}
 
-			String fileName=PathKit.getWebRootPath()+"\\"+Constant.DB_BACKUP_PATH+"\\DB_"+df.format(t)+".sql";
+			File directory = new File(PathKit.getWebRootPath()+Constant.DB_BACKUP_PATH);
+			if (!directory.exists()){
+				directory.mkdir();
+			}
+			
+			String fileName=PathKit.getWebRootPath()+Constant.DB_BACKUP_PATH+"DB_"+df.format(t)+".sql";
 			File file=new File(fileName);
 			if (!file.getParentFile().exists()){
 				file.getParentFile().mkdir();
@@ -71,6 +87,8 @@ public class DBBackUpJob implements Job{
 			FileOutputStream fout=new FileOutputStream(file);
 			OutputStreamWriter writer = new OutputStreamWriter(fout);
 
+			Logger.getLogger("Disk").info("sql文件\r\n"+outStr);
+			
 			writer.write(outStr);
 			writer.flush();
 
@@ -131,7 +149,7 @@ public class DBBackUpJob implements Job{
 	}
 
 	private void clean(){
-		File file=new File(PathKit.getWebRootPath()+"\\"+Constant.DB_BACKUP_PATH);
+		File file=new File(PathKit.getWebRootPath()+Constant.DB_BACKUP_PATH);
 		if (!file.isDirectory()){
 			Logger.getLogger("DiskWE").error("数据库备份文件夹异常");
 			Logger.getLogger("MAIL").error("数据库备份文佳佳异常");

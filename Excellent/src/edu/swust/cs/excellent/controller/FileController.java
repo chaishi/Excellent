@@ -17,7 +17,7 @@ public class FileController extends CommonController{
 	 */
 	public  void  uploadImg() {
 		UploadFile file = null;
-		file = getFile("imgFile",Constant.FILE_TEMPORARY_SVAE_DIR);
+		file = getFile("imgFile",PathKit.getWebRootPath() + Constant.FILE_TEMPORARY_SVAE_DIR);
 		if (file==null){
 			renderError("文件源无效");
 			return ;
