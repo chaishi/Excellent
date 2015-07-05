@@ -34,7 +34,7 @@ public class EditTeacherImpl extends BaseImpl implements IEditTeacher{
 
 	@Override
 	public Page<Teacher> getList(int numPage, int numPerPage) {
-		return Teacher.dao.paginate(numPage, numPerPage, "select *", "from teacher order by school_id");
+		return Teacher.dao.paginate(numPage, numPerPage, "select *", "from teacher order by id");
 	}
 
 	@Override
