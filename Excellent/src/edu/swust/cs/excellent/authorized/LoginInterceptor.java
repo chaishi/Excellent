@@ -13,7 +13,7 @@ public class LoginInterceptor implements Interceptor {
 		// TODO Auto-generated method stub
 		Object obj = ai.getController().getSession().getAttribute("user");
 		if (obj == null) {
-			ai.getController().render("/pages/login.jsp");
+			ai.getController().render("/pages/html/loginMngr.html");
 		}
 		ai.invoke();
 	}
