@@ -47,6 +47,22 @@ public class IndexController extends CommonController{
 		renderJ(loginImpl.logout(getSession()));
 	}
 
+
+	public  void getUserStatus(){
+		if (getSession()!=null ){
+			if (getSession().getAttribute("userTye")!=null){
+				renderJ("userType",getSession().getAttribute("userType"));
+				return;
+			}else{
+				renderError("100");
+				return;
+			}
+		}else{
+			renderError("101");
+			return ;
+		}
+	}
+
 	//	/**
 	//	 * 非常危险的操作
 	//	 * 需要再次验证用户
