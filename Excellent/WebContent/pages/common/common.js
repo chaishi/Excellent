@@ -23,7 +23,7 @@ var common = {};
 			page.setActiveNav(index);
 			fun(index);
 		});
-	}
+	};
 	
 	//为侧边栏设置active
 	page.setActiveNav = function(index){
@@ -34,7 +34,7 @@ var common = {};
 				$(this).removeClass('active');
 			}
 		});
-	}
+	};
 	/*
 	 * 获取班级列表
 	 * @param {number} id 待填充内容的id

@@ -29,6 +29,7 @@ public class TeacherController extends CommonController{
 	 public void newTeacher(){
 		if (editTeacherImpl.add(getModel(Teacher.class,"t"))){
 		 renderJ();
+		 return;
 		}else {
 			renderError("添加教师失败");
 		}

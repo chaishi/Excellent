@@ -21,7 +21,7 @@ var recruitEdit = {};
 	page.getEditor = function(){
 		var options = {
 		    basePath:'kindeditor-4.1.10/',
-			allowFileManager:true,
+			allowFileManager:false,
 			uploadJson:"/Excellent/file/uploadfile",
 			imageUploadJson:"/Excellent/file/uploadImg"	,
 			afterUpload:function(url){

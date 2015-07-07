@@ -19,7 +19,9 @@ public class FileController extends CommonController{
 		UploadFile file = null;
 		file = getFile("imgFile",PathKit.getWebRootPath() + Constant.FILE_TEMPORARY_SVAE_DIR);
 		if (file==null){
-			renderError("文件源无效");
+			setAttr("error",1);
+			setAttr("message","文件源无效");
+			renderJson();
 			return ;
 		}
 		File source = file.getFile();
@@ -33,7 +35,9 @@ public class FileController extends CommonController{
 			}
 		}
 		if (!flag){
-		    renderError("文件类型错误");
+			setAttr("error",1);
+			setAttr("message","文件类型错误");
+			renderJson();
 			return;
 		}
 
@@ -71,13 +75,18 @@ public class FileController extends CommonController{
 
 	public  void  uploadfile() {
 		UploadFile file = null;
-		file = getFile("file",Constant.FILE_TEMPORARY_SVAE_DIR);
+
+		file = getFile("imgFile",Constant.FILE_TEMPORARY_SVAE_DIR);
+
 		if (file==null){
-			renderError("文件源无效");
+			setAttr("error",1);
+			setAttr("message","文件源无效");
+			renderJson();
 			return ;
 		}
 		File source = file.getFile();
 		String fileName = file.getFileName();
+		String title = getPara("title","");
 		String extension = fileName.substring(fileName.lastIndexOf("."));
 
 		boolean flag = false;
@@ -87,13 +96,17 @@ public class FileController extends CommonController{
 			}
 		}
 		if (!flag){
-		    renderError("文件类型错误");
+			setAttr("error",1);
+			setAttr("message","文件类型错误");
 			return;
 		}
 
 		try {
 			FileInputStream fis = new FileInputStream(source);
-			fileName =  generateTimeString() + extension;
+			if (!title.trim().equals("")){
+				fileName=title+extension;
+			} 
+
 			File targetDir = new File(PathKit.getWebRootPath()  + Constant.UPLOAD_FILE_PATH );
 			if (!targetDir.exists()) {
 				targetDir.mkdirs();

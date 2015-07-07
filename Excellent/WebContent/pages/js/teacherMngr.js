@@ -3,7 +3,6 @@ $(function(){
 	common.addCickToNav(teacherMngr.showContent);
 	teacherMngr.addClick();
 	teacherMngr.getTeacherList();
-	teacherMngr.upLoadImg();
 });
 
 var teacherMngr = {};
@@ -15,9 +14,14 @@ var teacherMngr = {};
 		$("#addTeacherBtn").click(function(){
 			page.addTeacher();
 		});
-		$("#prelook").click(function(){
-			page.upLoadImg();
-		});
+		 $(":button").click(function () {
+             if ($("#file1").val().length > 0) {
+                 page.ajaxFileUpload();
+             }
+             else {
+                 alert("请选择图片");
+             }
+         })
 	};
 	
 	page.showContent = function(i){
@@ -35,35 +39,43 @@ var teacherMngr = {};
 		}
 	};
 	
-	page.upLoadImg = function(){
-		 /*$("#teacherHeaderFile").change(function(){
-	        //创建FormData对象
-	        var data = new FormData();
-	        //为FormData对象添加数据
-	        $.each($('#teacherHeaderFile')[0].files, function(i, file) {
-	            data.append('upload_file', file);
-	        });
-	        $.ajax({
-	            url:'/Excellent/file/uploadImg',
-	            type:'POST',
-	            data:data,
-	            cache: false,
-	            contentType: false,    //不可缺
-	            processData: false,    //不可缺
-	            success:function(data){
-	                data = $(data).html();
-	                if($("#feedback").children('img').length == 0) $("#feedback").append(data.replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
-	                else $("#feedback").children('img').eq(0).before(data.replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
-	            }
-	        });
-	    });*/
-	};
+	//上传图片
+	page.ajaxFileUpload = function() {
+       $.ajaxFileUpload
+       (
+           {
+               url: '/Excellent/file/uploadImg', //用于文件上传的服务器端请求地址
+               type: 'post',
+              /*  data: {  name: 'imgFile' }, //此参数非常严谨，写错一个引号都不行 */
+               secureuri: false, //一般设置为false
+               fileElementId: 'file1', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+               dataType: 'json', //返回值类型 一般设置为json
+               success: function (data)  //服务器成功响应处理函数
+               {
+                   if (typeof (data.error) != 'undefined') {
+                       if (data.error != 0) {
+                       	alert('errorCode'+data.error+';msg:'+data.message);
+                       	return;
+                       } 
+                   }
+                   console.log(data.url);
+                   $("#img1").attr("src", data.url);
+               },
+               error: function (data, status, e)//服务器响应失败处理函数
+               {
+                   alert(1);
+               }
+           }
+       )
+       return false;
+   };
 	
 	//添加老师
 	page.addTeacher = function(){
 		var teacherName = $("#teacherName").val();
 		var teacherDsb = $("#teacherDsb").val();
-		var teacherHeaderFile = $("#headImg").attr("src");
+		var teacherHeaderFile = $("#img1").attr("src");
+		console.log(teacherHeaderFile);
 		if(teacherName == "" || teacherDsb == "" || teacherHeaderFile == ""){
 			alert("请完善信息！");
 			return;

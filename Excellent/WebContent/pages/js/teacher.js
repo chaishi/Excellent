@@ -38,6 +38,9 @@ var teacher = {};
 				if(data.success){
 					var tchList = data.result.details;
 					var html = "";
+					$("#teacherHead").attr("src",tchList[0].photo);
+					$("#teacherName").html(tchList[0].name);
+					$("#teacherDescrible").html(tchList[0].study_area);
 					for(var i = 0, len = tchList.length; i < len; i++){
 						var index = (Math.random() * 12 | 0)  % 4 + 1;
 						html += '<div class = "tchName'+index+'">'+tchList[i].true_name+'<span style = "display:none">'+tchList[i].name+'###'+tchList[i].photo+'###'+tchList[i].study_area+'</span></div>';

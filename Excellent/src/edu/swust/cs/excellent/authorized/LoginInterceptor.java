@@ -10,11 +10,11 @@ public class LoginInterceptor implements Interceptor {
 	 */
 	@Override
 	public void intercept(ActionInvocation ai) {
-//		// TODO Auto-generated method stub
-//		Object obj = ai.getController().getSession().getAttribute("user");
-//		if (obj == null) {
-//			ai.getController().render("/pages/login.jsp");
-//		}
+		// TODO Auto-generated method stub
+		Object obj = ai.getController().getSession().getAttribute("user");
+		if (obj == null) {
+			ai.getController().render("/pages/login.jsp");
+		}
 		ai.invoke();
 	}
 
