@@ -51,7 +51,7 @@ public class Constant {
 	/**
 	 * 数据库文件备份路径
 	 */
-	public static String DB_BACKUP_PATH="/DBBackUp/";
+	public static String DB_BACKUP_PATH="DBBackUp";
 	
 	/**
 	 * 警告错误日志存储时间(天)
@@ -99,7 +99,7 @@ public class Constant {
     /**
      * 文件的暂存路径
      */
-    public  static String FILE_TEMPORARY_SVAE_DIR = "webRoot\\upload\\";
+    public  static String FILE_TEMPORARY_SVAE_DIR = "webRoot/upload";
     
     /**
      * 从excel导入数据时的数据有效列数

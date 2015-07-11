@@ -79,7 +79,7 @@ public class DBBackUpJob implements Job{
 				directory.mkdir();
 			}
 			
-			String fileName=PathKit.getWebRootPath()+Constant.DB_BACKUP_PATH+"DB_"+df.format(t)+".sql";
+			String fileName=PathKit.getWebRootPath()+Constant.DB_BACKUP_PATH+File.separator+"DB_"+df.format(t)+".sql";
 			File file=new File(fileName);
 			if (!file.getParentFile().exists()){
 				file.getParentFile().mkdir();
