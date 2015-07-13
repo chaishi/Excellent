@@ -1,0 +1,43 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Login</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="/Excellent/pages/css/login.css">		
+	</head>
+
+	<body>
+		<div class="all">
+			<div class="login">
+				<div class="login-top">
+					<h1>用户登录</h1>
+					<form>
+						<span>账号：</span><input class = "ipt1" type="text" placeholder="用户帐号" id ="user">
+						<br /><br />
+						<span>密码：</span><input class = "ipt1" type="password" placeholder="password" id="password"><br /><br />
+				    </form>
+				    <div class = "prove">
+				    	<span>验证码：</span><input type="text" placeholder="验证码" id="input1" />
+				    		<div class="checkcode">
+				    		
+								<img alt="验证码" src="/Excellent/captcha" class="code" id="check_img">
+						 		<a href="#" id="recheckcode"><sub>看不清楚</sub></a>
+					 		</div>
+						<br />
+						<br />
+				    <div class="in">
+				    	<input class = "inpt" type="submit" value="登录" id="login">
+				    </div>
+				    </div>
+				</div>
+			</div>	
+		</div>
+		<div class="copyright">
+			<p>Copyright &copy; 2015.Excellence All rights reserved.</p>
+		</div>
+	</body>
+	<script type="text/javascript" src="/Excellent/pages/common/sha1.js"></script>
+	<script type="text/javascript" src="/Excellent/pages/common/jquery-1.8.1.min.js"></script>
+	<script type="text/javascript" src="/Excellent/pages/js/login.js"></script>
+</html>
