@@ -40,7 +40,7 @@ public class AppConfig extends JFinalConfig{
     	Constant.init("constant.txt");
         me.setDevMode(Constant.DEVMODE);
         me.setViewType(ViewType.JSP);
-        me.setBaseViewPath(Constant.BASE_PATH);
+ //       me.setBaseViewPath(Constant.BASE_PATH);
        
     }
 
@@ -101,5 +101,6 @@ public class AppConfig extends JFinalConfig{
     public void configHandler(Handlers me) {
         // TODO Auto-generated method stub
         me.add(new SessionHandler());
+        me.add(new UrlHandler());
     }
 }

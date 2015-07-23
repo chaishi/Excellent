@@ -31,12 +31,14 @@ public class IndexController extends CommonController{
 
 	public void login(){
 		String captcha = getPara("captcha");
+		String uid  = getPara("userName");
+		String pswd = getPara("pswd");
+		System.out.println(pswd);
+		System.out.println(uid);
 		if (!MyCaptchaRender.validate(this, captcha)){
 			renderError("验证码错误");
 			return;
 		}
-		String uid  = getPara("userName");
-		String pswd = getPara("pswd");
 		renderJ(loginImpl.login(uid, pswd,getSession()));
 	}
 

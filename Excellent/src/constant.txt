@@ -40,7 +40,7 @@ DB_URL = jdbc:mysql://127.0.0.1:3306/excellent?characterEncoding=utf8&zeroDateTi
 DB_USER = root
 
 #数据库密码
-DB_PSWD = 123
+DB_PSWD = wang
 
 #开发模式
 DEVMODE = true

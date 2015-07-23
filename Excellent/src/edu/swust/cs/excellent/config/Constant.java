@@ -15,7 +15,6 @@ import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.log.Logger;
 
-
 /**
  * 
  * 常量定义集

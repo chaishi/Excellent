@@ -4,7 +4,6 @@
  * @time 2015-07-12
  */
 
-
 $(function(){
 	/*按ESC键退出*/
 	$("#myModal").modal({
@@ -27,7 +26,8 @@ $(function(){
 			alert("请输入密码！");
 			$("password").focus();
 		}
-        var pswd = hex_sha1($("#password").val());
+       // var pswd = hex_sha1($("#password").val());
+		
 		var captcha = $("#input1").val();
 		//console.log(userName+"@@@@"+pswd);
 		$.ajax({
@@ -40,6 +40,7 @@ $(function(){
 			},
 			dataType:'json',
 			success:function(data){
+				console.log(data);
 				//console.log(userName+"@@@@"+pswd);
 				if(data.success === true){
 					alert("登录成功！");
@@ -52,7 +53,7 @@ $(function(){
 				}
 			},
 			error:function(){
-				alert("登陆失败！");
+				alert("请求失败！");
 			}
 		});
 	})
