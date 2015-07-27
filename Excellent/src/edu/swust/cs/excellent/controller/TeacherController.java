@@ -36,8 +36,8 @@ public class TeacherController extends CommonController{
 	 }
 	
 	public void getTeacherList(){
-		int pageNum = getParaToInt("nowPage",1);
-		int numPerPage = getParaToInt("rowNum",10000);
+		final int pageNum = getParaToInt("nowPage",1);
+		final int numPerPage = getParaToInt("rowNum",10000);
 		Page<Teacher> page = CacheKit.get("teacher_cache",pageNum+"-"+numPerPage ,
 				new IDataLoader(){
 			public Object load() {    

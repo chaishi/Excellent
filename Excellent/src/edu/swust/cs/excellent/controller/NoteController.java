@@ -41,8 +41,8 @@ public class NoteController extends CommonController {
 
 
 	public void getNotesList(){
-		int pageNum = getParaToInt("nowPage",1);
-		int numPerPage = getParaToInt("rowNum",10);
+		final int pageNum = getParaToInt("nowPage",1);
+		final int numPerPage = getParaToInt("rowNum",10);
 //		if (getSessionAttr("userType").equals(Constant.ADMIN)){
 //			Page<Note> notePages = CacheKit.get("note_cache", "admin"+pageNum+"-"+numPerPage,
 //					                       new IDataLoader(){

@@ -41,11 +41,11 @@ public class NewsController extends CommonController {
 	@Inject.BY_TYPE
 	private IEditNews editNewsImpl;
 	public void showClassNewsList(){
-		int pageNum = getParaToInt("nowPage",1);
-		int numPerPage = getParaToInt("rowNum",10);
+		final int pageNum = getParaToInt("nowPage",1);
+		final int numPerPage = getParaToInt("rowNum",10);
 		String classNum=getPara("calssNum","");
 		int type = getParaToInt("type",1);
-		String para=type+classNum;
+		final String para=type+classNum;
 		if (type==1){
 			Page<News> page = CacheKit.get("news_cache",type+"-"+pageNum+"-"+numPerPage ,
 					new IDataLoader(){
