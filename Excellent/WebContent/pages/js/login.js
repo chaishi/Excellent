@@ -8,6 +8,7 @@ $(function(){
 	
 	$("#loginBtn").on('click',function(){
 		
+		$("#loginBtn").attr("disabled",true);
 		//用户名，密码，验证码
 		var userName = null;
 		var pswd = null;
@@ -30,10 +31,7 @@ $(function(){
 			$("#captcha").focus();
 			return ;
 		}
-       // var pswd = hex_sha1($("#password").val());
-		
-		
-		//console.log(userName+"@@@@"+pswd);
+       // var pswd = hex_sha1($("#password").val());		
 		$.ajax({
 			url:"/Excellent/login",
 			type:"post",
@@ -44,18 +42,17 @@ $(function(){
 			},
 			dataType:'json',
 			success:function(data){
-				console.log(data);
-				//console.log(userName+"@@@@"+pswd);
+				
 				if(data.success === true){
+					$("#loginBtn").attr("disabled",false);
 					alert("登录成功！");
 				    location.href="/Excellent/pages/classMngr.html";					
-				}else{
-					//console.log(userName+"@@@@"+pswd);
+				}else{					
 					alert("登陆失败！");
 				}
 			},
 			error:function(){
-				alert("请求失败！");
+				alert("网络超时！");
 			}
 		});
 	})
