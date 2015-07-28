@@ -4,6 +4,8 @@ $(function(){
 	common.addCickToNav(studentInfoMngr.showContent);
 	studentInfoMngr.delegateEdit();
 	studentInfoMngr.addClick();
+	
+	
 });
 
 var studentInfoMngr = {};
@@ -123,6 +125,11 @@ var studentInfoMngr = {};
 				var classId = $(this).val();
 				page.getGroupList(classId,"#groupIdEdit");
 			}
+		});
+		
+		
+		$("#logout").click(function(){
+			page.clickLogout();
 		});
 	};
 	
@@ -293,4 +300,22 @@ var studentInfoMngr = {};
 			}
 		});
 	};
+	
+	page.clickLogout = function(){		
+		$.ajax({
+			url:"/Excellent/logout",
+			type:"post",
+			success:function(data){
+				if(data.success === true){
+					alert("退出成功！");
+					location.href="/Excellent/pages/home.html";
+				}else{
+					alert("退出失败！");
+				}
+			},
+			error:function(msg){
+				alert("网络超时！");
+			}
+		});
+	}
 })(studentInfoMngr);

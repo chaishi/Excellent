@@ -4,40 +4,41 @@
 	<head>
 		<title>Login</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="stylesheet" type="text/css" href="/Excellent/pages/css/login.css">		
+		<link rel="stylesheet" type="text/css" href="/Excellent/pages/bootstrap-3.2.0-dist/css/bootstrap.min.css">
+				<link rel="stylesheet" type="text/css" href="/Excellent/pages/css/login.css">		
 	</head>
-
 	<body>
-		<div class="all">
-			<div class="login">
-				<div class="login-top">
-					<h1>用户登录</h1>
-					<form>
-						<span>账号：</span><input class = "ipt1" type="text" placeholder="用户帐号" id ="user">
-						<br /><br />
-						<span>密码：</span><input class = "ipt1" type="password" placeholder="password" id="password"><br /><br />
-				    </form>
-				    <div class = "prove">
-				    	<span>验证码：</span><input type="text" placeholder="验证码" id="input1" />
-				    		<div class="checkcode">
-				    		
-								<img alt="验证码" src="/Excellent/captcha" class="code" id="check_img">
-						 		<a href="#" id="recheckcode"><sub>看不清楚</sub></a>
-					 		</div>
-						<br />
-						<br />
-				    <div class="in">
-				    	<input class = "inpt" type="submit" value="登录" id="login">
-				    </div>
-				    </div>
-				</div>
-			</div>	
-		</div>
-		<div class="copyright">
-			<p>Copyright &copy; 2015.Excellence All rights reserved.</p>
+			
+		<div class="container">
+			<div class="content-header">
+				<h1 class="form-signin-heading">Login</h1>
+			</div>
+			<div class="content-body form-signin">				
+                <ul>
+                   <li>       	 
+                      <label for="user">用户名</label>
+                      <input type="text" id ="user" class="form-control myinput" required autofocus>
+                   </li>
+                   <li>
+                      <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+                      <input type="password"  id="password" class="form-control myinput" required autofocus>
+                   </li>
+                   <li class="captcha">
+                      <label for="captcha">验证码</label>
+                      <input type="text" id="captcha" class="form-control myinput" required autofocus/>
+                      <img alt="验证码" src="/Excellent/captcha" class="code" id="check_img">
+                      <span id="recheckcode">看不清楚</span>         
+                   </li>            
+                </ul>  
+                <button class="btn btn-lg btn-primary btn-block "  id="loginBtn">登录</button>  			           
+			</div>
+			<div class="content-footer">
+				<p>Copyright &copy; 2015.Excellence All rights reserved.</p>
+			</div>
 		</div>
 	</body>
 	<script type="text/javascript" src="/Excellent/pages/common/sha1.js"></script>
 	<script type="text/javascript" src="/Excellent/pages/common/jquery-1.8.1.min.js"></script>
+	<script type="text/javascript" src="/Excellent/pages/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/Excellent/pages/js/login.js"></script>
 </html>

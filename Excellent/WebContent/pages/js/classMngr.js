@@ -76,6 +76,8 @@ var classMngr = {};
 				page.searchGroupList(classId);
 			}
 		});
+		
+		$("#logout").click(page.clickLogout());
 	};
 	
 	//保存编辑 班级简介
@@ -317,5 +319,26 @@ var classMngr = {};
 			}
 		});
 	};
+	
+	
+	page.clickLogout = function(){
+		
+		$.ajax({
+			url:"/Excellent/logout",
+			type:"post",
+			success:function(data){
+				if(data.success === true){
+					alert("退出成功！");
+					location.href="/Excellent/pages/home.html";
+				}else{
+					alert("退出失败！");
+				}
+			},
+			error:function(msg){
+				alert("网络超时！");
+			}
+		});
+	}
+	
 	
 })(classMngr);

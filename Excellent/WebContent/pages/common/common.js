@@ -23,6 +23,7 @@ var common = {};
 			page.setActiveNav(index);
 			fun(index);
 		});
+	
 	};
 	
 	//为侧边栏设置active

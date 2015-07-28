@@ -3,6 +3,8 @@ $(function(){
 	common.addCickToNav(teacherMngr.showContent);
 	teacherMngr.addClick();
 	teacherMngr.getTeacherList();
+	
+	
 });
 
 var teacherMngr = {};
@@ -21,7 +23,11 @@ var teacherMngr = {};
              else {
                  alert("请选择图片");
              }
-         })
+         });
+		$("#logout").click(function(){
+			page.clickLogout();
+		});
+				
 	};
 	
 	page.showContent = function(i){
@@ -155,4 +161,23 @@ var teacherMngr = {};
 			}
 		});
 	};
+	
+	page.clickLogout = function(){	
+		
+		$.ajax({
+			url:"/Excellent/logout",
+			type:"post",
+			success:function(data){
+				if(data.success === true){
+					alert("退出成功！");
+					location.href="/Excellent/pages/home.html";
+				}else{
+					alert("退出失败！");
+				}
+			},
+			error:function(msg){
+				alert("网络超时！");
+			}
+		});
+	}
 })(teacherMngr);

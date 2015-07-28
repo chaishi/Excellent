@@ -34,13 +34,13 @@ FILE_TEMPORARY_SVAE_DIR = /upload/
 EXCEL_GROUP_VALID_COLUMNS = 5
 
 #数据库连接
-DB_URL = jdbc:mysql://127.0.0.1:3306/excellent?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+DB_URL = jdbc:mysql://localhost:3306/excellent?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
 
 #数据库用户名
 DB_USER = root
 
 #数据库密码
-DB_PSWD = wang
+DB_PSWD = 123456
 
 #开发模式
 DEVMODE = true

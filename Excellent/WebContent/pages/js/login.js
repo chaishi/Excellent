@@ -1,34 +1,38 @@
 /**
  * login
  * @author sunmengxin,lixin
- * @time 2015-07-12
+ * @time 2015-07-27
  */
 
 $(function(){
-	/*按ESC键退出*/
-	$("#myModal").modal({
-        keyboard: true,
-        show:false      
-     });
 	
-	$("#login").on('click',function(){
+	$("#loginBtn").on('click',function(){
 		
 		//用户名，密码，验证码
 		var userName = null;
 		var pswd = null;
+		var captcha = null;
 		
 		userName = $("#user").val();
 		pswd = $("#password").val();
-		if(userName =="" || userName == null) {
+		captcha = $("#captcha").val();
+		
+		if(userName =="" || userName == null  ) {
 			alert("请输入用户名！");
 			$("#user").focus();
+			return ;
 		}else if( pswd == "" || pswd==null){
 			alert("请输入密码！");
-			$("password").focus();
+			$("#password").focus();
+			return ;
+		}else if(captcha == "" || captcha==null){
+			alert("请输入验证码！");
+			$("#captcha").focus();
+			return ;
 		}
        // var pswd = hex_sha1($("#password").val());
 		
-		var captcha = $("#input1").val();
+		
 		//console.log(userName+"@@@@"+pswd);
 		$.ajax({
 			url:"/Excellent/login",
@@ -37,16 +41,14 @@ $(function(){
 				"userName":userName,
 				"pswd":pswd,
 				"captcha":captcha
-			},
+			},s
 			dataType:'json',
 			success:function(data){
 				console.log(data);
 				//console.log(userName+"@@@@"+pswd);
 				if(data.success === true){
 					alert("登录成功！");
-					$("#myModal").modal("hide");
-					$("#login_ul span").text("退出");
-					
+				    location.href="/Excellent/pages/classMngr.html";					
 				}else{
 					//console.log(userName+"@@@@"+pswd);
 					alert("登陆失败！");
@@ -57,10 +59,11 @@ $(function(){
 			}
 		});
 	})
-	$("#recheckcode").on('click',function(){
-		//验证码看不清
-		$("#check_img").attr("src","/Excellent/captcha");
-	})
+	//验证码看不清
+	$("#recheckcode").on('click',function(){		
+		$("#check_img").attr("src","/Excellent/captcha?"+Math.random());
+	});
+	
 	
 });
 

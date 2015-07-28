@@ -1,3 +1,17 @@
 #title{
 	width:1200px;
 }
+
+
+.logout{
+  display: inline-block;
+  margin-left: 280px;
+  margin-top: 15px;
+  color: #AAA;
+  font-size: 15px;
+  font-weight:500;
+}
+.logout:hover{
+   color: #FFF;
+   cursor:pointer;
+}
