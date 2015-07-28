@@ -11,6 +11,7 @@ import com.jfinal.config.Routes;
 import com.jfinal.kit.PathKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
+import com.jfinal.plugin.ehcache.CacheKit;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.plugin.spring.SpringPlugin;
 import com.jfinal.render.ViewType;
@@ -42,8 +43,7 @@ public class AppConfig extends JFinalConfig{
         me.setDevMode(Constant.DEVMODE);
         me.setViewType(ViewType.JSP);
       //me.setBaseViewPath(Constant.BASE_PATH);
-       //me.setTokenCache(token_cache);
-        
+      // me.setTokenCache(CacheKit.get("token_cache"));
     }
 
     /**

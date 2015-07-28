@@ -7,7 +7,7 @@ public class TokenValidator extends Validator{
 
 	@Override
 	protected void validate(Controller c) {
-		validateToken("Token", "msg", "alert('请不要重复提交')");
+	//	validateToken("Token", "msg", "alert('请不要重复提交')");
 	}
 	@Override
 	protected void handleError(Controller c) {

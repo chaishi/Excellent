@@ -11,6 +11,9 @@ $(function(){
 	classMngr.getEditor();
 	classMngr.addClick();
 	classMngr.getClassList();
+	$("#logout").click(function(){			
+		classMngr.clickLogout();
+	});
 });
 
 var classMngr = {};
@@ -77,7 +80,7 @@ var classMngr = {};
 			}
 		});
 		
-		$("#logout").click(page.clickLogout());
+		
 	};
 	
 	//保存编辑 班级简介
@@ -321,8 +324,7 @@ var classMngr = {};
 	};
 	
 	
-	page.clickLogout = function(){
-		
+	page.clickLogout = function(){	
 		$.ajax({
 			url:"/Excellent/logout",
 			type:"post",

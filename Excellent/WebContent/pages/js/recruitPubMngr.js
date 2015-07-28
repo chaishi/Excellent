@@ -16,7 +16,7 @@ $(function(){
 	$("#logout").click(function(){
 		recruitEdit.clickLogout();
 	});
-	c
+
 });
 
 var recruitEdit = {};
