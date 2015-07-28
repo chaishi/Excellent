@@ -18,6 +18,7 @@ public class UrlHandler extends Handler{
 	     
 		HttpSession session=request.getSession();
 		String url=request.getRequestURI();
+		session.setAttribute("url", url);
 		if(url.indexOf("Mngr")>0){
 			String usertype=(String) session.getAttribute("userType");
 			if(usertype==null||

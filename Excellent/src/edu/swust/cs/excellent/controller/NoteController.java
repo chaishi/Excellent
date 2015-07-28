@@ -17,6 +17,7 @@ import edu.swust.cs.excellent.cache.MyEvictInterceptor;
 import edu.swust.cs.excellent.config.Constant;
 import edu.swust.cs.excellent.model.Note;
 import edu.swust.cs.excellent.service.inter.IEditNote;
+import edu.swust.cs.excellent.validator.WordValidator;
 
 public class NoteController extends CommonController {
 	@Inject.BY_TYPE
@@ -70,7 +71,7 @@ public class NoteController extends CommonController {
 		Constant.AUTHORITY_ADMIN
 	})
 	@Before({
-		LoginInterceptor.class,AuthorityInterceptor.class,MyEvictInterceptor.class
+		LoginInterceptor.class,AuthorityInterceptor.class,MyEvictInterceptor.class,WordValidator.class
 	})
 	@MyCacheName("note_cache")
 	public void deleteNote(){

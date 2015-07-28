@@ -34,4 +34,5 @@
            <cache name="index_cache" maxElementsInMemory="10000" eternal="true"/>
            <cache name="news_cache" maxElementsInMemory="100" eternal="true"/> 
            <cache name="note_cache" maxElementsInMemory="100" eternal="true"/> 
+           <cache name="token_cache" maxElementsInMemory="100" eternal="true"/>
 </ehcache>

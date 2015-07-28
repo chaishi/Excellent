@@ -14,7 +14,9 @@ import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.plugin.spring.SpringPlugin;
 import com.jfinal.render.ViewType;
+import com.jfinal.token.ITokenCache;
 
+import edu.swust.cs.excellent.cache.MyCacheName;
 import edu.swust.cs.excellent.controller.ClassController;
 import edu.swust.cs.excellent.controller.FileController;
 import edu.swust.cs.excellent.controller.GlobalDebugInterceptor;
@@ -29,8 +31,7 @@ import edu.swust.cs.excellent.util.QuartzPlugin;
 
 
 public class AppConfig extends JFinalConfig{
-
-    /**
+	/**
      * 配置常量.
      */
     @Override
@@ -40,8 +41,9 @@ public class AppConfig extends JFinalConfig{
     	Constant.init("constant.txt");
         me.setDevMode(Constant.DEVMODE);
         me.setViewType(ViewType.JSP);
- //     me.setBaseViewPath(Constant.BASE_PATH);
-       
+      //me.setBaseViewPath(Constant.BASE_PATH);
+       //me.setTokenCache(token_cache);
+        
     }
 
     /**
@@ -101,7 +103,7 @@ public class AppConfig extends JFinalConfig{
     public void configHandler(Handlers me) {
         // TODO Auto-generated method stub
         me.add(new SessionHandler());
-        //me.add(new UrlHandler());
-        //me.add(new GzipHandler());
+        me.add(new UrlHandler());
+       // me.add(new GzipHandler());
     }
 }
