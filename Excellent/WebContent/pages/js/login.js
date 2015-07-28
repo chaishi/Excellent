@@ -41,7 +41,7 @@ $(function(){
 				"userName":userName,
 				"pswd":pswd,
 				"captcha":captcha
-			},s
+			},
 			dataType:'json',
 			success:function(data){
 				console.log(data);
