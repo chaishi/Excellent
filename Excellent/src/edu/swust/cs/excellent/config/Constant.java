@@ -98,7 +98,8 @@ public class Constant {
     /**
      * 文件的暂存路径
      */
-    public  static String FILE_TEMPORARY_SVAE_DIR = "webRoot/upload";
+   // public  static String FILE_TEMPORARY_SVAE_DIR = "webRoot/upload";
+	public  static String FILE_TEMPORARY_SVAE_DIR = "webRoot"+File.separator+"upload";
     
     /**
      * 从excel导入数据时的数据有效列数
@@ -122,7 +123,8 @@ public class Constant {
     public static boolean DEVMODE = true;
     
     /**返回值起始路径**/
-    public static String BASE_PATH = "/excellent";
+  //public static String BASE_PATH = "/excellent"+File.separator;
+    public static String BASE_PATH = File.separator+"excellent";
 
     /** 定时器配置    */
 	public static String JOB_PROPERTY="job.properties";
