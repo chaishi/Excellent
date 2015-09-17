@@ -103,7 +103,7 @@ public class AppConfig extends JFinalConfig{
     public void configHandler(Handlers me) {
         // TODO Auto-generated method stub
         me.add(new SessionHandler());
-        me.add(new UrlHandler());
-       // me.add(new GzipHandler());
+        //me.add(new UrlHandler());
+       //me.add(new GzipHandler());
     }
 }
