@@ -12,7 +12,7 @@ var studentList = {};
 		var flag = 0;
 		$("#classIdforstd").click(function(){
 			flag++;
-			if(flag === 2){
+			if(flag === 1){
 				flag = 0;
 				var classId = $("#classIdforstd").val();//获取选择的班级Id
 				page.getStudentList(classId);

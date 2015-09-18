@@ -1,7 +1,8 @@
 @charset "UTF-8";
 body,div{margin: 0;padding: 0;}/* 去掉浏览器默认样式 */
 body{
-	background:url("/Excellent/pages/images/background.jpg") no-repeat;
+	/* background:url("/Excellent/pages/images/background.jpg") repeat; */
+	background:#2F4F4F;
 	
 }
 .container{
