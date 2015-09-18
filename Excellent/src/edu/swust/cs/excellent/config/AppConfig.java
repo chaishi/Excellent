@@ -42,8 +42,6 @@ public class AppConfig extends JFinalConfig{
     	Constant.init("constant.txt");
         me.setDevMode(Constant.DEVMODE);
         me.setViewType(ViewType.JSP);
-      //me.setBaseViewPath(Constant.BASE_PATH);
-      // me.setTokenCache(CacheKit.get("token_cache"));
     }
 
     /**
@@ -103,7 +101,7 @@ public class AppConfig extends JFinalConfig{
     public void configHandler(Handlers me) {
         // TODO Auto-generated method stub
         me.add(new SessionHandler());
-        //me.add(new UrlHandler());
-       //me.add(new GzipHandler());
+        me.add(new UrlHandler());
+        me.add(new GzipHandler()); 
     }
 }
